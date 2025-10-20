@@ -19,8 +19,8 @@
 **UserFlow Diagram**
 
 ![User Flow](/doc/UserFlow/CreateResep.png)
-![User Flow](/doc/UserFlow/DeleteResep.pngU)
-![User Flow](/doc/UserFlow/UpdateResep.pngU)
+![User Flow](/doc/UserFlow/DeleteResep.png)
+![User Flow](/doc/UserFlow/UpdateResep.png)
 ![User Flow](/doc/UserFlow/LoginAdmin.png)
 ![User Flow](/doc/UserFlow/LoginUser.png)
 
