@@ -18,31 +18,31 @@
 
 **UserFlow Diagram**
 
-![User Flow](/UserFlow/CreateResep.png)
-![User Flow](/UserFlow/DeleteResep.png)
-![User Flow](/UserFlow/UpdateResep.png)
-![User Flow](/UserFlow/LoginAdmin.png)
-![User Flow](/UserFlow/LoginUser.png)
+![User Flow](/doc/UserFlow/CreateResep.png)
+![User Flow](/doc/UserFlow/DeleteResep.pngU)
+![User Flow](/doc/UserFlow/UpdateResep.pngU)
+![User Flow](/doc/UserFlow/LoginAdmin.png)
+![User Flow](/doc/UserFlow/LoginUser.png)
 
 
 ✅ Wireframe / Mockup 
 
 **Home Page**
-![Wireframe](/Wireframe/Home.png)
+![Wireframe](/doc/Wireframe/Home.png)
 Halaman ini menunjukkan tampilan awal yang diliat pengguna. Pengguna bisa mencari resep, melihat bahan - bahan masakan dan makanan yang sedang populer. 
 
 **Fitur Save Resep**
-![Wireframe](/Wireframe/Save.png)
+![Wireframe](/doc/Wireframe/Save.png)
 Halaman ini menunjukkan tampilan pengguna yang bisa menyimpan resep
 
 **Fitur Like dan Komen**
-![Wireframe](/Wireframe/LikeKomen.png)
+![Wireframe](/doc/Wireframe/LikeKomen.png)
 Halaman ini menunjukkan tampilan pengguna yang bisa melihat jumlah like dan komen di postingan resep lain
 
 **Fitur Home Page Admin**
-![Wireframe](/Wireframe/DashboardAdmin.png)
+![Wireframe](/doc/Wireframe/DashboardAdmin.png)
 Halaman ini menunjukkan tampilan awal halaman admin. Admin bisa menambahkan dan mengelola resep yang nantinya akan dilihat oleh pengguna. 
 
 ✅ Database Schema Design 
-![Schema DB](/database/erd_resep_makanan.png)
+![Schema DB](/doc/database/erd_resep_makanan.png)
 
