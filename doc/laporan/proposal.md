@@ -2,7 +2,7 @@
 
 **Nama Aplikasi**	: Resepin.id 
 
-**Deskripsi Aplikasi**	: Resepin.id adalah aplikasi berbasis website yang bantu pengguna cari dan kelola resep masakan dengan cara yang simpel. Di sini, pengguna bisa menemukan resep sesuai bahan yang mudah dicari atau bahkan jenis makanan yang diinginkan. Selain itu, ada juga fitur panduan step-by-step agar masak berhasil, dilengkapi dengan deskripsi timer dan info gizi per porsi. Tujuan utamanya untuk memudahkan pengguna menemukan ide sebelum memasak dengan mudah. 
+**Deskripsi Aplikasi**	: Resepin.id adalah aplikasi berbasis web yang membantu pengguna dalam mencari dan mengelola resep masakan dengan cara yang sederhana. Melalui aplikasi ini, pengguna dapat menemukan resep berdasarkan bahan yang mudah diperoleh atau jenis makanan yang diinginkan. Selain itu, terdapat pula fitur panduan langkah demi langkah agar proses memasak lebih terarah, dilengkapi dengan deskripsi waktu memasak dan informasi nilai gizi per porsi. Tujuan utama aplikasi ini adalah untuk memudahkan pengguna dalam menemukan inspirasi memasak secara praktis dan efisien.
 
 **Target User**		: 
 - Mahasiswa / anak kos yang ingin masak cepat dan irit bahan.
