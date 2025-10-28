@@ -35,3 +35,7 @@ Route::get('/recipes', function () {
 Route::get('/recipes/{id}', function ($id) {
     return view('recipes_details', ['id' => $id]);
 });
+
+Route::get('/login', function () {
+    return view('login.index');
+})->name('login');
