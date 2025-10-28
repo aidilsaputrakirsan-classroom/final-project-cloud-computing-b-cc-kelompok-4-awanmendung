@@ -131,7 +131,19 @@
     <i class="fa fa-heart" style="color: red; margin-right: 5px;"></i>
     <span>123 Likes</span>
 </div>
-
+<div class="comments" style="margin-top: 15px; text-align: left;">
+    <h5 style="font-weight: bold;">Komentar</h5>
+     <div class="comment-list" style="max-height: 150px; overflow-y: auto; border: 1px solid #eee; padding: 10px; border-radius: 5px; background: #fafafa;">
+        <p><strong>Ana:</strong> Enak banget resepnya! 😋</p>
+        <p><strong>Budi:</strong> Aku coba tadi, berhasil juga!</p>
+    </div>
+    <form action="#" method="POST" style="margin-top: 10px;">
+        <div style="display: flex; gap: 5px;">
+            <input type="text" name="comment" placeholder="Tulis komentar..." style="flex: 1; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+            <button type="submit" style="background-color: #ff4a52; border: none; color: white; padding: 6px 10px; border-radius: 4px;">Kirim</button>
+        </div>
+    </form>
+</div>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
