@@ -107,7 +107,7 @@
     </div>
     <!-- slider_area_end -->
 
-<div class="menu-section" 
+<div class="menu-section"
      style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh;">
 
     <!-- Judul tengah -->
@@ -127,6 +127,11 @@
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
                         <a href="#" class="line_btn">View Full Recipe</a>
+                        <div class="likes" style="margin-top: 5px;">
+    <i class="fa fa-heart" style="color: red; margin-right: 5px;"></i>
+    <span>123 Likes</span>
+</div>
+
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -138,6 +143,11 @@
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
                         <a href="#" class="line_btn">View Full Recipe</a>
+                        <div class="likes" style="margin-top: 5px;">
+    <i class="fa fa-heart" style="color: red; margin-right: 5px;"></i>
+    <span>123 Likes</span>
+</div>
+
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -149,6 +159,11 @@
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
                         <a href="#" class="line_btn">View Full Recipe</a>
+                        <div class="likes" style="margin-top: 5px;">
+    <i class="fa fa-heart" style="color: red; margin-right: 5px;"></i>
+    <span>123 Likes</span>
+</div>
+
                     </div>
                 </div>
             </div>
@@ -156,7 +171,7 @@
     </div>
     <!-- /recepie_area_start  -->
 
-<div class="menu-section" 
+<div class="menu-section"
      style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh;">
 
     <!-- Judul tengah -->
@@ -196,7 +211,7 @@
     </div>
     <!--/ dish_area start  -->
 
-<div class="menu-section" 
+<div class="menu-section"
      style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh;">
 
     <!-- Judul tengah -->
@@ -242,8 +257,8 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class="recepie_info">
-                        <h3>Recipe videos 
-                            that never misses 
+                        <h3>Recipe videos
+                            that never misses
                             any portion</h3>
                     <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women.</p>
                     <div class="video_watch d-flex align-items-center">
@@ -426,7 +441,7 @@
                                     <li><a href="#">Power Tools</a></li>
                                     <li><a href="#">Marketing Service</a></li>
                                 </ul>
-    
+
                             </div>
                         </div>
                         <div class="col-xl-2 col-md-6 col-lg-2">
@@ -440,7 +455,7 @@
                                     <li><a href="#">Investor Relations</a></li>
                                     <li><a href="#">Terms of Service</a></li>
                                 </ul>
-    
+
                             </div>
                         </div>
                         <div class="col-xl-2 col-md-6 col-lg-2">
@@ -454,7 +469,7 @@
                                     <li><a href="#">Investor Relations</a></li>
                                     <li><a href="#">Terms of Service</a></li>
                                 </ul>
-    
+
                             </div>
                         </div>
                         <div class="col-xl-2 col-md-6 col-lg-2">
@@ -468,7 +483,7 @@
                                     <li><a href="#">Experts</a></li>
                                     <li><a href="#">Agencies</a></li>
                                 </ul>
-    
+
                             </div>
                         </div>
                         <div class="col-xl-4 col-md-6 col-lg-4">
@@ -481,7 +496,7 @@
                                             <input type="text" placeholder="Enter your mail">
                                             <button type="submit"> <i class="ti-arrow-right"></i> </button>
                                         </form>
-                                        
+
                                     </div>
                         </div>
                     </div>
