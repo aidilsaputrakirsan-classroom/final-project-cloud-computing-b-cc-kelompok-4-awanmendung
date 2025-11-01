@@ -210,7 +210,7 @@
                     <div class="trand_info text-center">
                         <p>Thousands of recipes are waiting to be watched</p>
                         <h3>Discover latest trending recipes</h3>
-                        <a href="#" class="boxed-btn3">View all Recipes</a>
+                        <a href="recipes" class="boxed-btn3">View all Recipes</a>
                     </div>
                 </div>
             </div>
