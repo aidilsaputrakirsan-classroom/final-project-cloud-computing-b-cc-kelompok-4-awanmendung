@@ -69,12 +69,16 @@
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="search_icon">
-                                <a href="#">
-                                    <i class="ti-search"></i>
-                                </a>
-                            </div>
+                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                                <div class="header_right d-flex justify-content-end align-items-center">
+                                    <div class="search_icon mr-3">
+                                        <a href="#">
+                                             <i class="ti-search"></i>
+                                        </a>
+                        </div>
+                        <div class="login_btn">
+                            <a href="/login" class="boxed-btn3" style="background-color: #28a745; border-color: #28a745;">Login</a>
+                        </div>
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>

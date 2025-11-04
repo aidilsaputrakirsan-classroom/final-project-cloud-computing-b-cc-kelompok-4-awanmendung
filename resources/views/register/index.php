@@ -30,10 +30,9 @@
 					<img src="images/buku.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form">
-					<span class="login100-form-title">
-						Register
-					</span>
+			<form class="login100-form validate-form"> 
+				<span class="login100-form-title"> Register 
+				</span>
 
                     <div class="wrap-input100 validate-input" data-validate = "Username is required">
 						<input class="input100" type="text" name="username" placeholder="Username">
@@ -59,11 +58,12 @@
 						</span>
 					</div>
 
-                    <div class="container-login100-form-btn">
-                        <button type="button" class="login100-form-btn" onclick="window.location.href='login'">
-                            Register
-                        </button>
-                    </div>
+					<div class="container-login100-form-btn">
+    					<button type="submit" class="login100-form-btn">
+        					Register
+    					</button>
+					</div>
+
 
 					<div class="text-center p-t-12">
 						<span class="txt1">
