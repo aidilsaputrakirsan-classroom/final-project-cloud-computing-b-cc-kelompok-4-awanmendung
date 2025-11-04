@@ -1,5 +1,3 @@
-<!-- Buat view untuk create post form -->
-
 @extends('layouts.dashboard')
 
 @section('title', 'Create New Post')

@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 // Dashboard route untuk admin interface
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('layouts.dashboard');
 })->name('dashboard');
 
 /*
