@@ -64,21 +64,17 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<a href= "/" class="login100-form-btn">
+						<a href= "dashboard" class="login100-form-btn">
 							Login
 					</a>
 					</div>
 
 					<div class="text-center p-t-12">
-						<span class="txt1">Forgot</span>
-						<a class="txt2" href="#">Username / Password?</a>
+						
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="/register">
-							Create your Account
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
+						
 					</div>
 				</form>
 			</div>

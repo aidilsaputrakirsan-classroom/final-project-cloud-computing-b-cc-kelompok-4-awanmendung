@@ -32,7 +32,7 @@
       </div>
     </nav>
 
-    <!-- Form Tambah Resep -->
+    <!-- Form Tambah Kategori -->
     <div class="container-fluid py-4">
       <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -42,11 +42,11 @@
             </div>
             <div class="card-body">
 
-              <form id="formTambahKategori" enctype="multipart/form-data">
+              <form id="formTambahKategori">
                 <!-- Nama Kategori -->
                 <div class="mb-3">
                   <label class="form-label">Nama Kategori</label>
-                  <input type="text" class="form-control" name="nama_kategori" placeholder="Masukkan nama kategori" required>
+                  <input type="text" class="form-control" id="namaKategori" placeholder="Masukkan nama kategori" required>
                 </div>
 
                 <!-- Tombol -->
@@ -67,19 +67,47 @@
     </div>
   </main>
 
-  <!-- JS -->
+  <!-- JS Library -->
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
 
-  <script>
-    document.getElementById('formTambahKategori').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Kategori berhasil disimpan!');
-      window.location.href = "kategori"; // kembali ke halaman utama resep
-    });
-  </script>
-</body>
 
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTMyODUwOCwiZXhwIjoyMDc2OTA0NTA4fQ.W6jf7DpnbdTmOAWBhV0NwFlfhKGQC62crCT-rfKoap8";
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        const form = document.getElementById('formTambahKategori');
+
+        form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // ⛔ cegah reload halaman
+
+        const namaKategori = document.getElementById('namaKategori').value.trim();
+
+        if (!namaKategori) {
+            alert('Nama kategori tidak boleh kosong!');
+            return;
+        }
+
+        // simpan ke supabase
+        const { error } = await supabaseClient
+            .from('kategori')
+            .insert([{ nama_kategori: namaKategori }]);
+
+        if (error) {
+            console.error(error);
+            alert('❌ Gagal menyimpan kategori!');
+        } else {
+            alert('✅ Kategori berhasil disimpan!');
+            window.location.href = "kategori"; // pastikan file ini ada
+        }
+        });
+    });
+    </script>
+</body>
 </html>

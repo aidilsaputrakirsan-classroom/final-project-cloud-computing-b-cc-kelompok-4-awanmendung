@@ -124,7 +124,7 @@
               <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
                 <div class="d-flex align-items-center gap-2">
                   <!-- Search -->
-                  <div class="input-group shadow-sm" style="max-width: 250px;">
+                  <div class="input-group" style="max-width: 250px;">
                     <span class="input-group-text bg-white border-end-0">
                       <i class="fa-solid fa-magnifying-glass text-secondary"></i>
                     </span>
@@ -138,52 +138,30 @@
                 </a>
               </div>
               <div class="table-container">
+                <!-- Tabel -->
                 <table class="table">
+                  <thead>
                     <tr>
-                        <th>Kategori</th>
-                        <th>Action</th>
+                      <th>Nama Kategori</th>
+                      <th class="text-center">Aksi</th>
                     </tr>
-                    <tr>
-                        <td>Makanan Utama</td>
-                        <td>
-                            <a href="edit_kategori" class="btn btn-warning px-4 py-3">
-                              <i class="fa-solid fa-pen"></i>
-                            </a>
-                            <button class="btn btn-danger px-4 py-3" onclick="konfirmasiHapus('Makanan Utama', 1)">
-                              <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Makanan Utama</td>
-                        <td>
-                            <a href="edit_kategori" class="btn btn-warning px-4 py-3">
-                              <i class="fa-solid fa-pen"></i>
-                            </a>
-                            <button class="btn btn-danger px-4 py-3" onclick="konfirmasiHapus('Makanan Utama', 1)">
-                              <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
                     <!-- Konfirmasi Hapus -->
-                    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header bg-danger text-white">
-                            <h5 class="modal-title" id="hapusModalLabel"><i class="fa-solid fa-triangle-exclamation me-2"></i>Konfirmasi Hapus</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            Apakah Anda yakin ingin menghapus kategori <strong id="namaKategoriHapus"></strong>?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-danger" id="btnKonfirmasiHapus">Hapus</button>
-                          </div>
+                  <div class="modal fade" id="hapusModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-body text-center">
+                          <h5>Yakin ingin menghapus <span id="namaKategoriHapus" class="fw-bold"></span>?</h5>
+                        </div>
+                        <div class="modal-footer px-5">
+                          <button class="btn btn-secondary me-auto" data-bs-dismiss="modal">Batal</button>
+                          <button id="btnKonfirmasiHapus" class="btn btn-danger">Hapus</button>
                         </div>
                       </div>
                     </div>
-                </table>
+                  </div>
                 </div>
             </div>
           </div>
@@ -198,6 +176,7 @@
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <script src="../assets/js/kategori.js"></script>
+  <script type="module" src="../assets/js/kategori.js"></script>
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 

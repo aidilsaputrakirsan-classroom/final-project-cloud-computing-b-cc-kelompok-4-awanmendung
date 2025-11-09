@@ -23,7 +23,7 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="dashboard">Kategori</a></li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="dashboard.html">Kategori</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Edit Kategori</li>
           </ol>
           <h6 class="font-weight-bolder mb-0">Edit Kategori</h6>
@@ -31,7 +31,7 @@
       </div>
     </nav>
 
-    <!-- Form Edit Resep -->
+    <!-- Form Edit Kategori -->
     <div class="container-fluid py-4">
       <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -41,11 +41,11 @@
             </div>
             <div class="card-body">
 
-              <form id="formEditKategori" enctype="multipart/form-data">
+              <form id="formEditKategori">
                 <!-- Nama Kategori -->
                 <div class="mb-3">
                   <label class="form-label">Nama Kategori</label>
-                  <input type="text" class="form-control" name="nama_kategori" value="Makanan Utama" required>
+                  <input type="text" class="form-control" id="namaKategori" required>
                 </div>
 
                 <!-- Tombol -->
@@ -71,14 +71,74 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    document.getElementById('formEditKategori').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Perubahan kategori berhasil disimpan!');
-      window.location.href = "kategori"; // kembali ke halaman utama
-    });
-  </script>
-</body>
+    // 🔗 KONEKSI SUPABASE
+    const SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTMyODUwOCwiZXhwIjoyMDc2OTA0NTA4fQ.W6jf7DpnbdTmOAWBhV0NwFlfhKGQC62crCT-rfKoap8";
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+    // 🔍 Ambil parameter ID dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const kategoriId = urlParams.get('id');
+
+    // 🚀 Fungsi untuk ambil data kategori berdasarkan ID
+    async function loadKategori() {
+      if (!kategoriId) {
+        alert("ID kategori tidak ditemukan!");
+        window.location.href = "kategori";
+        return;
+      }
+
+      const { data, error } = await supabaseClient
+        .from('kategori')
+        .select('*')
+        .eq('id', kategoriId)
+        .maybeSingle();
+
+      if (error) {
+        console.error(error);
+        alert("Gagal mengambil data kategori!");
+        return;
+      }
+
+      if (data) {
+        document.getElementById('namaKategori').value = data.nama_kategori;
+      } else {
+        alert("Kategori tidak ditemukan!");
+        window.location.href = "kategori";
+      }
+    }
+
+    // 💾 Simpan perubahan
+    document.getElementById('formEditKategori').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const namaBaru = document.getElementById('namaKategori').value.trim();
+      if (!namaBaru) {
+        alert('Nama kategori tidak boleh kosong!');
+        return;
+      }
+
+      // 🔄 Update data
+      const { error } = await supabaseClient
+        .from('kategori')
+        .update({ nama_kategori: namaBaru })
+        .eq('id', kategoriId);
+
+      if (error) {
+        console.error(error);
+        alert('❌ Gagal memperbarui kategori!');
+      } else {
+        alert('✅ Kategori berhasil diperbarui!');
+        window.location.href = "kategori";
+      }
+    });
+
+    // ⏳ Jalankan load saat halaman dibuka
+    loadKategori();
+  </script>
+
+</body>
 </html>
