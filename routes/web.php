@@ -24,8 +24,8 @@ Route::get('/about', function () {
     return view('home.about');
 });
 
-Route::get('/blog', function () {
-    return view('home.blog');
+Route::get('/bookmarks', function () {
+    return view('home.bookmarks');
 });
 
 Route::get('/contact', function () {

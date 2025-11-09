@@ -20,12 +20,13 @@
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Style kecil untuk Like & Komentar -->
+    <!-- Style kecil untuk Like, Comment & Save -->
     <style>
       .react-bar{display:flex;gap:14px;align-items:center;margin:12px 0}
       .react-bar button{border:0;background:transparent;display:inline-flex;align-items:center;gap:6px;font-size:16px;cursor:pointer;padding:6px 10px;border-radius:10px;transition:background .2s}
       .react-bar button:hover{background:rgba(0,0,0,.05)}
       .react-bar .btn-like.liked .fa-heart{color:#e0245e;transform:scale(1.08)}
+      .react-bar .btn-save.saved .fa-bookmark{color:#f0ad4e;transform:scale(1.1)}
       .comment-wrap{border:1px solid #eee;border-radius:10px;padding:14px;margin:8px 0 20px;background:#fff}
       .comment-wrap .comment-list{list-style:none;margin:12px 0 0;padding:0}
       .comment-wrap .comment-list li{border-top:1px dashed #ddd;padding:10px 2px}
@@ -36,7 +37,7 @@
 </head>
 
 <body>
-    <!-- header-start (markup asli, tanpa include) -->
+    <!-- header-start -->
     <header>
         <div class="header-area ">
             <div id="sticky-header" class="main-header-area ">
@@ -105,13 +106,13 @@
     <div class="recepie_details_area">
         <div class="container">
             <div class="row align-items-center">
-                <!-- Kolom kiri: Gambar + Like & Komentar -->
+                <!-- Kolom kiri: Gambar + Like, Comment & Save -->
                 <div class="col-xl-6 col-md-6">
                     <div class="recepies_thumb">
                         <img src="img/recepie/recepie_details.png" alt="">
                     </div>
 
-                    <!-- Like & Komentar dipindah ke bawah gambar -->
+                    <!-- React bar -->
                     <div class="react-bar" data-item-id="dragon-tiger-phoenix">
                         <button class="btn-like" aria-label="Like">
                             <i class="fa fa-heart"></i>
@@ -121,8 +122,12 @@
                             <i class="fa fa-comment"></i>
                             <span class="comment-count">0</span>
                         </button>
+                        <button class="btn-save" aria-label="Save">
+                            <i class="fa fa-bookmark"></i>
+                        </button>
                     </div>
 
+                    <!-- Comment Wrap -->
                     <div class="comment-wrap" data-for="dragon-tiger-phoenix" hidden>
                         <form class="comment-form">
                             <div class="form-group">
@@ -168,7 +173,7 @@
                 </div>
             </div>
 
-            <!-- Detail resep (gantikan lorem ipsum) -->
+            <!-- Detail resep lengkap -->
             <div class="row">
                 <div class="col-xl-12">
                     <div class="recepies_text">
@@ -207,91 +212,11 @@
         </div>
     </div>
 
-    <!-- Rekomendasi / kartu lain -->
-    <div class="recepie_area inc_padding">
-        <div class="container">
-            <div class="row">
-                <!-- Card 1 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb"><img src="img/recepie/recpie_1.png" alt=""></div>
-                        <h3>Egg Manchurian</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-
-                        <div class="react-bar" data-item-id="egg-manchurian">
-                            <button class="btn-like"><i class="fa fa-heart"></i><span class="like-count">0</span></button>
-                            <button class="btn-comment-toggle"><i class="fa fa-comment"></i><span class="comment-count">0</span></button>
-                        </div>
-                        <div class="comment-wrap" data-for="egg-manchurian" hidden>
-                            <form class="comment-form">
-                                <div class="form-group"><input type="text" name="name" class="form-control" placeholder="Nama (opsional)"></div>
-                                <div class="form-group"><textarea name="message" rows="3" class="form-control" placeholder="Tulis komentar..."></textarea></div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                            <ul class="comment-list"></ul>
-                        </div>
-
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb"><img src="img/recepie/recpie_2.png" alt=""></div>
-                        <h3>Pure Vegetable Bowl</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-
-                        <div class="react-bar" data-item-id="pure-vegetable-bowl">
-                            <button class="btn-like"><i class="fa fa-heart"></i><span class="like-count">0</span></button>
-                            <button class="btn-comment-toggle"><i class="fa fa-comment"></i><span class="comment-count">0</span></button>
-                        </div>
-                        <div class="comment-wrap" data-for="pure-vegetable-bowl" hidden>
-                            <form class="comment-form">
-                                <div class="form-group"><input type="text" name="name" class="form-control" placeholder="Nama (opsional)"></div>
-                                <div class="form-group"><textarea name="message" rows="3" class="form-control" placeholder="Tulis komentar..."></textarea></div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                            <ul class="comment-list"></ul>
-                        </div>
-
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb"><img src="img/recepie/recpie_3.png" alt=""></div>
-                        <h3>Egg Masala Ramen</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-
-                        <div class="react-bar" data-item-id="egg-masala-ramen">
-                            <button class="btn-like"><i class="fa fa-heart"></i><span class="like-count">0</span></button>
-                            <button class="btn-comment-toggle"><i class="fa fa-comment"></i><span class="comment-count">0</span></button>
-                        </div>
-                        <div class="comment-wrap" data-for="egg-masala-ramen" hidden>
-                            <form class="comment-form">
-                                <div class="form-group"><input type="text" name="name" class="form-control" placeholder="Nama (opsional)"></div>
-                                <div class="form-group"><textarea name="message" rows="3" class="form-control" placeholder="Tulis komentar..."></textarea></div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                            <ul class="comment-list"></ul>
-                        </div>
-
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- footer (markup asli) -->
+    <!-- Footer tetap sama -->
     <footer class="footer">
         <div class="footer_top">
             <div class="container">
-                <!-- … isi footer atas (tak diubah) … -->
+                <!-- isi footer atas -->
             </div>
         </div>
         <div class="copy-right_text">
@@ -320,7 +245,7 @@
         </div>
     </footer>
 
-    <!-- JS -->
+    <!-- JS Libraries -->
     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -339,21 +264,21 @@
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/gijgo.min.js"></script>
-
-    <!--contact js-->
     <script src="js/contact.js"></script>
     <script src="js/jquery.ajaxchimp.min.js"></script>
     <script src="js/jquery.form.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/mail-script.js"></script>
-
     <script src="js/main.js"></script>
 
-    <!-- Script Like & Komentar -->
+    <!-- Script Like, Comment & Save -->
     <script>
     (function(){
       const LS_KEY='tasty-recipe-reactions-v1';
-      const store={get(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{}}catch(e){return{}};},set(d){localStorage.setItem(LS_KEY,JSON.stringify(d));}};
+      const store={
+        get(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{}}catch(e){return{}};},
+        set(d){localStorage.setItem(LS_KEY,JSON.stringify(d));}
+      };
       const fmt=()=>{const d=new Date();return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`};
       const render=(wrap,cmts)=>{const ul=wrap.querySelector('.comment-list');ul.innerHTML=cmts.map(c=>`<li><div><span class="comment-author">${c.name}</span><span class="comment-date">${c.date}</span></div><div>${c.message}</div></li>`).join('');};
 
@@ -361,7 +286,7 @@
         document.querySelectorAll('.react-bar').forEach(bar=>{
           const id=bar.dataset.itemId;
           const db=store.get();
-          if(!db[id]) db[id]={likes:0,liked:false,comments:[]};
+          if(!db[id]) db[id]={likes:0,liked:false,comments:[],saved:false};
           store.set(db);
 
           const item=db[id];
@@ -369,12 +294,16 @@
           const likeCount=bar.querySelector('.like-count');
           const cBtn=bar.querySelector('.btn-comment-toggle');
           const cCount=bar.querySelector('.comment-count');
+          const saveBtn=bar.querySelector('.btn-save');
           const wrap=document.querySelector(`.comment-wrap[data-for="${id}"]`);
 
+          // Render awal
           likeCount.textContent=item.likes;
           cCount.textContent=item.comments.length;
           if(item.liked) likeBtn.classList.add('liked');
+          if(item.saved) saveBtn.classList.add('saved');
 
+          // Event Like
           likeBtn.addEventListener('click',()=>{
             const d=store.get(); const it=d[id];
             it.liked=!it.liked;
@@ -384,8 +313,19 @@
             likeCount.textContent=it.likes;
           });
 
+          // Event Comment toggle
           cBtn.addEventListener('click',()=>{ wrap.hidden=!wrap.hidden; });
 
+          // Event Save
+          saveBtn.addEventListener('click',()=>{
+            const d=store.get(); const it=d[id];
+            it.saved=!it.saved;
+            store.set(d);
+            saveBtn.classList.toggle('saved', it.saved);
+            alert(it.saved ? 'Recipe saved!' : 'Recipe removed from bookmarks.');
+          });
+
+          // Event submit komentar
           const form=wrap.querySelector('.comment-form');
           form.addEventListener('submit',e=>{
             e.preventDefault();
@@ -403,6 +343,7 @@
           render(wrap,item.comments);
         });
       }
+
       document.addEventListener('DOMContentLoaded',init);
     })();
     </script>

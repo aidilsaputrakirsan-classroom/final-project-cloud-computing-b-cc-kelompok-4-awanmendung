@@ -52,11 +52,7 @@
                                         <li><a href="index.html">home</a></li>
                                         <li><a href="about.html">about</a></li>
                                         <li><a href="Recipes.html">Recipes</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">blog</a></li>
-                                                <li><a href="single-blog.html">single-blog</a></li>
-                                            </ul>
+                                        <li><a href="bookmarks">Bookmarks <Bookmarks</a></li>
                                         </li>
                                         <li><a href="#">pages <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
