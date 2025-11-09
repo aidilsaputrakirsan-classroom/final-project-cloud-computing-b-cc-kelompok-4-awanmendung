@@ -32,13 +32,14 @@
 						Login
 					</span>
 
-					{{-- Tampilkan pesan sukses atau error --}}
+					{{-- Pesan sukses --}}
 					@if(session('success'))
 						<div class="alert alert-success text-center">
 							{{ session('success') }}
 						</div>
 					@endif
 
+					{{-- Pesan error --}}
 					@if($errors->any())
 						<div class="alert alert-danger text-center">
 							@foreach($errors->all() as $error)
@@ -64,9 +65,10 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<a href= "/" class="login100-form-btn">
+						{{-- Tombol kirim form (bukan link) --}}
+						<button type="submit" class="login100-form-btn">
 							Login
-					</a>
+						</button>
 					</div>
 
 					<div class="text-center p-t-12">
@@ -91,9 +93,7 @@
 	<script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
 	<script src="{{ asset('vendor/tilt/tilt.jquery.min.js') }}"></script>
 	<script>
-		$('.js-tilt').tilt({
-			scale: 1.1
-		});
+		$('.js-tilt').tilt({ scale: 1.1 });
 	</script>
 	<script src="{{ asset('js/main.js') }}"></script>
 
