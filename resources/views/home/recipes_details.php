@@ -32,20 +32,82 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-    <!-- Style kecil untuk Like, Comment & Save -->
-    <style>
-      .react-bar{display:flex;gap:14px;align-items:center;margin:12px 0}
-      .react-bar button{border:0;background:transparent;display:inline-flex;align-items:center;gap:6px;font-size:16px;cursor:pointer;padding:6px 10px;border-radius:10px;transition:background .2s}
-      .react-bar button:hover{background:rgba(0,0,0,.05)}
-      .react-bar .btn-like.liked .fa-heart{color:#e0245e;transform:scale(1.08)}
-      .react-bar .btn-save.saved .fa-bookmark{color:#f0ad4e;transform:scale(1.1)}
-      .comment-wrap{border:1px solid #eee;border-radius:10px;padding:14px;margin:8px 0 20px;background:#fff}
-      .comment-wrap .comment-list{list-style:none;margin:12px 0 0;padding:0}
-      .comment-wrap .comment-list li{border-top:1px dashed #ddd;padding:10px 2px}
-      .comment-wrap .comment-author{font-weight:600}
-      .comment-wrap .comment-date{opacity:.6;font-size:12px;margin-left:6px}
-      .recepies_text h4{margin-top:18px}
-    </style>
+<!-- Script Like, Comment & Save -->
+    <script>
+    (function(){
+      const LS_KEY='tasty-recipe-reactions-v1';
+      const store={
+        get(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{}}catch(e){return{}};},
+        set(d){localStorage.setItem(LS_KEY,JSON.stringify(d));}
+      };
+      const fmt=()=>{const d=new Date();return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`};
+      const render=(wrap,cmts)=>{const ul=wrap.querySelector('.comment-list');ul.innerHTML=cmts.map(c=>`<li><div><span class="comment-author">${c.name}</span><span class="comment-date">${c.date}</span></div><div>${c.message}</div></li>`).join('');};
+
+      function init(){
+        document.querySelectorAll('.react-bar').forEach(bar=>{
+          const id=bar.dataset.itemId;
+          const db=store.get();
+          if(!db[id]) db[id]={likes:0,liked:false,comments:[],saved:false};
+          store.set(db);
+
+          const item=db[id];
+          const likeBtn=bar.querySelector('.btn-like');
+          const likeCount=bar.querySelector('.like-count');
+          const cBtn=bar.querySelector('.btn-comment-toggle');
+          const cCount=bar.querySelector('.comment-count');
+          const saveBtn=bar.querySelector('.btn-save');
+          const wrap=document.querySelector(`.comment-wrap[data-for="${id}"]`);
+
+          // Render awal
+          likeCount.textContent=item.likes;
+          cCount.textContent=item.comments.length;
+          if(item.liked) likeBtn.classList.add('liked');
+          if(item.saved) saveBtn.classList.add('saved');
+
+          // Event Like
+          likeBtn.addEventListener('click',()=>{
+            const d=store.get(); const it=d[id];
+            it.liked=!it.liked;
+            it.likes+=it.liked?1:-1;
+            store.set(d);
+            likeBtn.classList.toggle('liked',it.liked);
+            likeCount.textContent=it.likes;
+          });
+
+          // Event Comment toggle
+          cBtn.addEventListener('click',()=>{ wrap.hidden=!wrap.hidden; });
+
+          // Event Save
+          saveBtn.addEventListener('click',()=>{
+            const d=store.get(); const it=d[id];
+            it.saved=!it.saved;
+            store.set(d);
+            saveBtn.classList.toggle('saved', it.saved);
+            alert(it.saved ? 'Recipe saved!' : 'Recipe removed from bookmarks.');
+          });
+
+          // Event submit komentar
+          const form=wrap.querySelector('.comment-form');
+          form.addEventListener('submit',e=>{
+            e.preventDefault();
+            const name=form.name.value||'Anonim';
+            const msg=form.message.value.trim();
+            if(!msg) return;
+            const d=store.get(); const it=d[id];
+            it.comments.push({name, message:msg, date:fmt()});
+            store.set(d);
+            form.reset();
+            render(wrap,it.comments);
+            cCount.textContent=it.comments.length;
+          });
+
+          render(wrap,item.comments);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded',init);
+    })();
+    </script>
 </head>
 
     <!-- header-start -->
