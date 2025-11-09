@@ -3,6 +3,22 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupabaseController;
 
+// halaman login
+Route::get('/login', function () {
+    return view('login.index');
+})->name('login');
+
+// proses login
+Route::post('/login', [SupabaseController::class, 'login'])->name('login.process');
+
+// halaman register
+Route::get('/register', function () {
+    return view('register.index');
+})->name('register');
+
+// proses logout
+Route::post('/logout', [SupabaseController::class, 'logout'])->name('logout');
+
 Route::get('/loginadmin', function () {
     return view('loginadmin.index');
 });
