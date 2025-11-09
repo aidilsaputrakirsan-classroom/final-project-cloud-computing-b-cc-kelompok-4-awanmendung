@@ -124,18 +124,8 @@
                                         <li><a href="index.html">Home</a></li>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="Recipes.html">Recipes</a></li>
-                                        <li><a href="#">Blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="single-blog.html">Single Blog</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="recipes_details.html">Recipes Details</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
+                                        <li><a href="recipes_details.html">Recipes Details</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
