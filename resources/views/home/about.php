@@ -49,14 +49,10 @@
                             <div class="main-menu white_text  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">home</a></li>
-                                        <li><a href="about">about</a></li>
+                                        <li><a href="index">home</a></li>
+                                        <li><a href="{{ url('/about') }}">about</a>
                                         <li><a href="recipes">Recipes</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="blog">blog</a></li>
-                                                <li><a href="single-blog">single-blog</a></li>
-                                            </ul>
+                                        <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
                                         </li>
                                         <li><a href="#">pages <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
