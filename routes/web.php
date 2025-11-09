@@ -3,6 +3,33 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupabaseController;
 
+Route::get('/loginadmin', function () {
+    return view('loginadmin.index');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+});
+
+Route::get('/kategori', function () {
+    return view('dashboard.kategori');
+});
+
+Route::get('/tambah_resep', function () {
+    return view('dashboard.tambah_resep');
+});
+
+Route::get('/edit_resep', function () {
+    return view('dashboard.edit_resep');
+});
+
+Route::get('/tambah_kategori', function () {
+    return view('dashboard.tambah_kategori');
+});
+
+Route::get('/edit_kategori', function () {
+    return view('dashboard.edit_kategori');
+});
 
 
 Route::get('/login', function () {
