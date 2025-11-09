@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupabaseController;
 
+Route::get('/loginadmin', function () {
+    return view('loginadmin.index');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
