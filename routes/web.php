@@ -1,96 +1,76 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SupabaseController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes - Praktikum Cloud Computing ITK Week 4
-|--------------------------------------------------------------------------
-|
-| Routes untuk CRUD operations dengan Laravel Resource Controllers
-| Menggunakan RESTful conventions untuk consistent API design
-|
-*/
-
-// Homepage route (dari week 2)
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
-// Dashboard route untuk admin interface
 Route::get('/dashboard', function () {
-    return view('layouts.dashboard');
-})->name('dashboard');
+    return view('dashboard.index');
+});
 
-/*
-|--------------------------------------------------------------------------
-| Resource Routes untuk CRUD Operations
-|--------------------------------------------------------------------------
-*/
+Route::get('/kategori', function () {
+    return view('dashboard.kategori');
+});
 
-// Posts management routes
-Route::resource('posts', PostController::class)->names([
-    'index' => 'posts.index',       // GET /posts - List all posts
-    'create' => 'posts.create',     // GET /posts/create - Show create form
-    'store' => 'posts.store',       // POST /posts - Store new post
-    'show' => 'posts.show',         // GET /posts/{post} - Show single post
-    'edit' => 'posts.edit',         // GET /posts/{post}/edit - Show edit form
-    'update' => 'posts.update',     // PUT/PATCH /posts/{post} - Update post
-    'destroy' => 'posts.destroy',   // DELETE /posts/{post} - Delete post
-]);
+Route::get('/tambah_resep', function () {
+    return view('dashboard.tambah_resep');
+});
 
-// Categories management routes
-Route::resource('categories', CategoryController::class)->except([
-    'show' // Categories tidak memerlukan show page individual
-]);
+Route::get('/edit_resep', function () {
+    return view('dashboard.edit_resep');
+});
 
-// Tags management routes  
-Route::resource('tags', TagController::class)->except([
-    'show' // Tags tidak memerlukan show page individual
-]);
+Route::get('/tambah_kategori', function () {
+    return view('dashboard.tambah_kategori');
+});
 
-// Comments routes (nested dalam posts)
-Route::resource('posts.comments', CommentController::class)->except([
-    'index', 'show' // Comments di-handle dalam post show page
-])->shallow(); // Shallow nesting untuk edit/update/delete
+Route::get('/edit_kategori', function () {
+    return view('dashboard.edit_kategori');
+});
 
-/*
-|--------------------------------------------------------------------------
-| Additional Routes untuk Enhanced Functionality
-|--------------------------------------------------------------------------
-*/
 
-// Route untuk public post viewing (tanpa authentication)
-Route::get('/blog', [PostController::class, 'publicIndex'])->name('blog.index');
-Route::get('/blog/{post:slug}', [PostController::class, 'publicShow'])->name('blog.show');
+Route::get('/login', function () {
+    return view('login.index');
+});
 
-// Route untuk category filtering
-Route::get('/category/{category:slug}', [PostController::class, 'byCategory'])->name('posts.by-category');
+Route::post('/login', [SupabaseController::class, 'login'])->name('login');
 
-// Route untuk tag filtering
-Route::get('/tag/{tag:slug}', [PostController::class, 'byTag'])->name('posts.by-tag');
+Route::get('/register', function () {
+    return view('register.index');
+});
 
-// Search functionality
-Route::get('/search', [PostController::class, 'search'])->name('posts.search');
 
-/*
-|--------------------------------------------------------------------------
-| Testing Routes untuk Development
-|--------------------------------------------------------------------------
-*/
+Route::get('/', function () {
+    return view('home.index');
+});
 
-// Route testing untuk development purposes
-Route::get('/test-data', function () {
-    return response()->json([
-        'posts_count' => \App\Models\Post::count(),
-        'categories_count' => \App\Models\Category::count(),
-        'tags_count' => \App\Models\Tag::count(),
-        'users_count' => \App\Models\User::count(),
-        'latest_post' => \App\Models\Post::latest()->first()?->title ?? 'No posts yet',
-        'timestamp' => now()->toISOString(),
-    ]);
-})->name('test-data');
+Route::get('/about', function () {
+    return view('home.about');
+});
+
+Route::get('/blog', function () {
+    return view('home.blog');
+});
+
+Route::get('/contact', function () {
+    return view('home.contact');
+});
+
+Route::get('/elements', function () {
+    return view('home.elements');
+});
+
+Route::get('/recipes_details', function () {
+    return view('home.recipes_details');
+});
+
+Route::get('/recipes', function () {
+    return view('home.recipes');
+});
+
+Route::get('/single-blog', function () {
+    return view('home.single-blog');
+});
+
+Route::get('/main', function () {
+    return view('home.main');
+});
