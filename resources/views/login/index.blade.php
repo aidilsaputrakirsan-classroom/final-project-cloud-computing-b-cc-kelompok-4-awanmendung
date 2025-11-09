@@ -94,7 +94,7 @@
     {{-- Popup registrasi --}}
     @if (session('register_prompt'))
         <script>
-            const userChoice = confirm("Akun belum terdaftar. Apakah kamu ingin melakukan registrasi terlebih dahulu?");
+            const userChoice = confirm("Akun belum terdaftar. Regist dulu bang");
             if (userChoice) {
                 window.location.href = "/register";
             }
