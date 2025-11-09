@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/select2/select2.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/main2.css') }}">
 </head>
 <body>
 
@@ -91,7 +91,7 @@
 			scale: 1.1
 		});
 	</script>
-	<script src="{{ asset('js/main.js') }}"></script>
+	<script src="{{ asset('js/main2.js') }}"></script>
 
 </body>
 </html>
