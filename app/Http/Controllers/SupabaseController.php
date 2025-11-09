@@ -42,16 +42,18 @@ class SupabaseController extends Controller
                 'supabase_email' => $email
             ]);
 
-            // Kalau email termasuk admin -> ke dashboard
             if (in_array($email, $adminEmails)) {
                 return redirect('/dashboard')->with('success', 'Login sebagai admin berhasil!');
             }
 
-            // Selain admin -> ke halaman utama
             return redirect('/')->with('success', 'Login berhasil!');
         } else {
+            // Cek kalau pesan error-nya dari Supabase menunjukkan user belum ada
             $errorMessage = $data['error_description'] ?? 'Email atau password salah, atau akun belum terdaftar.';
-            return back()->withErrors(['login' => $errorMessage]);
+
+            // Kirim pesan error ke Blade
+            return back()->withErrors(['login' => $errorMessage])
+                         ->with('register_prompt', true);
         }
     }
 
