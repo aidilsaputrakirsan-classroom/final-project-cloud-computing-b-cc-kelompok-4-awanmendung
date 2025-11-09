@@ -31,6 +31,10 @@ Route::get('/kategori', function () {
     return view('dashboard.kategori');
 });
 
+Route::get('/bookmarks', function () {
+    return view('home.bookmarks');
+});
+
 Route::get('/tambah_resep', function () {
     return view('dashboard.tambah_resep');
 });

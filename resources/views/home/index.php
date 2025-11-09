@@ -118,20 +118,24 @@
                         </div>
                         <!-- Menu -->
                         <div class="col-xl-6 col-lg-7">
-                            <div class="main-menu d-none d-lg-block">
+                            <div class="main-menu white_text  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="Recipes.html">Recipes</a></li>
-                                        <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
-                                        <li><a href="recipes_details.html">Recipes Details</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="index.php">home</a></li>
+                                        <li><a href="about">about</a></li>
+                                        <li><a href="recipes">Recipes</a></li>
+                                        <li><a href="bookmarks">Bookmarks </a></li>
+                                        <li><a href="pages">pages</a>
+                                            <ul class="submenu">
+                                                <li><a href="recipes_details">Recipes Details</a></li>
+                                                <li><a href="elements">elements</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
-                        <!-- Right -->
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="header_right d-flex justify-content-end align-items-center">
                                 <div class="search_icon mr-3">
@@ -178,7 +182,7 @@
                         <h3>Egg Manchurian</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details.html" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
                 <!-- Card 2 -->
@@ -190,7 +194,7 @@
                         <h3>Pure Vegetable Bowl</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details.html" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
                 <!-- Card 3 -->
@@ -202,7 +206,7 @@
                         <h3>Egg Masala Ramen</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details.html" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
             </div><!-- row -->
@@ -286,7 +290,7 @@
                     <div class="trand_info text-center">
                         <p>Thousands of recipes are waiting to be watched</p>
                         <h3>Discover latest trending recipes</h3>
-                        <a href="recipes.html" class="boxed-btn3">View all Recipes</a>
+                        <a href="recipes" class="boxed-btn3">View all Recipes</a>
                     </div>
                 </div>
             </div>
