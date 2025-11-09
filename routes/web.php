@@ -94,3 +94,19 @@ Route::get('/single-blog', function () {
 Route::get('/main', function () {
     return view('home.main');
 });
+
+// =====================
+// PROTECTED ROUTES (Baru butuh login)
+// =====================
+
+Route::group(['middleware' => function ($request, $next) {
+    if (!session()->has('supabase_token')) {
+        return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
+    }
+    return $next($request);
+}], function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard.index'); // misalnya halaman khusus setelah login
+    });
+});
