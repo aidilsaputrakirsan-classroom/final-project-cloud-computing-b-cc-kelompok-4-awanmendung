@@ -4,58 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class SupabaseController extends Controller
 {
     public function login(Request $request)
     {
-        // Ambil URL & Key Supabase dari file .env
-        $url = env('SUPABASE_URL') . '/rest/v1/login';
-        $key = env('SUPABASE_KEY');
+        $SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
+        $SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTMyODUwOCwiZXhwIjoyMDc2OTA0NTA4fQ.W6jf7DpnbdTmOAWBhV0NwFlfhKGQC62crCT-rfKoap8";
 
-        // Ambil input dari form login
+        // ambil input dari form
         $email = $request->input('email');
         $password = $request->input('pass');
 
-        try {
-            // Kirim request GET ke Supabase untuk cek data login
-            $response = Http::withoutVerifying()->withHeaders([
-                'apikey' => $key,
-                'Authorization' => 'Bearer ' . $key,
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ])->get($url, [
-                'username' => 'eq.' . $email,   // sesuaikan nama kolomnya di Supabase
-                'password' => 'eq.' . $password // sesuaikan juga dengan kolom di Supabase
-            ]);
+        // kirim request ke Supabase REST API
+        $response = Http::withHeaders([
+            'apikey' => $SUPABASE_KEY,
+            'Authorization' => 'Bearer ' . $SUPABASE_KEY,
+            'Content-Type' => 'application/json'
+        ])->post("$SUPABASE_URL/auth/v1/token?grant_type=password", [
+            'email' => $email,
+            'password' => $password
+        ]);
 
-            // Ambil hasil response JSON dari Supabase
-            $data = $response->json();
+        $data = $response->json();
 
-            // Log hasilnya buat debugging
-            Log::info('Respon login Supabase:', [
-                'status' => $response->status(),
-                'body' => $data
-            ]);
-
-            // Cek hasil query
-            if ($response->successful() && count($data) > 0) {
-                // Login berhasil -> simpan data user ke session
-                session(['user' => $data[0]]);
-
-                // Redirect ke halaman utama
-                return redirect('/')->with('success', 'Login berhasil!');
-            } else {
-                // Login gagal (tidak ada data cocok)
-                return back()->with('error', 'Email atau password salah!');
-            }
-        } catch (\Exception $e) {
-            // Tangani error koneksi (termasuk SSL)
-            Log::error('Kesalahan koneksi Supabase:', ['error' => $e->getMessage()]);
-
+        if ($response->successful() && isset($data['access_token'])) {
+            // Simpan token ke session agar user dianggap "login"
+            session(['supabase_token' => $data['access_token']]);
+            
+            // Redirect ke halaman utama
+            return redirect('/')->with('success', 'Login berhasil!');
+        } else {
             return back()->withErrors([
-                'exception' => 'Terjadi kesalahan koneksi: ' . $e->getMessage()
+                'login' => 'Email atau password salah, atau akun belum terdaftar.'
             ]);
         }
     }
