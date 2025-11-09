@@ -106,4 +106,40 @@
 	<script src="js/main.js"></script>
 
 </body>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTMyODUwOCwiZXhwIjoyMDc2OTA0NTA4fQ.W6jf7DpnbdTmOAWBhV0NwFlfhKGQC62crCT-rfKoap8";
+
+  const { createClient } = window.supabase;
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const form = document.querySelector(".login100-form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = form.email.value;
+    const password = form.pass.value;
+    const username = form.username.value;
+
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: { username: username }
+      }
+    });
+
+    if (error) {
+      alert("Registrasi gagal: " + error.message);
+      console.error(error);
+    } else {
+      alert("Registrasi berhasil! Silakan login.");
+      window.location.href = "/login"; // pastikan file login-nya sesuai path kamu
+    }
+  });
+</script>
+
+
 </html>
