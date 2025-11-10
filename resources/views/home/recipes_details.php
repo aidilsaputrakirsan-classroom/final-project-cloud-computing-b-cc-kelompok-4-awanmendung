@@ -25,6 +25,21 @@
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+
+        <!-- Style kecil untuk Like, Comment & Save -->
+    <style>
+      .react-bar{display:flex;gap:14px;align-items:center;margin:12px 0}
+      .react-bar button{border:0;background:transparent;display:inline-flex;align-items:center;gap:6px;font-size:16px;cursor:pointer;padding:6px 10px;border-radius:10px;transition:background .2s}
+      .react-bar button:hover{background:rgba(0,0,0,.05)}
+      .react-bar .btn-like.liked .fa-heart{color:#e0245e;transform:scale(1.08)}
+      .react-bar .btn-save.saved .fa-bookmark{color:#f0ad4e;transform:scale(1.1)}
+      .comment-wrap{border:1px solid #eee;border-radius:10px;padding:14px;margin:8px 0 20px;background:#fff}
+      .comment-wrap .comment-list{list-style:none;margin:12px 0 0;padding:0}
+      .comment-wrap .comment-list li{border-top:1px dashed #ddd;padding:10px 2px}
+      .comment-wrap .comment-author{font-weight:600}
+      .comment-wrap .comment-date{opacity:.6;font-size:12px;margin-left:6px}
+      .recepies_text h4{margin-top:18px}
+    </style>
 </head>
 
 <body>
