@@ -32,6 +32,84 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
+<!-- Script Like, Comment & Save -->
+    <script>
+    (function(){
+      const LS_KEY='tasty-recipe-reactions-v1';
+      const store={
+        get(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{}}catch(e){return{}};},
+        set(d){localStorage.setItem(LS_KEY,JSON.stringify(d));}
+      };
+      const fmt=()=>{const d=new Date();return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`};
+      const render=(wrap,cmts)=>{const ul=wrap.querySelector('.comment-list');ul.innerHTML=cmts.map(c=>`<li><div><span class="comment-author">${c.name}</span><span class="comment-date">${c.date}</span></div><div>${c.message}</div></li>`).join('');};
+
+      function init(){
+        document.querySelectorAll('.react-bar').forEach(bar=>{
+          const id=bar.dataset.itemId;
+          const db=store.get();
+          if(!db[id]) db[id]={likes:0,liked:false,comments:[],saved:false};
+          store.set(db);
+
+          const item=db[id];
+          const likeBtn=bar.querySelector('.btn-like');
+          const likeCount=bar.querySelector('.like-count');
+          const cBtn=bar.querySelector('.btn-comment-toggle');
+          const cCount=bar.querySelector('.comment-count');
+          const saveBtn=bar.querySelector('.btn-save');
+          const wrap=document.querySelector(`.comment-wrap[data-for="${id}"]`);
+
+          // Render awal
+          likeCount.textContent=item.likes;
+          cCount.textContent=item.comments.length;
+          if(item.liked) likeBtn.classList.add('liked');
+          if(item.saved) saveBtn.classList.add('saved');
+
+          // Event Like
+          likeBtn.addEventListener('click',()=>{
+            const d=store.get(); const it=d[id];
+            it.liked=!it.liked;
+            it.likes+=it.liked?1:-1;
+            store.set(d);
+            likeBtn.classList.toggle('liked',it.liked);
+            likeCount.textContent=it.likes;
+          });
+
+          // Event Comment toggle
+          cBtn.addEventListener('click',()=>{ wrap.hidden=!wrap.hidden; });
+
+          // Event Save
+          saveBtn.addEventListener('click',()=>{
+            const d=store.get(); const it=d[id];
+            it.saved=!it.saved;
+            store.set(d);
+            saveBtn.classList.toggle('saved', it.saved);
+            alert(it.saved ? 'Recipe saved!' : 'Recipe removed from bookmarks.');
+          });
+
+          // Event submit komentar
+          const form=wrap.querySelector('.comment-form');
+          form.addEventListener('submit',e=>{
+            e.preventDefault();
+            const name=form.name.value||'Anonim';
+            const msg=form.message.value.trim();
+            if(!msg) return;
+            const d=store.get(); const it=d[id];
+            it.comments.push({name, message:msg, date:fmt()});
+            store.set(d);
+            form.reset();
+            render(wrap,it.comments);
+            cCount.textContent=it.comments.length;
+          });
+
+          render(wrap,item.comments);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded',init);
+    })();
+    </script>
+</head>
+
     <!-- header-start -->
     <header>
         <div class="header-area ">
@@ -52,20 +130,10 @@
                                         <li><a href="index.php">home</a></li>
                                         <li><a href="about">about</a></li>
                                         <li><a href="recipes">Recipes</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="blog">blog</a></li>
-                                                <li><a href="single-blog">single-blog</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="recipes_details">Recipes Details</a></li>
-                                                <li><a href="elements">elements</a></li>
-                                            </ul>
-                                        </li>
+                                       <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
+                                        <li><a href="recipes_details">Recipes Details</a></li>
                                         <li><a href="contact">Contact</a></li>
-                                    </ul>
+
                                 </nav>
                             </div>
                         </div>

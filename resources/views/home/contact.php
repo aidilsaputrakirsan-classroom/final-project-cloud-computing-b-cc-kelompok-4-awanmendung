@@ -52,20 +52,10 @@
                                         <li><a href="index.php">home</a></li>
                                         <li><a href="about">about</a></li>
                                         <li><a href="recipes">Recipes</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="blog">blog</a></li>
-                                                <li><a href="single-blog">single-blog</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="recipes_details">Recipes Details</a></li>
-                                                <li><a href="elements">elements</a></li>
-                                            </ul>
-                                        </li>
+                                       <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
+                                        <li><a href="recipes_details">Recipes Details</a></li>
                                         <li><a href="contact">Contact</a></li>
-                                    </ul>
+
                                 </nav>
                             </div>
                         </div>
