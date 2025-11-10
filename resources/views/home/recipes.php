@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tasty Recipes</title>
+    <title>Tasty Recipe</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -49,23 +49,13 @@
                             <div class="main-menu white_text  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">home</a></li>
+                                        <li><a href="index">home</a></li>
                                         <li><a href="about">about</a></li>
                                         <li><a href="recipes">Recipes</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="blog">blog</a></li>
-                                                <li><a href="single-blog">single-blog</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="recipes_details">Recipes Details</a></li>
-                                                <li><a href="elements">elements</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a href="bookmarks">Bookmarks</a></li>
+                                        <li><a href="recipes_details">Recipes Details</a></li>
                                         <li><a href="contact">Contact</a></li>
-                                    </ul>
+
                                 </nav>
                             </div>
                         </div>
@@ -113,7 +103,7 @@
                         <h3>Egg Manchurian</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -124,7 +114,7 @@
                         <h3>Pure Vegetable Bowl</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -135,7 +125,7 @@
                         <h3>Egg Masala Ramen</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -146,7 +136,7 @@
                         <h3>Egg Manchurian</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -157,7 +147,7 @@
                         <h3>Pure Vegetable Bowl</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -168,7 +158,7 @@
                         <h3>Egg Masala Ramen</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -179,7 +169,7 @@
                         <h3>Egg Manchurian</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -190,7 +180,7 @@
                         <h3>Pure Vegetable Bowl</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -201,7 +191,7 @@
                         <h3>Egg Masala Ramen</h3>
                         <span>Appetizer</span>
                         <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
+                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
                     </div>
                 </div>
             </div>
@@ -217,7 +207,7 @@
                     <div class="trand_info text-center">
                         <p>Thousands of recipes are waiting to be watched</p>
                         <h3>Discover latest trending recipes</h3>
-                        <a href="#" class="boxed-btn3">View all Recipes</a>
+                        <a href="recipes" class="boxed-btn3">View all Recipes</a>
                     </div>
                 </div>
             </div>

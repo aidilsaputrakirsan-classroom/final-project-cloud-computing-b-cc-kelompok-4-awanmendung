@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <title>Edit Resep | Resepin.id</title>
+  <title>Edit Kategori | Resepin.id</title>
 
   <!-- Fonts and Icons -->
   <link href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,800" rel="stylesheet" />
@@ -23,66 +23,38 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="dashboard">Resep</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Edit Resep</li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="dashboard.html">Kategori</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Edit Kategori</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Edit Resep</h6>
+          <h6 class="font-weight-bolder mb-0">Edit Kategori</h6>
         </nav>
       </div>
     </nav>
 
-    <!-- Form Edit Resep -->
+    <!-- Form Edit Kategori -->
     <div class="container-fluid py-4">
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="card">
             <div class="card-header pb-0">
-              <h5 class="mb-0">Edit Resep</h5>
-              <p class="text-sm text-muted mb-0">Ubah informasi resep sesuai kebutuhan di bawah ini</p>
+              <h5 class="mb-0">Edit Kategori</h5>
             </div>
             <div class="card-body">
 
-              <form id="formEditResep" enctype="multipart/form-data">
-                <!-- Nama Resep -->
+              <form id="formEditKategori">
+                <!-- Nama Kategori -->
                 <div class="mb-3">
-                  <label class="form-label">Nama Resep</label>
-                  <input type="text" class="form-control" name="nama_resep" value="Ayam Geprek" required>
-                </div>
-
-                <!-- Kategori -->
-                <div class="mb-3">
-                  <label class="form-label">Kategori</label>
-                  <select class="form-select" name="kategori" required>
-                    <option value="">Pilih kategori...</option>
-                    <option value="Makanan Utama" selected>Makanan Utama</option>
-                    <option value="Makanan Penutup">Makanan Penutup</option>
-                    <option value="Minuman">Minuman</option>
-                  </select>
-                </div>
-
-                <!-- Gambar -->
-                <div class="mb-3">
-                  <label class="form-label">Gambar</label>
-                  <div class="d-flex align-items-center gap-3">
-                    <img src="../assets/img/ayam-geprek.jpg" alt="Preview" class="rounded shadow-sm" width="100">
-                    <input type="file" class="form-control" name="gambar" accept="image/*">
-                  </div>
-                  <small class="text-muted">Biarkan kosong jika tidak ingin mengganti gambar.</small>
-                </div>
-
-                <!-- Deskripsi -->
-                <div class="mb-3">
-                  <label class="form-label">Deskripsi</label>
-                  <textarea class="form-control" name="deskripsi" rows="4" required>Ayam goreng tepung yang digeprek dengan sambal bawang pedas khas Indonesia.</textarea>
+                  <label class="form-label">Nama Kategori</label>
+                  <input type="text" class="form-control" id="namaKategori" required>
                 </div>
 
                 <!-- Tombol -->
                 <div class="d-flex justify-content-between mt-4">
-                  <a href="dashboard" class="btn btn-outline-secondary">
+                  <a href="kategori" class="btn btn-outline-secondary">
                     <i class="fa-solid fa-arrow-left"></i> Kembali
                   </a>
                   <button type="submit" class="btn btn-warning text-white">
-                    <i class="fa-solid fa-save me-1"></i> Perbarui Resep
+                    <i class="fa-solid fa-save me-1"></i> Perbarui Kategori
                   </button>
                 </div>
               </form>
@@ -99,14 +71,74 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    document.getElementById('formEditResep').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Perubahan resep berhasil disimpan!');
-      window.location.href = "dashboard"; // kembali ke halaman utama
-    });
-  </script>
-</body>
+    // 🔗 KONEKSI SUPABASE
+    const SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTMyODUwOCwiZXhwIjoyMDc2OTA0NTA4fQ.W6jf7DpnbdTmOAWBhV0NwFlfhKGQC62crCT-rfKoap8";
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+    // 🔍 Ambil parameter ID dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const kategoriId = urlParams.get('id');
+
+    // 🚀 Fungsi untuk ambil data kategori berdasarkan ID
+    async function loadKategori() {
+      if (!kategoriId) {
+        alert("ID kategori tidak ditemukan!");
+        window.location.href = "kategori";
+        return;
+      }
+
+      const { data, error } = await supabaseClient
+        .from('kategori')
+        .select('*')
+        .eq('id', kategoriId)
+        .maybeSingle();
+
+      if (error) {
+        console.error(error);
+        alert("Gagal mengambil data kategori!");
+        return;
+      }
+
+      if (data) {
+        document.getElementById('namaKategori').value = data.nama_kategori;
+      } else {
+        alert("Kategori tidak ditemukan!");
+        window.location.href = "kategori";
+      }
+    }
+
+    // 💾 Simpan perubahan
+    document.getElementById('formEditKategori').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const namaBaru = document.getElementById('namaKategori').value.trim();
+      if (!namaBaru) {
+        alert('Nama kategori tidak boleh kosong!');
+        return;
+      }
+
+      // 🔄 Update data
+      const { error } = await supabaseClient
+        .from('kategori')
+        .update({ nama_kategori: namaBaru })
+        .eq('id', kategoriId);
+
+      if (error) {
+        console.error(error);
+        alert('❌ Gagal memperbarui kategori!');
+      } else {
+        alert('✅ Kategori berhasil diperbarui!');
+        window.location.href = "kategori";
+      }
+    });
+
+    // ⏳ Jalankan load saat halaman dibuka
+    loadKategori();
+  </script>
+
+</body>
 </html>
