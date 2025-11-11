@@ -49,10 +49,10 @@
                             <div class="main-menu white_text  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">home</a></li>
+                                        <li><a href="index">home</a></li>
                                         <li><a href="about">about</a></li>
                                         <li><a href="recipes">Recipes</a></li>
-                                       <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
+                                        <li><a href="bookmarks">Bookmarks</a></li>
                                         <li><a href="recipes_details">Recipes Details</a></li>
                                         <li><a href="contact">Contact</a></li>
 

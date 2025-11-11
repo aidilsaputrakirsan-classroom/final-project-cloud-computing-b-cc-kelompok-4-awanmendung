@@ -111,7 +111,7 @@
                         <!-- Logo -->
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="index">
                                     <img src="img/resepinid_logofix.png" alt="Resepin.id Logo">
                                 </a>
                             </div>
@@ -121,7 +121,7 @@
                             <div class="main-menu white_text  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">home</a></li>
+                                        <li><a href="index">home</a></li>
                                         <li><a href="about">about</a></li>
                                         <li><a href="recipes">Recipes</a></li>
                                         <li><a href="bookmarks">Bookmarks </a></li>

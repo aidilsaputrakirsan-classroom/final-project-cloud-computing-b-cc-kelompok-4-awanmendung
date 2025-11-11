@@ -52,12 +52,11 @@
                                         <li><a href="index">home</a></li>
                                         <li><a href="about">about</a></li>
                                         <li><a href="recipes">Recipes</a></li>
-                                        <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
-                                                <li><a href="recipes_details">Recipes Details</a></li>
-                                                
-                                            </ul>
-                                        </li>
+                                        <li><a href="bookmarks">Bookmarks</a></li>
+                                        <li><a href="recipes_details">Recipes Details</a></li>
                                         <li><a href="contact">Contact</a></li>
+                                                
+                                    </ul>
                                     </ul>
                                 </nav>
                             </div>
