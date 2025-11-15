@@ -30,74 +30,192 @@
     <!-- Custom override -->
     <style>
         :root {
-            --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+            "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
         }
 
         html { font-size: 17px; }
 
         body, button, input, select, textarea {
             font-family: var(--font-sans) !important;
-            font-weight: 400; color: #2e2e2e; line-height: 1.8;
-            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+            font-weight: 400;
+            color: #2e2e2e;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-sans) !important;
-            font-weight: 600; color: #1a1a1a; line-height: 1.4;
+            font-weight: 600;
+            color: #1a1a1a;
+            line-height: 1.4;
         }
 
-        p { font-size: 1.05rem; color: #3a3a3a; line-height: 1.9; }
+        p {
+            font-size: 1.05rem;
+            color: #3a3a3a;
+            line-height: 1.9;
+        }
 
         /* Header / Navbar */
         .logo { display: flex; align-items: center; }
         .logo img { max-height: 120px; width: auto; object-fit: contain; }
 
         #navigation > li > a {
-            font-family: var(--font-sans); font-weight: 500; font-size: 1rem; color: #fff !important;
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 1rem;
+            color: #fff !important;
         }
 
         /* Slider (pakai gambar banner sebagai background) */
         .slider_bg_1 {
             background-image: url('img/banner/banner.png');
-            background-size: cover; background-position: center center;
-            position: relative; min-height: 70vh;
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+            min-height: 70vh;
         }
         @media (min-width: 1200px) { .slider_bg_1 { min-height: 88vh; } }
 
         .slider_bg_1::after {
-            content: ""; position: absolute; inset: 0;
+            content: "";
+            position: absolute;
+            inset: 0;
             background: rgba(0,0,0,.35);
         }
 
         .slider_text { position: relative; z-index: 2; }
         .slider_text h3 {
             font-size: clamp(2.2rem, 4vw + 1rem, 3.5rem);
-            font-weight: 700; color: #fff; letter-spacing: 0.03em;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.03em;
         }
 
         /* Buttons */
         a.boxed-btn3 {
-            background-color: #28a745; border-color: #28a745; color: #fff;
-            padding: 10px 24px; border-radius: 6px; transition: .3s;
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 6px;
+            transition: .3s;
         }
         a.boxed-btn3:hover { background-color: #218838; }
 
-        /* Recipe cards */
-        .single_recepie h3 { font-size: 1.3rem; font-weight: 600; margin-top: 15px; }
-        .line_btn { font-family: var(--font-sans); font-weight: 500; letter-spacing: .02em; }
+        /* Recipe cards (bagian 3 menu pertama) */
+        .single_recepie h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        .line_btn {
+            font-family: var(--font-sans);
+            font-weight: 500;
+            letter-spacing: .02em;
+        }
 
         /* Section titles */
-        .section_title h3, .trand_info h3 { font-size: 2rem; font-weight: 700; }
+        .section_title h3,
+        .trand_info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
 
         /* Footer */
-        .footer_widget h3 { font-weight: 700; color: #111; font-size: 1.2rem; }
-        .footer_widget ul li a { color: #666; transition: color .3s; }
+        .footer_widget h3 {
+            font-weight: 700;
+            color: #111;
+            font-size: 1.2rem;
+        }
+        .footer_widget ul li a {
+            color: #666;
+            transition: color .3s;
+        }
         .footer_widget ul li a:hover { color: #28a745; }
         .newsletter_text { color: #555; }
         .copy_right { font-size: .9rem; color: #777; }
 
         /* Spacing antar section */
-        .recepie_area, .dish_area, .latest_trand_area, .customer_feedback_area, .download_app_area { margin-top: 60px; }
+        .recepie_area,
+        .dish_area,
+        .latest_trand_area {
+            margin-top: 60px;
+        }
+
+        /* =========== RESEP PALING FAVORIT =========== */
+        .dish_area {
+            margin-top: 80px;
+            padding: 80px 0;
+            background: #fafafa;
+        }
+
+        .dish_area .section_title h3 {
+            margin-bottom: 8px;
+        }
+
+        .dish_area .section_title p {
+            margin-bottom: 0;
+            color: #666;
+        }
+
+        /* Grid kartu */
+        .dish_area .dish_wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .dish_area .single_dish {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 28px 24px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.06);
+            max-width: 320px;
+        }
+
+        /* RESET total style bawaan theme di .single_dish .thumb */
+        .dish_area .single_dish .thumb {
+            position: static !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+            margin: 0 auto 16px auto !important;
+            text-align: center;
+        }
+
+        .dish_area .single_dish .thumb img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 6px 16px rgba(0,0,0,.12);
+        }
+
+        .dish_area .single_dish h3 {
+            margin-top: 8px;
+            font-size: 1.1rem;
+        }
+
+        .dish_area .single_dish p {
+            font-size: .97rem;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 767.98px) {
+            .dish_area {
+                padding: 60px 0;
+            }
+            .dish_area .single_dish {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -170,7 +288,7 @@
         </div>
     </div>
 
-    <!-- Recipe Area -->
+    <!-- Recipe Area (3 menu awal) -->
     <div class="recepie_area">
         <div class="container">
             <div class="row">
@@ -227,7 +345,7 @@
             </div>
             <div class="row">
                 <div class="col-xl-12">
-                    <div class="dish_wrap d-flex">
+                    <div class="dish_wrap">
                         <div class="single_dish text-center">
                             <div class="thumb">
                                 <img src="img/recepie/recpie_4.png" alt="Ayam Bakar Madu">
@@ -269,104 +387,6 @@
             </div>
         </div>
     </div><!-- latest_trand_area -->
-
-    <!-- Customer Feedback -->
-    <div class="customer_feedback_area">
-        <div class="container">
-            <div class="row justify-content-center mb-50">
-                <div class="col-xl-9">
-                    <div class="section_title text-center">
-                        <h3>Testimoni dari Pengguna</h3>
-                        <p>Para pengguna resepin.id berbagi pengalaman mereka setelah mencoba berbagai resep pilihan.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="customer_active owl-carousel">
-                        <div class="single_customer d-flex">
-                            <div class="thumb">
-                                <img src="img/testmonial/1.png" alt="Foto pengguna">
-                            </div>
-                            <div class="customer_meta">
-                                <h3>Adame Nesane</h3>
-                                <span>Pecinta Masakan Rumahan</span>
-                                <p>Resepnya mudah diikuti dan rasanya enak sekali. Keluarga saya jadi lebih sering makan bersama di rumah.</p>
-                            </div>
-                        </div>
-                        <div class="single_customer d-flex">
-                            <div class="thumb">
-                                <img src="img/testmonial/2.png" alt="Foto pengguna">
-                            </div>
-                            <div class="customer_meta">
-                                <h3>Mary Jane</h3>
-                                <span>Blogger Kuliner</span>
-                                <p>Banyak inspirasi menu baru di sini. Cocok untuk konten dan juga masakan sehari-hari.</p>
-                            </div>
-                        </div>
-                        <div class="single_customer d-flex">
-                            <div class="thumb">
-                                <img src="img/testmonial/3.png" alt="Foto pengguna">
-                            </div>
-                            <div class="customer_meta">
-                                <h3>John Doe</h3>
-                                <span>Koki Rumahan</span>
-                                <p>Resep-resepnya praktis, bahan mudah didapat, dan rasanya pas di lidah keluarga Indonesia.</p>
-                            </div>
-                        </div>
-                    </div><!-- owl-carousel -->
-                </div>
-            </div>
-        </div>
-    </div><!-- customer_feedback_area -->
-
-    <!-- Download App Area -->
-    <div class="download_app_area">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Thumbs -->
-                <div class="col-xl-6 col-md-6">
-                    <div class="download_thumb">
-                        <div class="big_img">
-                            <img src="img/video/big_1.png" alt="Ilustrasi aplikasi resep">
-                        </div>
-                        <div class="small_01">
-                            <img src="img/video/small_sm1.png" alt="Ilustrasi aplikasi 1">
-                        </div>
-                        <div class="small_02">
-                            <img src="img/video/sm2.png" alt="Ilustrasi aplikasi 2">
-                        </div>
-                    </div>
-                </div>
-                <!-- Text -->
-                <div class="col-xl-6 col-md-6">
-                    <div class="download_text">
-                        <h3>Unduh aplikasi untuk dapatkan resep dari mana saja</h3>
-                        <div class="download_android_apple">
-                            <a class="active" href="#">
-                                <div class="download_link d-flex">
-                                    <i class="fa fa-apple"></i>
-                                    <div class="store">
-                                        <h5>Tersedia</h5>
-                                        <p>di App Store</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="download_link d-flex">
-                                    <i class="fa fa-android"></i>
-                                    <div class="store">
-                                        <h5>Unduh</h5>
-                                        <p>dari Play Store</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div><!-- download_android_apple -->
-                    </div><!-- download_text -->
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- container -->
-    </div><!-- download_app_area -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -480,26 +500,5 @@
     <script src="js/mail-script.js"></script>
 
     <script src="js/main.js"></script>
-
-    <!-- Init sederhana untuk carousel testimoni -->
-    <script>
-      (function ($) {
-        "use strict";
-        $(document).ready(function () {
-          if ($(".customer_active").length && typeof $.fn.owlCarousel === "function") {
-            $(".customer_active").owlCarousel({
-              loop: true,
-              margin: 30,
-              items: 1,
-              autoplay: true,
-              autoplayTimeout: 3500,
-              smartSpeed: 600,
-              dots: true,
-              nav: false
-            });
-          }
-        });
-      })(jQuery);
-    </script>
 </body>
 </html>
