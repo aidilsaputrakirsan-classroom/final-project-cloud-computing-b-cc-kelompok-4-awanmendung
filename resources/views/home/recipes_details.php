@@ -24,16 +24,68 @@
 
     <!-- Style kecil untuk Like, Comment & Save -->
     <style>
-      .react-bar{display:flex;gap:14px;align-items:center;margin:12px 0}
-      .react-bar button{border:0;background:transparent;display:inline-flex;align-items:center;gap:6px;font-size:16px;cursor:pointer;padding:6px 10px;border-radius:10px;transition:background .2s}
-      .react-bar button:hover{background:rgba(0,0,0,.05)}
-      .react-bar .btn-like.liked .fa-heart{color:#e0245e;transform:scale(1.08)}
-      .react-bar .btn-save.saved .fa-bookmark{color:#f0ad4e;transform:scale(1.1)}
-      .comment-wrap{border:1px solid #eee;border-radius:10px;padding:14px;margin:8px 0 20px;background:#fff}
-      .comment-wrap .comment-list{list-style:none;margin:12px 0 0;padding:0}
-      .comment-wrap .comment-list li{border-top:1px dashed #ddd;padding:10px 2px}
-      .comment-wrap .comment-author{font-weight:600}
-      .comment-wrap .comment-date{opacity:.6;font-size:12px;margin-left:6px}
+        .react-bar {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            margin: 12px 0
+        }
+
+        .react-bar button {
+            border: 0;
+            background: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 10px;
+            transition: background .2s
+        }
+
+        .react-bar button:hover {
+            background: rgba(0, 0, 0, .05)
+        }
+
+        .react-bar .btn-like.liked .fa-heart {
+            color: #e0245e;
+            transform: scale(1.08)
+        }
+
+        .react-bar .btn-save.saved .fa-bookmark {
+            color: #f0ad4e;
+            transform: scale(1.1)
+        }
+
+        .comment-wrap {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 14px;
+            margin: 8px 0 20px;
+            background: #fff
+        }
+
+        .comment-wrap .comment-list {
+            list-style: none;
+            margin: 12px 0 0;
+            padding: 0
+        }
+
+        .comment-wrap .comment-list li {
+            border-top: 1px dashed #ddd;
+            padding: 10px 2px
+        }
+
+        .comment-wrap .comment-author {
+            font-weight: 600
+        }
+
+        .comment-wrap .comment-date {
+            opacity: .6;
+            font-size: 12px;
+            margin-left: 6px
+        }
     </style>
 </head>
 
@@ -112,18 +164,34 @@
 
                         <div class="resepies_details">
                             <ul>
-                                <li><p><strong>Rating</strong> : ★★★★★ </p></li>
-                                <li><p><strong>Time</strong> : 30 Mins </p></li>
-                                <li><p><strong>Category</strong> : Main Dish </p></li>
-                                <li><p><strong>Tags</strong> : Dinner, Main, Chicken, Dragon, Phoenix </p></li>
+                                <li>
+                                    <p><strong>Rating</strong> : ★★★★★ </p>
+                                </li>
+                                <li>
+                                    <p><strong>Time</strong> : 30 Mins </p>
+                                </li>
+                                <li>
+                                    <p><strong>Category</strong> : Main Dish </p>
+                                </li>
+                                <li>
+                                    <p><strong>Tags</strong> : Dinner, Main, Chicken, Dragon, Phoenix </p>
+                                </li>
                             </ul>
                         </div>
 
                         <!-- ✅ Like / Comment / Save -->
                         <div class="react-bar" data-item-id="dragon-tiger-phoenix">
-                            <button class="btn-like"><i class="fa fa-heart"></i> <span class="like-count">0</span></button>
-                            <button class="btn-comment-toggle"><i class="fa fa-comment"></i> <span class="comment-count">0</span></button>
-                            <button class="btn-save"><i class="fa fa-bookmark"></i></button>
+                            <button class="btn-like">
+                                <i class="fa fa-heart"></i>
+                                <span class="like-count">0</span>
+                            </button>
+                            <button class="btn-comment-toggle">
+                                <i class="fa fa-comment"></i>
+                                <span class="comment-count">0</span>
+                            </button>
+                            <button class="btn-save">
+                                <i class="fa fa-bookmark"></i>
+                            </button>
                         </div>
 
                         <div class="comment-wrap" data-for="dragon-tiger-phoenix" hidden>
@@ -144,9 +212,7 @@
                 </div>
             </div>
 
-            
-                </div>
-            </div>
+            <!-- Penutup container/area -->
         </div>
     </div>
 
@@ -165,7 +231,8 @@
                 <div class="row align-items-center">
                     <div class="col-xl-8 col-md-8">
                         <p class="copy_right">
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script>
                             All rights reserved | Template by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         </p>
                     </div>
@@ -200,76 +267,325 @@
     <script src="js/mail-script.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- ✅ Script Like, Comment & Save -->
+    <!-- Supabase JS -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script>
-    (function(){
-      const LS_KEY='tasty-recipe-reactions-v1';
-      const store={
-        get(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{}}catch(e){return{}};},
-        set(d){localStorage.setItem(LS_KEY,JSON.stringify(d));}
-      };
-      const fmt=()=>{const d=new Date();return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`};
-      const render=(wrap,cmts)=>{const ul=wrap.querySelector('.comment-list');ul.innerHTML=cmts.map(c=>`<li><div><span class="comment-author">${c.name}</span><span class="comment-date">${c.date}</span></div><div>${c.message}</div></li>`).join('');};
+        const SUPABASE_URL = 'https://mybfahpmnpasjmhutmcr.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjg1MDgsImV4cCI6MjA3NjkwNDUwOH0.E_VI8-raJ3jRPAQc079j6jAhluiC4lSCmtIN9gMND6g'; // GANTI dengan anon public key, BUKAN service_role
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-      function init(){
-        document.querySelectorAll('.react-bar').forEach(bar=>{
-          const id=bar.dataset.itemId;
-          const db=store.get();
-          if(!db[id]) db[id]={likes:0,liked:false,comments:[],saved:false};
-          store.set(db);
+        const DEVICE_KEY = 'tasty-device-id';
+        let deviceId = localStorage.getItem(DEVICE_KEY);
+        if (!deviceId) {
+            deviceId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
+            localStorage.setItem(DEVICE_KEY, deviceId);
+        }
+    </script>
 
-          const item=db[id];
-          const likeBtn=bar.querySelector('.btn-like');
-          const likeCount=bar.querySelector('.like-count');
-          const cBtn=bar.querySelector('.btn-comment-toggle');
-          const cCount=bar.querySelector('.comment-count');
-          const saveBtn=bar.querySelector('.btn-save');
-          const wrap=document.querySelector(`.comment-wrap[data-for="${id}"]`);
+    <!-- ✅ Script Like, Comment & Save (full Supabase, tanpa localStorage untuk data) -->
+    <script>
+        (function () {
+            function fmtDateTime(isoString) {
+                const d = isoString ? new Date(isoString) : new Date();
+                const year = d.getFullYear();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                const hours = String(d.getHours()).padStart(2, '0');
+                const minutes = String(d.getMinutes()).padStart(2, '0');
+                return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
+            }
 
-          likeCount.textContent=item.likes;
-          cCount.textContent=item.comments.length;
-          if(item.liked) likeBtn.classList.add('liked');
-          if(item.saved) saveBtn.classList.add('saved');
+            function escapeHtml(str) {
+                if (!str) return '';
+                return str
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+            }
 
-          likeBtn.addEventListener('click',()=>{
-            const d=store.get(); const it=d[id];
-            it.liked=!it.liked;
-            it.likes+=it.liked?1:-1;
-            store.set(d);
-            likeBtn.classList.toggle('liked',it.liked);
-            likeCount.textContent=it.likes;
-          });
+            function renderComments(wrap, comments) {
+                const ul = wrap.querySelector('.comment-list');
+                ul.innerHTML = comments.map(function (c) {
+                    return (
+                        '<li>' +
+                        '<div>' +
+                        '<span class="comment-author">' + escapeHtml(c.name) + '</span>' +
+                        '<span class="comment-date">' + c.date + '</span>' +
+                        '</div>' +
+                        '<div>' + escapeHtml(c.message) + '</div>' +
+                        '</li>'
+                    );
+                }).join('');
+            }
 
-          cBtn.addEventListener('click',()=>{ wrap.hidden=!wrap.hidden; });
+            async function loadLikes(recipeId, likeBtn, likeCountEl) {
+                try {
+                    // cek apakah sudah like oleh device ini
+                    const { data: likeRows, error: checkErr } = await sb
+                        .from('recipe_likes')
+                        .select('id')
+                        .eq('recipe_slug', recipeId)
+                        .eq('device_id', deviceId)
+                        .limit(1);
 
-          saveBtn.addEventListener('click',()=>{
-            const d=store.get(); const it=d[id];
-            it.saved=!it.saved;
-            store.set(d);
-            saveBtn.classList.toggle('saved', it.saved);
-            alert(it.saved ? 'Recipe saved!' : 'Recipe removed from bookmarks.');
-          });
+                    if (checkErr) {
+                        console.error('Error check like:', checkErr);
+                    }
 
-          const form=wrap.querySelector('.comment-form');
-          form.addEventListener('submit',e=>{
-            e.preventDefault();
-            const name=form.name.value||'Anonim';
-            const msg=form.message.value.trim();
-            if(!msg) return;
-            const d=store.get(); const it=d[id];
-            it.comments.push({name, message:msg, date:fmt()});
-            store.set(d);
-            form.reset();
-            render(wrap,it.comments);
-            cCount.textContent=it.comments.length;
-          });
+                    const existing = likeRows && likeRows.length > 0 ? likeRows[0] : null;
+                    if (existing) {
+                        likeBtn.classList.add('liked');
+                    } else {
+                        likeBtn.classList.remove('liked');
+                    }
 
-          render(wrap,item.comments);
-        });
-      }
+                    // hitung total like
+                    const { count, error: cntErr } = await sb
+                        .from('recipe_likes')
+                        .select('*', { count: 'exact', head: true })
+                        .eq('recipe_slug', recipeId);
 
-      document.addEventListener('DOMContentLoaded',init);
-    })();
+                    if (cntErr) {
+                        console.error('Error count likes:', cntErr);
+                        likeCountEl.textContent = '0';
+                    } else {
+                        likeCountEl.textContent = (typeof count === 'number') ? count : '0';
+                    }
+                } catch (e) {
+                    console.error('Exception loadLikes:', e);
+                    likeCountEl.textContent = '0';
+                }
+            }
+
+            async function loadComments(recipeId, wrap, cCountEl) {
+                try {
+                    const { data, error } = await sb
+                        .from('recipe_comments')
+                        .select('name, message, created_at')
+                        .eq('recipe_slug', recipeId)
+                        .order('created_at', { ascending: true });
+
+                    if (error) {
+                        console.error('Error load comments:', error);
+                        return;
+                    }
+
+                    const comments = (data || []).map(function (c) {
+                        return {
+                            name: c.name || 'Anonim',
+                            message: c.message,
+                            date: fmtDateTime(c.created_at)
+                        };
+                    });
+
+                    renderComments(wrap, comments);
+                    cCountEl.textContent = comments.length;
+                } catch (e) {
+                    console.error('Exception loadComments:', e);
+                }
+            }
+
+            async function loadBookmarkState(recipeId, saveBtn) {
+                try {
+                    const { data: rows, error } = await sb
+                        .from('recipe_bookmarks')
+                        .select('id')
+                        .eq('recipe_slug', recipeId)
+                        .eq('device_id', deviceId)
+                        .limit(1);
+
+                    if (error) {
+                        console.error('Error check bookmark:', error);
+                        return;
+                    }
+
+                    const existing = rows && rows.length > 0 ? rows[0] : null;
+                    if (existing) {
+                        saveBtn.classList.add('saved');
+                    } else {
+                        saveBtn.classList.remove('saved');
+                    }
+                } catch (e) {
+                    console.error('Exception loadBookmarkState:', e);
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const bars = document.querySelectorAll('.react-bar');
+
+                bars.forEach(function (bar) {
+                    const recipeId = bar.dataset.itemId;
+                    const likeBtn = bar.querySelector('.btn-like');
+                    const likeCountEl = bar.querySelector('.like-count');
+                    const commentToggleBtn = bar.querySelector('.btn-comment-toggle');
+                    const commentCountEl = bar.querySelector('.comment-count');
+                    const saveBtn = bar.querySelector('.btn-save');
+                    const wrap = document.querySelector('.comment-wrap[data-for="' + recipeId + '"]');
+                    const form = wrap ? wrap.querySelector('.comment-form') : null;
+
+                    // Inisialisasi awal dari Supabase
+                    if (likeBtn && likeCountEl) {
+                        loadLikes(recipeId, likeBtn, likeCountEl);
+                    }
+                    if (wrap && commentCountEl) {
+                        loadComments(recipeId, wrap, commentCountEl);
+                    }
+                    if (saveBtn) {
+                        loadBookmarkState(recipeId, saveBtn);
+                    }
+
+                    // Handler LIKE
+                    if (likeBtn && likeCountEl) {
+                        likeBtn.addEventListener('click', async function () {
+                            try {
+                                const { data: rows, error: checkErr } = await sb
+                                    .from('recipe_likes')
+                                    .select('id')
+                                    .eq('recipe_slug', recipeId)
+                                    .eq('device_id', deviceId)
+                                    .limit(1);
+
+                                if (checkErr) {
+                                    console.error('Error check like:', checkErr);
+                                    alert('Terjadi kesalahan saat memeriksa like.');
+                                    return;
+                                }
+
+                                const existing = rows && rows.length > 0 ? rows[0] : null;
+
+                                if (existing) {
+                                    const { error: delErr } = await sb
+                                        .from('recipe_likes')
+                                        .delete()
+                                        .eq('id', existing.id);
+
+                                    if (delErr) {
+                                        console.error('Error delete like:', delErr);
+                                        alert('Gagal menghapus like.');
+                                        return;
+                                    }
+                                } else {
+                                    const { error: insErr } = await sb
+                                        .from('recipe_likes')
+                                        .insert({
+                                            recipe_slug: recipeId,
+                                            device_id: deviceId
+                                        });
+
+                                    if (insErr) {
+                                        console.error('Error insert like:', insErr);
+                                        alert('Gagal menambahkan like.');
+                                        return;
+                                    }
+                                }
+
+                                await loadLikes(recipeId, likeBtn, likeCountEl);
+                            } catch (e) {
+                                console.error('Exception click like:', e);
+                                alert('Gagal memproses like.');
+                            }
+                        });
+                    }
+
+                    // Toggle KOMENTAR
+                    if (commentToggleBtn && wrap) {
+                        commentToggleBtn.addEventListener('click', function () {
+                            wrap.hidden = !wrap.hidden;
+                        });
+                    }
+
+                    // Handler BOOKMARK / SAVE
+                    if (saveBtn) {
+                        saveBtn.addEventListener('click', async function () {
+                            try {
+                                const { data: rows, error: checkErr } = await sb
+                                    .from('recipe_bookmarks')
+                                    .select('id')
+                                    .eq('recipe_slug', recipeId)
+                                    .eq('device_id', deviceId)
+                                    .limit(1);
+
+                                if (checkErr) {
+                                    console.error('Error check bookmark:', checkErr);
+                                    alert('Terjadi kesalahan saat memeriksa bookmark.');
+                                    return;
+                                }
+
+                                const existing = rows && rows.length > 0 ? rows[0] : null;
+
+                                if (existing) {
+                                    const { error: delErr } = await sb
+                                        .from('recipe_bookmarks')
+                                        .delete()
+                                        .eq('id', existing.id);
+
+                                    if (delErr) {
+                                        console.error('Error delete bookmark:', delErr);
+                                        alert('Gagal menghapus bookmark.');
+                                        return;
+                                    }
+                                    saveBtn.classList.remove('saved');
+                                    alert('Recipe removed from bookmarks.');
+                                } else {
+                                    const { error: insErr } = await sb
+                                        .from('recipe_bookmarks')
+                                        .insert({
+                                            recipe_slug: recipeId,
+                                            device_id: deviceId
+                                        });
+
+                                    if (insErr) {
+                                        console.error('Error insert bookmark:', insErr);
+                                        alert('Gagal menyimpan bookmark.');
+                                        return;
+                                    }
+                                    saveBtn.classList.add('saved');
+                                    alert('Recipe saved!');
+                                }
+                            } catch (e) {
+                                console.error('Exception bookmark:', e);
+                                alert('Gagal memproses bookmark.');
+                            }
+                        });
+                    }
+
+                    // Handler SUBMIT KOMENTAR
+                    if (form && wrap && commentCountEl) {
+                        form.addEventListener('submit', async function (e) {
+                            e.preventDefault();
+                            const name = form.name.value || 'Anonim';
+                            const message = form.message.value.trim();
+                            if (!message) return;
+
+                            try {
+                                const { error: insErr } = await sb
+                                    .from('recipe_comments')
+                                    .insert({
+                                        recipe_slug: recipeId,
+                                        name: name,
+                                        message: message
+                                    });
+
+                                if (insErr) {
+                                    console.error('Error insert comment:', insErr);
+                                    alert('Komentar gagal dikirim.');
+                                    return;
+                                }
+
+                                form.reset();
+                                await loadComments(recipeId, wrap, commentCountEl);
+                            } catch (err) {
+                                console.error('Exception submit comment:', err);
+                                alert('Terjadi kesalahan saat mengirim komentar.');
+                            }
+                        });
+                    }
+
+                });
+            });
+        })();
     </script>
 </body>
 </html>
