@@ -105,7 +105,7 @@
         }
         a.boxed-btn3:hover { background-color: #218838; }
 
-        /* Recipe cards (bagian 3 menu pertama) */
+        /* Recipe cards (3 menu awal) */
         .single_recepie h3 {
             font-size: 1.3rem;
             font-weight: 600;
@@ -148,8 +148,8 @@
         /* =========== RESEP PALING FAVORIT =========== */
         .dish_area {
             margin-top: 80px;
-            padding: 80px 0;
-            background: #fafafa;
+            padding: 80px 0 90px;
+            background: radial-gradient(circle at top, #fffefd 0%, #fafafa 45%, #f5f7fa 100%);
         }
 
         .dish_area .section_title h3 {
@@ -161,30 +161,85 @@
             color: #666;
         }
 
-        /* Grid kartu */
+        .dish_area .section_title span.small_hint {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: .9rem;
+            color: #888;
+        }
+
+        /* Grid kartu favorit */
         .dish_area .dish_wrap {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 32px;
-            margin-top: 60px;
+            margin-top: 52px;
+        }
+
+        .favorite_card {
+            text-decoration: none !important;
+            color: inherit !important;
+            display: block;
         }
 
         .dish_area .single_dish {
             background: #ffffff;
             border-radius: 24px;
-            padding: 28px 24px 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,.06);
-            max-width: 320px;
+            padding: 32px 24px 30px;
+            box-shadow: 0 12px 32px rgba(0,0,0,.06);
+            max-width: 330px;
+            transition: .25s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* RESET total style bawaan theme di .single_dish .thumb */
+        .favorite_card:hover .single_dish {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 38px rgba(0,0,0,.12);
+        }
+
+        /* Badge favorit */
+        .favorite_badge {
+            position: absolute;
+            top: 16px;
+            left: 18px;
+            padding: 4px 11px;
+            border-radius: 999px;
+            font-size: .78rem;
+            font-weight: 600;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            letter-spacing: .03em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0,0,0,.18);
+        }
+
+        .favorite_badge i {
+            font-size: .9rem;
+        }
+
+        .favorite_card-1 .favorite_badge {
+            background: linear-gradient(135deg, #f8b500, #ff7b00);
+        }
+
+        .favorite_card-2 .favorite_badge {
+            background: linear-gradient(135deg, #ff6f91, #ff9671);
+        }
+
+        .favorite_card-3 .favorite_badge {
+            background: linear-gradient(135deg, #4facfe, #00c9a7);
+        }
+
+        /* Reset style bawaan thumbnail */
         .dish_area .single_dish .thumb {
             position: static !important;
             top: auto !important;
             left: auto !important;
             transform: none !important;
-            margin: 0 auto 16px auto !important;
+            margin: 10px auto 18px auto !important;
             text-align: center;
         }
 
@@ -194,12 +249,12 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #fff;
-            box-shadow: 0 6px 16px rgba(0,0,0,.12);
+            box-shadow: 0 6px 18px rgba(0,0,0,.14);
         }
 
         .dish_area .single_dish h3 {
-            margin-top: 8px;
-            font-size: 1.1rem;
+            margin-top: 4px;
+            font-size: 1.12rem;
         }
 
         .dish_area .single_dish p {
@@ -208,9 +263,20 @@
             margin-top: 8px;
         }
 
+        /* Badge kecil di bawah judul (ranking) */
+        .favorite_rank {
+            display: inline-block;
+            margin-top: 4px;
+            padding: 2px 10px;
+            font-size: .78rem;
+            border-radius: 999px;
+            background: #f3f4ff;
+            color: #555;
+        }
+
         @media (max-width: 767.98px) {
             .dish_area {
-                padding: 60px 0;
+                padding: 60px 0 70px;
             }
             .dish_area .single_dish {
                 max-width: 100%;
@@ -332,7 +398,7 @@
         </div><!-- container -->
     </div><!-- recepie_area -->
 
-    <!-- Dish Area: Resep Paling Favorit -->
+    <!-- Dish Area: Resep Paling Favorit (klik ke recipes) -->
     <div class="dish_area">
         <div class="container">
             <div class="row mb-4">
@@ -340,33 +406,63 @@
                     <div class="section_title text-center">
                         <h3>Resep Paling Favorit</h3>
                         <p>Koleksi menu yang paling sering dimasak dan disukai oleh pengguna resepin.id.</p>
+                        <span class="small_hint">Dipilih berdasarkan resep yang paling banyak dilihat dan disimpan.</span>
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+            <div class="row justify-content-center">
                 <div class="col-xl-12">
                     <div class="dish_wrap">
-                        <div class="single_dish text-center">
-                            <div class="thumb">
-                                <img src="img/recepie/recpie_4.png" alt="Ayam Bakar Madu">
+
+                        <!-- Favorit #1 -->
+                        <a href="recipes" class="favorite_card favorite_card-1">
+                            <div class="single_dish text-center">
+                                <div class="favorite_badge">
+                                    <i class="fa fa-star"></i>
+                                    Favorit #1
+                                </div>
+                                <div class="thumb">
+                                    <img src="img/recepie/recpie_4.png" alt="Ayam Bakar Madu">
+                                </div>
+                                <h3>Ayam Bakar Madu</h3>
+                                <span class="favorite_rank">Paling sering dimasak</span>
+                                <p>Ayam berbumbu manis gurih dengan sentuhan madu, cocok untuk makan malam keluarga atau acara spesial.</p>
                             </div>
-                            <h3>Ayam Bakar Madu</h3>
-                            <p>Ayam berbumbu manis gurih dengan sentuhan madu, cocok untuk makan malam keluarga atau acara spesial.</p>
-                        </div>
-                        <div class="single_dish text-center">
-                            <div class="thumb">
-                                <img src="img/recepie/recpie_5.png" alt="Rendang Daging Padang">
+                        </a>
+
+                        <!-- Favorit #2 -->
+                        <a href="recipes" class="favorite_card favorite_card-2">
+                            <div class="single_dish text-center">
+                                <div class="favorite_badge">
+                                    <i class="fa fa-star"></i>
+                                    Favorit #2
+                                </div>
+                                <div class="thumb">
+                                    <img src="img/recepie/recpie_5.png" alt="Rendang Daging Padang">
+                                </div>
+                                <h3>Rendang Daging Padang</h3>
+                                <span class="favorite_rank">Rating tertinggi</span>
+                                <p>Dimasak pelan dengan santan dan rempah lengkap sampai meresap, jadi lauk andalan di meja makan.</p>
                             </div>
-                            <h3>Rendang Daging Padang</h3>
-                            <p>Dimasak pelan dengan santan dan rempah lengkap sampai meresap, jadi lauk andalan di meja makan.</p>
-                        </div>
-                        <div class="single_dish text-center">
-                            <div class="thumb">
-                                <img src="img/recepie/recpie_6.png" alt="Sate Ayam Bumbu Kacang">
+                        </a>
+
+                        <!-- Favorit #3 -->
+                        <a href="recipes" class="favorite_card favorite_card-3">
+                            <div class="single_dish text-center">
+                                <div class="favorite_badge">
+                                    <i class="fa fa-star"></i>
+                                    Favorit #3
+                                </div>
+                                <div class="thumb">
+                                    <img src="img/recepie/recpie_6.png" alt="Sate Ayam Bumbu Kacang">
+                                </div>
+                                <h3>Sate Ayam Bumbu Kacang</h3>
+                                <span class="favorite_rank">Paling banyak disimpan</span>
+                                <p>Potongan ayam empuk dengan bumbu kacang kental dan taburan bawang goreng, favorit di setiap kesempatan.</p>
                             </div>
-                            <h3>Sate Ayam Bumbu Kacang</h3>
-                            <p>Potongan ayam empuk dengan bumbu kacang kental dan taburan bawang goreng, favorit di setiap kesempatan.</p>
-                        </div>
+                        </a>
+
                     </div>
                 </div>
             </div><!-- row -->
