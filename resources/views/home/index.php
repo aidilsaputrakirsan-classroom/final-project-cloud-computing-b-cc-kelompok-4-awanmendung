@@ -1,11 +1,11 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>resepin.id</title>
-    <meta name="description" content="">
+    <meta name="description" content="Kumpulan resep masakan rumahan dan nusantara terbaik dari resepin.id">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSS vendor -->
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Fonts: Instrument Sans (balik ke font awal) -->
+    <!-- Fonts: Instrument Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -58,7 +58,7 @@
 
         /* Slider (pakai gambar banner sebagai background) */
         .slider_bg_1 {
-            background-image: url('img/banner/banner.png'); /* pastikan path benar */
+            background-image: url('img/banner/banner.png');
             background-size: cover; background-position: center center;
             position: relative; min-height: 70vh;
         }
@@ -72,7 +72,7 @@
         .slider_text { position: relative; z-index: 2; }
         .slider_text h3 {
             font-size: clamp(2.2rem, 4vw + 1rem, 3.5rem);
-            font-weight: 700; color: #fff ; letter-spacing: 0.03em;
+            font-weight: 700; color: #fff; letter-spacing: 0.03em;
         }
 
         /* Buttons */
@@ -97,7 +97,7 @@
         .copy_right { font-size: .9rem; color: #777; }
 
         /* Spacing antar section */
-        .recepie_area, .recepie_videoes_area, .dish_area, .latest_trand_area, .customer_feedback_area, .download_app_area { margin-top: 60px; }
+        .recepie_area, .dish_area, .latest_trand_area, .customer_feedback_area, .download_app_area { margin-top: 60px; }
     </style>
 </head>
 
@@ -112,23 +112,23 @@
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="img/resepinid_logofix.png" alt="Resepin.id Logo">
+                                    <img src="img/resepinid_logofix.png" alt="Logo resepin.id">
                                 </a>
                             </div>
                         </div>
                         <!-- Menu -->
                         <div class="col-xl-6 col-lg-7">
-                            <div class="main-menu white_text  d-none d-lg-block">
+                            <div class="main-menu white_text d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">home</a></li>
-                                        <li><a href="about">about</a></li>
+                                        <li><a href="index.php">Home</a></li>
+                                        <li><a href="about">About</a></li>
                                         <li><a href="recipes">Recipes</a></li>
-                                        <li><a href="bookmarks">Bookmarks </a></li>
-                                        <li><a href="pages">pages</a>
+                                        <li><a href="bookmarks">Bookmarks</a></li>
+                                        <li><a href="pages">Pages</a>
                                             <ul class="submenu">
                                                 <li><a href="recipes_details">Recipes Details</a></li>
-                                                <li><a href="elements">elements</a></li>
+                                                <li><a href="elements">Elements</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="contact">Contact</a></li>
@@ -136,6 +136,7 @@
                                 </nav>
                             </div>
                         </div>
+                        <!-- Right -->
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="header_right d-flex justify-content-end align-items-center">
                                 <div class="search_icon mr-3">
@@ -177,104 +178,76 @@
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="single_recepie text-center">
                         <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_1.png" alt="">
+                            <img src="img/recepie/recpie_1.png" alt="Nasi Goreng Kampung">
                         </div>
-                        <h3>Egg Manchurian</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
+                        <h3>Nasi Goreng Kampung</h3>
+                        <span>Menu Utama</span>
+                        <p>Waktu: 30 menit</p>
+                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
                     </div>
                 </div>
                 <!-- Card 2 -->
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="single_recepie text-center">
                         <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_2.png" alt="">
+                            <img src="img/recepie/recpie_2.png" alt="Soto Ayam Nusantara">
                         </div>
-                        <h3>Pure Vegetable Bowl</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
+                        <h3>Soto Ayam Nusantara</h3>
+                        <span>Sup &amp; Kuah</span>
+                        <p>Waktu: 30 menit</p>
+                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
                     </div>
                 </div>
                 <!-- Card 3 -->
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="single_recepie text-center">
                         <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_3.png" alt="">
+                            <img src="img/recepie/recpie_3.png" alt="Mie Goreng Jawa">
                         </div>
-                        <h3>Egg Masala Ramen</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
+                        <h3>Mie Goreng Jawa</h3>
+                        <span>Menu Utama</span>
+                        <p>Waktu: 30 menit</p>
+                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
                     </div>
                 </div>
             </div><!-- row -->
         </div><!-- container -->
     </div><!-- recepie_area -->
 
-    <!-- Recipe Videos -->
-    <div class="recepie_videoes_area">
-        <div class="container">
-            <div class="row">
-                <!-- Left info -->
-                <div class="col-xl-6 col-lg-6 col-md-6">
-                    <div class="recepie_info">
-                        <h3>Recipe videos that never miss any portion</h3>
-                        <p>Inappropriate behavior is often laughed off as “boys will be boys,” but women face higher conduct standards especially in the workplace.</p>
-                        <div class="video_watch d-flex align-items-center">
-                            <a class="popup-video" href="https://www.youtube.com/watch?v=lr6AMBsjxrY"><i class="ti-control-play"></i></a>
-                            <div class="watch_text">
-                                <h4>Watch Video</h4>
-                                <p>You will love our execution</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Right thumbs -->
-                <div class="col-lg-6 col-md-6">
-                    <div class="videos_thumb">
-                        <div class="big_img">
-                            <img src="img/video/big.png" alt="">
-                        </div>
-                        <div class="small_thumb">
-                            <img src="img/video/small_1.png" alt="">
-                        </div>
-                        <div class="small_thumb_2">
-                            <img src="img/video/2.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div><!-- row -->
-        </div><!-- container -->
-    </div><!-- recepie_videoes_area -->
-
-    <!-- Dish Area -->
+    <!-- Dish Area: Resep Paling Favorit -->
     <div class="dish_area">
         <div class="container">
+            <div class="row mb-4">
+                <div class="col-xl-12">
+                    <div class="section_title text-center">
+                        <h3>Resep Paling Favorit</h3>
+                        <p>Koleksi menu yang paling sering dimasak dan disukai oleh pengguna resepin.id.</p>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-xl-12">
                     <div class="dish_wrap d-flex">
                         <div class="single_dish text-center">
                             <div class="thumb">
-                                <img src="img/recepie/recpie_4.png" alt="">
+                                <img src="img/recepie/recpie_4.png" alt="Ayam Bakar Madu">
                             </div>
-                            <h3>Birthday Catering</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt.</p>
+                            <h3>Ayam Bakar Madu</h3>
+                            <p>Ayam berbumbu manis gurih dengan sentuhan madu, cocok untuk makan malam keluarga atau acara spesial.</p>
                         </div>
                         <div class="single_dish text-center">
                             <div class="thumb">
-                                <img src="img/recepie/recpie_5.png" alt="">
+                                <img src="img/recepie/recpie_5.png" alt="Rendang Daging Padang">
                             </div>
-                            <h3>Wedding Catering</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt.</p>
+                            <h3>Rendang Daging Padang</h3>
+                            <p>Dimasak pelan dengan santan dan rempah lengkap sampai meresap, jadi lauk andalan di meja makan.</p>
                         </div>
                         <div class="single_dish text-center">
                             <div class="thumb">
-                                <img src="img/recepie/recpie_6.png" alt="">
+                                <img src="img/recepie/recpie_6.png" alt="Sate Ayam Bumbu Kacang">
                             </div>
-                            <h3>Corporate Events</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt.</p>
+                            <h3>Sate Ayam Bumbu Kacang</h3>
+                            <p>Potongan ayam empuk dengan bumbu kacang kental dan taburan bawang goreng, favorit di setiap kesempatan.</p>
                         </div>
                     </div>
                 </div>
@@ -288,9 +261,9 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="trand_info text-center">
-                        <p>Thousands of recipes are waiting to be watched</p>
-                        <h3>Discover latest trending recipes</h3>
-                        <a href="recipes" class="boxed-btn3">View all Recipes</a>
+                        <p>Ribuan resep siap kamu coba di rumah</p>
+                        <h3>Temukan resep nusantara yang sedang tren</h3>
+                        <a href="recipes" class="boxed-btn3">Lihat Semua Resep</a>
                     </div>
                 </div>
             </div>
@@ -303,8 +276,8 @@
             <div class="row justify-content-center mb-50">
                 <div class="col-xl-9">
                     <div class="section_title text-center">
-                        <h3>Feedback From Customers</h3>
-                        <p>Our customers share their delightful experiences with our unique dishes.</p>
+                        <h3>Testimoni dari Pengguna</h3>
+                        <p>Para pengguna resepin.id berbagi pengalaman mereka setelah mencoba berbagai resep pilihan.</p>
                     </div>
                 </div>
             </div>
@@ -313,32 +286,32 @@
                     <div class="customer_active owl-carousel">
                         <div class="single_customer d-flex">
                             <div class="thumb">
-                                <img src="img/testmonial/1.png" alt="">
+                                <img src="img/testmonial/1.png" alt="Foto pengguna">
                             </div>
                             <div class="customer_meta">
                                 <h3>Adame Nesane</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. Fruit two also won one yielding creepeth third give may never lie alternet food.</p>
+                                <span>Pecinta Masakan Rumahan</span>
+                                <p>Resepnya mudah diikuti dan rasanya enak sekali. Keluarga saya jadi lebih sering makan bersama di rumah.</p>
                             </div>
                         </div>
                         <div class="single_customer d-flex">
                             <div class="thumb">
-                                <img src="img/testmonial/2.png" alt="">
+                                <img src="img/testmonial/2.png" alt="Foto pengguna">
                             </div>
                             <div class="customer_meta">
                                 <h3>Mary Jane</h3>
-                                <span>Food Blogger</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. Fruit two also won one yielding creepeth third give may never lie alternet food.</p>
+                                <span>Blogger Kuliner</span>
+                                <p>Banyak inspirasi menu baru di sini. Cocok untuk konten dan juga masakan sehari-hari.</p>
                             </div>
                         </div>
                         <div class="single_customer d-flex">
                             <div class="thumb">
-                                <img src="img/testmonial/3.png" alt="">
+                                <img src="img/testmonial/3.png" alt="Foto pengguna">
                             </div>
                             <div class="customer_meta">
                                 <h3>John Doe</h3>
-                                <span>Home Chef</span>
-                                <p>Great recipes and an amazing community! I always find new inspiration here.</p>
+                                <span>Koki Rumahan</span>
+                                <p>Resep-resepnya praktis, bahan mudah didapat, dan rasanya pas di lidah keluarga Indonesia.</p>
                             </div>
                         </div>
                     </div><!-- owl-carousel -->
@@ -355,27 +328,27 @@
                 <div class="col-xl-6 col-md-6">
                     <div class="download_thumb">
                         <div class="big_img">
-                            <img src="img/video/big_1.png" alt="">
+                            <img src="img/video/big_1.png" alt="Ilustrasi aplikasi resep">
                         </div>
                         <div class="small_01">
-                            <img src="img/video/small_sm1.png" alt="">
+                            <img src="img/video/small_sm1.png" alt="Ilustrasi aplikasi 1">
                         </div>
                         <div class="small_02">
-                            <img src="img/video/sm2.png" alt="">
+                            <img src="img/video/sm2.png" alt="Ilustrasi aplikasi 2">
                         </div>
                     </div>
                 </div>
                 <!-- Text -->
                 <div class="col-xl-6 col-md-6">
                     <div class="download_text">
-                        <h3>Download app to get recipes from everywhere</h3>
+                        <h3>Unduh aplikasi untuk dapatkan resep dari mana saja</h3>
                         <div class="download_android_apple">
                             <a class="active" href="#">
                                 <div class="download_link d-flex">
                                     <i class="fa fa-apple"></i>
                                     <div class="store">
-                                        <h5>Available</h5>
-                                        <p>on App Store</p>
+                                        <h5>Tersedia</h5>
+                                        <p>di App Store</p>
                                     </div>
                                 </div>
                             </a>
@@ -383,8 +356,8 @@
                                 <div class="download_link d-flex">
                                     <i class="fa fa-android"></i>
                                     <div class="store">
-                                        <h5>Download</h5>
-                                        <p>from Play Store</p>
+                                        <h5>Unduh</h5>
+                                        <p>dari Play Store</p>
                                     </div>
                                 </div>
                             </a>
@@ -403,58 +376,58 @@
                     <!-- Top Products -->
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
-                            <h3 class="footer_title">Top Products</h3>
+                            <h3 class="footer_title">Layanan Utama</h3>
                             <ul>
-                                <li><a href="#">Managed Website</a></li>
-                                <li><a href="#">Manage Reputation</a></li>
-                                <li><a href="#">Power Tools</a></li>
-                                <li><a href="#">Marketing Service</a></li>
+                                <li><a href="#">Website Resep</a></li>
+                                <li><a href="#">Pengaturan Koleksi Resep</a></li>
+                                <li><a href="#">Alat Bantu Memasak</a></li>
+                                <li><a href="#">Layanan Promosi</a></li>
                             </ul>
                         </div>
                     </div>
                     <!-- Quick Links -->
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
-                            <h3 class="footer_title">Quick Links</h3>
+                            <h3 class="footer_title">Tautan Cepat</h3>
                             <ul>
-                                <li><a href="#">Jobs</a></li>
-                                <li><a href="#">Brand Assets</a></li>
-                                <li><a href="#">Investor Relations</a></li>
-                                <li><a href="#">Terms of Service</a></li>
+                                <li><a href="#">Karier</a></li>
+                                <li><a href="#">Aset Brand</a></li>
+                                <li><a href="#">Hubungan Investor</a></li>
+                                <li><a href="#">Syarat Layanan</a></li>
                             </ul>
                         </div>
                     </div>
                     <!-- Features -->
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
-                            <h3 class="footer_title">Features</h3>
+                            <h3 class="footer_title">Fitur</h3>
                             <ul>
-                                <li><a href="#">Jobs</a></li>
-                                <li><a href="#">Brand Assets</a></li>
-                                <li><a href="#">Investor Relations</a></li>
-                                <li><a href="#">Terms of Service</a></li>
+                                <li><a href="#">Resep Tersimpan</a></li>
+                                <li><a href="#">Mode Memasak</a></li>
+                                <li><a href="#">Rating &amp; Ulasan</a></li>
+                                <li><a href="#">Berbagi ke Teman</a></li>
                             </ul>
                         </div>
                     </div>
                     <!-- Resources -->
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
-                            <h3 class="footer_title">Resources</h3>
+                            <h3 class="footer_title">Sumber Daya</h3>
                             <ul>
-                                <li><a href="#">Guides</a></li>
-                                <li><a href="#">Research</a></li>
-                                <li><a href="#">Experts</a></li>
-                                <li><a href="#">Agencies</a></li>
+                                <li><a href="#">Panduan Memasak</a></li>
+                                <li><a href="#">Artikel &amp; Riset</a></li>
+                                <li><a href="#">Tips dari Ahli</a></li>
+                                <li><a href="#">Komunitas &amp; Mitra</a></li>
                             </ul>
                         </div>
                     </div>
                     <!-- Subscribe -->
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
-                            <h3 class="footer_title">Subscribe</h3>
-                            <p class="newsletter_text">Stay updated with our latest recipes and trends.</p>
+                            <h3 class="footer_title">Berlangganan</h3>
+                            <p class="newsletter_text">Dapatkan info resep dan tren masakan terbaru langsung ke email kamu.</p>
                             <form action="#" class="newsletter_form">
-                                <input type="email" placeholder="Enter your email">
+                                <input type="email" placeholder="Masukkan email kamu">
                                 <button type="submit"><i class="ti-angle-right"></i></button>
                             </form>
                         </div>
@@ -469,7 +442,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
-                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — All rights reserved.
+                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Hak cipta dilindungi.
                         </p>
                     </div>
                 </div>
