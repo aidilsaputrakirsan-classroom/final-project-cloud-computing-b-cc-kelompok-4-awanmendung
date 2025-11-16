@@ -8,7 +8,6 @@
     <meta name="description" content="Kumpulan resep masakan rumahan dan nusantara terbaik dari resepin.id">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSS vendor -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
@@ -22,12 +21,10 @@
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Fonts: Instrument Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Custom override -->
     <style>
         :root {
             --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
@@ -58,7 +55,6 @@
             line-height: 1.9;
         }
 
-        /* Header / Navbar */
         .logo { display: flex; align-items: center; }
         .logo img { max-height: 120px; width: auto; object-fit: contain; }
 
@@ -69,15 +65,18 @@
             color: #fff !important;
         }
 
-        /* Slider (pakai gambar banner sebagai background) */
+
         .slider_bg_1 {
             background-image: url('img/banner/banner.png');
             background-size: cover;
             background-position: center center;
             position: relative;
-            min-height: 70vh;
+            min-height: 80vh;
         }
-        @media (min-width: 1200px) { .slider_bg_1 { min-height: 88vh; } }
+
+        @media (min-width: 1200px) {
+            .slider_bg_1 { min-height: 88vh; }
+        }
 
         .slider_bg_1::after {
             content: "";
@@ -86,15 +85,26 @@
             background: rgba(0,0,0,.35);
         }
 
-        .slider_text { position: relative; z-index: 2; }
-        .slider_text h3 {
-            font-size: clamp(2.2rem, 4vw + 1rem, 3.5rem);
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 0.03em;
+        .slider_text {
+            position: relative;
+            z-index: 2;
         }
 
-        /* Buttons */
+        .slider_text h1,
+        .slider_text h3 {
+            text-transform: none !important;
+        }
+
+        .hero_title {
+            text-transform: none !important;
+            font-size: clamp(2.6rem, 6vw + 1rem, 4.2rem);
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin: 0;
+            padding: 0;
+        }
+
         a.boxed-btn3 {
             background-color: #28a745;
             border-color: #28a745;
@@ -105,7 +115,6 @@
         }
         a.boxed-btn3:hover { background-color: #218838; }
 
-        /* Recipe cards (3 menu awal) */
         .single_recepie h3 {
             font-size: 1.3rem;
             font-weight: 600;
@@ -117,14 +126,12 @@
             letter-spacing: .02em;
         }
 
-        /* Section titles */
         .section_title h3,
         .trand_info h3 {
             font-size: 2rem;
             font-weight: 700;
         }
 
-        /* Footer */
         .footer_widget h3 {
             font-weight: 700;
             color: #111;
@@ -138,14 +145,12 @@
         .newsletter_text { color: #555; }
         .copy_right { font-size: .9rem; color: #777; }
 
-        /* Spacing antar section */
         .recepie_area,
         .dish_area,
         .latest_trand_area {
             margin-top: 60px;
         }
 
-        /* =========== RESEP PALING FAVORIT =========== */
         .dish_area {
             margin-top: 80px;
             padding: 80px 0 90px;
@@ -168,7 +173,6 @@
             color: #888;
         }
 
-        /* Grid kartu favorit */
         .dish_area .dish_wrap {
             display: flex;
             flex-wrap: wrap;
@@ -199,7 +203,6 @@
             box-shadow: 0 18px 38px rgba(0,0,0,.12);
         }
 
-        /* Badge favorit */
         .favorite_badge {
             position: absolute;
             top: 16px;
@@ -233,7 +236,6 @@
             background: linear-gradient(135deg, #4facfe, #00c9a7);
         }
 
-        /* Reset style bawaan thumbnail */
         .dish_area .single_dish .thumb {
             position: static !important;
             top: auto !important;
@@ -263,7 +265,6 @@
             margin-top: 8px;
         }
 
-        /* Badge kecil di bawah judul (ranking) */
         .favorite_rank {
             display: inline-block;
             margin-top: 4px;
@@ -286,13 +287,11 @@
 </head>
 
 <body>
-    <!-- Header -->
     <header>
         <div class="header-area">
             <div id="sticky-header" class="main-header-area">
                 <div class="container">
                     <div class="row align-items-center">
-                        <!-- Logo -->
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
@@ -300,7 +299,6 @@
                                 </a>
                             </div>
                         </div>
-                        <!-- Menu -->
                         <div class="col-xl-6 col-lg-7">
                             <div class="main-menu white_text d-none d-lg-block">
                                 <nav>
@@ -320,7 +318,6 @@
                                 </nav>
                             </div>
                         </div>
-                        <!-- Right -->
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="header_right d-flex justify-content-end align-items-center">
                                 <div class="search_icon mr-3">
@@ -331,34 +328,31 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Mobile menu -->
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
                         </div>
-                    </div><!-- row -->
-                </div><!-- container -->
-            </div><!-- main-header-area -->
-        </div><!-- header-area -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- Slider -->
     <div class="slider_area">
         <div class="single_slider d-flex align-items-center slider_bg_1">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-xl-8 text-center slider_text">
-                        <h3>resepin.id</h3>
+                        <h1 class="hero_title">resepin.id</h1>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Recipe Area (3 menu awal) -->
     <div class="recepie_area">
         <div class="container">
             <div class="row">
-                <!-- Card 1 -->
+
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="single_recepie text-center">
                         <div class="recepie_thumb">
@@ -370,7 +364,7 @@
                         <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
                     </div>
                 </div>
-                <!-- Card 2 -->
+
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="single_recepie text-center">
                         <div class="recepie_thumb">
@@ -382,7 +376,7 @@
                         <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
                     </div>
                 </div>
-                <!-- Card 3 -->
+
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="single_recepie text-center">
                         <div class="recepie_thumb">
@@ -394,11 +388,10 @@
                         <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
                     </div>
                 </div>
-            </div><!-- row -->
-        </div><!-- container -->
-    </div><!-- recepie_area -->
+            </div>
+        </div>
+    </div>
 
-    <!-- Dish Area: Resep Paling Favorit (klik ke recipes) -->
     <div class="dish_area">
         <div class="container">
             <div class="row mb-4">
@@ -415,7 +408,6 @@
                 <div class="col-xl-12">
                     <div class="dish_wrap">
 
-                        <!-- Favorit #1 -->
                         <a href="recipes" class="favorite_card favorite_card-1">
                             <div class="single_dish text-center">
                                 <div class="favorite_badge">
@@ -431,7 +423,6 @@
                             </div>
                         </a>
 
-                        <!-- Favorit #2 -->
                         <a href="recipes" class="favorite_card favorite_card-2">
                             <div class="single_dish text-center">
                                 <div class="favorite_badge">
@@ -447,7 +438,6 @@
                             </div>
                         </a>
 
-                        <!-- Favorit #3 -->
                         <a href="recipes" class="favorite_card favorite_card-3">
                             <div class="single_dish text-center">
                                 <div class="favorite_badge">
@@ -465,11 +455,11 @@
 
                     </div>
                 </div>
-            </div><!-- row -->
-        </div><!-- container -->
-    </div><!-- dish_area -->
+            </div>
+        </div>
+    </div>
 
-    <!-- Latest Trend -->
+
     <div class="latest_trand_area">
         <div class="container">
             <div class="row">
@@ -482,14 +472,14 @@
                 </div>
             </div>
         </div>
-    </div><!-- latest_trand_area -->
+    </div>
 
-    <!-- Footer -->
+
     <footer class="footer">
         <div class="footer_top">
             <div class="container">
                 <div class="row">
-                    <!-- Top Products -->
+
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
                             <h3 class="footer_title">Layanan Utama</h3>
@@ -501,7 +491,7 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Quick Links -->
+
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
                             <h3 class="footer_title">Tautan Cepat</h3>
@@ -513,7 +503,7 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Features -->
+
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
                             <h3 class="footer_title">Fitur</h3>
@@ -525,7 +515,7 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Resources -->
+
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">Sumber Daya</h3>
@@ -537,7 +527,7 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Subscribe -->
+
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">Berlangganan</h3>
@@ -548,9 +538,9 @@
                             </form>
                         </div>
                     </div>
-                </div><!-- row -->
-            </div><!-- container -->
-        </div><!-- footer_top -->
+                </div>
+            </div>
+        </div>
 
         <div class="copy-right_text">
             <div class="container">
@@ -566,7 +556,6 @@
         </div>
     </footer>
 
-    <!-- JS vendor -->
     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -588,7 +577,6 @@
     <script src="js/gijgo.min.js"></script>
     <script src="js/slick.min.js"></script>
 
-    <!-- Contact js -->
     <script src="js/contact.js"></script>
     <script src="js/jquery.ajaxchimp.min.js"></script>
     <script src="js/jquery.form.js"></script>
