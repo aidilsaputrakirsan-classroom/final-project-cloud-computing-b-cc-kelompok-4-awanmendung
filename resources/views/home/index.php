@@ -303,17 +303,17 @@
                             <div class="main-menu white_text d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">Home</a></li>
-                                        <li><a href="about">About</a></li>
-                                        <li><a href="recipes">Recipes</a></li>
+                                        <li><a href="index.php">Beranda</a></li>
+                                        <li><a href="about">Tentang</a></li>
+                                        <li><a href="recipes">Resep</a></li>
                                         <li><a href="bookmarks">Bookmarks</a></li>
-                                        <li><a href="pages">Pages</a>
+                                        <li><a href="pages">Halaman</a>
                                             <ul class="submenu">
-                                                <li><a href="recipes_details">Recipes Details</a></li>
-                                                <li><a href="elements">Elements</a></li>
+                                                <li><a href="recipes_details">Detail Resep</a></li>
+                                                <li><a href="elements">Elemen</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact">Contact</a></li>
+                                        <li><a href="contact">Kontak</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -324,7 +324,7 @@
                                     <a href="#"><i class="ti-search"></i></a>
                                 </div>
                                 <div class="login_btn">
-                                    <a href="/login" class="boxed-btn3">Login</a>
+                                    <a href="/login" class="boxed-btn3">Masuk</a>
                                 </div>
                             </div>
                         </div>
