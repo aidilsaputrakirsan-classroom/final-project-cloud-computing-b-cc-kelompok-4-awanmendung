@@ -1,10 +1,138 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 
+  <style>
+        :root {
+            --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+            "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        }
+
+        html { font-size: 17px; }
+
+        body, button, input, select, textarea {
+            font-family: var(--font-sans) !important;
+            font-weight: 400;
+            color: #2e2e2e;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-sans) !important;
+            font-weight: 600;
+            color: #1a1a1a;
+            line-height: 1.4;
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: #3a3a3a;
+            line-height: 1.9;
+        }
+
+        .logo { display: flex; align-items: center; }
+        .logo img { max-height: 120px; width: auto; object-fit: contain; }
+
+        #navigation > li > a {
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 1rem;
+            color: #fff !important;
+        }
+
+
+        .slider_bg_1 {
+            background-image: url('img/banner/banner.png');
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+            min-height: 80vh;
+        }
+
+        @media (min-width: 1200px) {
+            .slider_bg_1 { min-height: 88vh; }
+        }
+
+        .slider_bg_1::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,.35);
+        }
+
+        .slider_text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .slider_text h1,
+        .slider_text h3 {
+            text-transform: none !important;
+        }
+
+        .hero_title {
+            text-transform: none !important;
+            font-size: clamp(2.6rem, 6vw + 1rem, 4.2rem);
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin: 0;
+            padding: 0;
+        }
+
+        a.boxed-btn3 {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 6px;
+            transition: .3s;
+        }
+        a.boxed-btn3:hover { background-color: #218838; }
+
+        .single_recepie h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        .line_btn {
+            font-family: var(--font-sans);
+            font-weight: 500;
+            letter-spacing: .02em;
+        }
+
+        .section_title h3,
+        .trand_info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .footer_widget h3 {
+            font-weight: 700;
+            color: #111;
+            font-size: 1.2rem;
+        }
+        .footer_widget ul li a {
+            color: #666;
+            transition: color .3s;
+        }
+        .footer_widget ul li a:hover { color: #28a745; }
+        .newsletter_text { color: #555; }
+        .copy_right { font-size: .9rem; color: #777; }
+
+        .recepie_area,
+        .dish_area,
+        .latest_trand_area {
+            margin-top: 60px;
+        }
+    </style>
+
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tasty Recipe</title>
+    <title>resepin.id</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,22 +169,22 @@
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="index">
-                                    <img src="img/logo.png" alt="">
+                                    <img src="img/resepinid_logofix.png" alt="Logo resepin.id">
                                 </a>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
                             <div class="main-menu white_text  d-none d-lg-block">
-                                <nav>
+                               <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">home</a></li>
-                                        <li><a href="about">about</a></li>
-                                        <li><a href="recipes">Recipes</a></li>
+                                        <li><a href="index.php">Beranda</a></li>
+                                        <li><a href="about">Tentang</a></li>
+                                        <li><a href="recipes">Resep</a></li>
                                        <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
-                                        <li><a href="recipes_details">Recipes Details</a></li>
-                                        <li><a href="contact">Contact</a></li>
+                                        <li><a href="recipes_details">Halaman</a></li>
+                                        <li><a href="contact">Kontak</a></li>
 
-                                </nav>
+                                </nav>  
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
@@ -78,17 +206,20 @@
     <!-- header-end -->
 
     <!-- bradcam_area  -->
-    <div class="bradcam_area bradcam_bg_1">
+<div class="slider_area">
+    <div class="single_slider d-flex align-items-center breadcam_bg_2"> 
         <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text text-center">
-                        <h3>Chicken Recipes</h3>
+            <div class="row align-items-center justify-content-center">
+                
+                <div class="col-xl-8 text-center slider_text"> 
+                    
+                    <h1 class="hero_title">Find your next favorite meal here</h1> 
+                    
                     </div>
-                </div>
             </div>
         </div>
     </div>
+</div>
     <!-- /bradcam_area  -->
 
     <!-- recepie_area_start  -->
@@ -345,14 +476,12 @@
             <div class="container">
                 <div class="footer_border"></div>
                 <div class="row align-items-center">
-                    <div class="col-xl-8 col-md-8">
-                        <p class="copy_right">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Hak cipta dilindungi.
                         </p>
-                    </div>
-                    <div class="col-xl-4 col-md-4">
+                    </div>ss="col-xl-4 col-md-4">
                         <div class="socail_links">
                             <ul>
                                 <li>

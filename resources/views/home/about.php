@@ -131,7 +131,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tasty Recipes</title>
+    <title>resepin.id</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -205,18 +205,20 @@
     <!-- header-end -->
 
     <!-- bradcam_area  -->
-    <div class="bradcam_area bradcam_bg_1">
+<div class="slider_area">
+    <div class="single_slider d-flex align-items-center bradcam_bg_1"> 
         <div class="container">
             <div class="row align-items-center justify-content-center">
-                <div class="col-xl-8 text-center slider_text">
-                    <div class="bradcam_text text-center">
-                        <h3>About</h3>
-                        <h3>resepin.id</h3>
+                
+                <div class="col-xl-8 text-center slider_text"> 
+                    
+                    <h1 class="hero_title">About resepin.id</h1> 
+                    
                     </div>
-                </div>
             </div>
         </div>
     </div>
+</div>
     <!-- /bradcam_area  -->
 
     <!--/ recepie_header_area  -->
@@ -227,10 +229,8 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class="recepie_info">
-                        <h3>Recipe videos 
-                            that never misses 
-                            any portion</h3>
-                    <p>A collection of step-by-step recipe videos designed to guide you through every stage of cooking with perfect precision. No steps skipped, no portions missed—just clear, reliable instructions for delicious results every time.</p>
+                        <h3>Your digital source for detailed recipes and culinary inspiration.</h3>
+                    <p>The site typically features detailed recipes with ingredient lists, step-by-step preparation methods, nutritional information, and accompanying photos or videos. Many modern recipe websites also include community features, allowing users to rate, review, and contribute their own unique dishes. Its primary goal is to inspire and guide both novice and experienced cooks in the kitchen.</p>
                     <div class="video_watch d-flex align-items-center">
                         <a class="popup-video" href="https://www.youtube.com/watch?v=lr6AMBsjxrY"> <i class="ti-control-play"></i> </a>
                         <div class="watch_text" >
@@ -271,79 +271,6 @@
             </div>
         </div>
     </div>
-
-    <!-- customer_feedback_area  -->
-    <div class="customer_feedback_area padding_plus">
-        <div class="container">
-            <div class="row justify-content-center mb-50">
-                <div class="col-xl-9">
-                    <div class="section_title text-center">
-                        <h3>Feedback From Customers</h3>
-                        <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially <br> in the workplace. That’s why it’s crucial that, as women.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="customer_active owl-carousel">
-                        <div class="single_customer d-flex">
-                            <div class="thumb">
-                                <img src="img/testmonial/2.png" alt="">
-                            </div>
-                            <div class="customer_meta">
-                                <h3>Adame Nesane</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                        <div class="single_customer d-flex">
-                            <div class="thumb">
-                                <img src="img/testmonial/1.png" alt="">
-                            </div>
-                            <div class="customer_meta">
-                                <h3>Adame Nesane</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                        <div class="single_customer d-flex">
-                            <div class="thumb">
-                                <img src="img/testmonial/2.png" alt="">
-                            </div>
-                            <div class="customer_meta">
-                                <h3>Adame Nesane</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                        <div class="single_customer d-flex">
-                            <div class="thumb">
-                                <img src="img/testmonial/1.png" alt="">
-                            </div>
-                            <div class="customer_meta">
-                                <h3>Adame Nesane</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                        <div class="single_customer d-flex">
-                            <div class="thumb">
-                                <img src="img/testmonial/2.png" alt="">
-                            </div>
-                            <div class="customer_meta">
-                                <h3>Adame Nesane</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- / customer_feedback_area  -->
-
-
 
     <!-- footer  -->
     <footer class="footer">
@@ -426,12 +353,18 @@
             <div class="container">
                 <div class="footer_border"></div>
                 <div class="row align-items-center">
-                    <div class="col-xl-8 col-md-8">
-                        <p class="copy_right">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Hak cipta dilindungi.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
                     </div>
                     <div class="col-xl-4 col-md-4">
                         <div class="socail_links">

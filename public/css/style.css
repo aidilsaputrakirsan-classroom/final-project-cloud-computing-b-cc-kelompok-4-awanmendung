@@ -2711,18 +2711,23 @@ h3 {
 
 /* line 4, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_bradcam.scss */
 .breadcam_bg_2 {
-  background-image: url(../img/banner/bradcam_2.png);
+  background-image: url(../img/banner/bg-resep-full.jpeg  );
 }
 
 /* line 7, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_bradcam.scss */
 .breadcam_bg_3 {
-  background-image: url(../img/banner/bradcam3.png);
+  background-image: url(../img/bookmarks.jpeg);
 }
 
 /* line 10, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_bradcam.scss */
 .breadcam_bg_4 {
-  background-image: url(../img/banner/bradcam_4.png);
+  background-image: url(../img/recipe-details.jpeg);
 }
+
+.breadcam_bg_5 {
+  background-image: url(../img/contact.jpeg);
+}
+
 
 /* line 13, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_bradcam.scss */
 .bradcam_area {
@@ -4720,7 +4725,7 @@ h3 {
 
 /* line 330, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_recepie.scss */
 .latest_trand_area {
-  background-image: url(../img/recepie/banner.png);
+  background-image: url(../img/download.jpeg);
   padding: 150px 0;
   background-size: cover;
   background-position: center;
