@@ -1,6 +1,133 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 
+   <style>
+        :root {
+            --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+            "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        }
+
+        html { font-size: 17px; }
+
+        body, button, input, select, textarea {
+            font-family: var(--font-sans) !important;
+            font-weight: 400;
+            color: #2e2e2e;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-sans) !important;
+            font-weight: 600;
+            color: #1a1a1a;
+            line-height: 1.4;
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: #3a3a3a;
+            line-height: 1.9;
+        }
+
+        .logo { display: flex; align-items: center; }
+        .logo img { max-height: 120px; width: auto; object-fit: contain; }
+
+        #navigation > li > a {
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 1rem;
+            color: #fff !important;
+        }
+
+
+        .slider_bg_1 {
+            background-image: url('img/banner/banner.png');
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+            min-height: 80vh;
+        }
+
+        @media (min-width: 1200px) {
+            .slider_bg_1 { min-height: 88vh; }
+        }
+
+        .slider_bg_1::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,.35);
+        }
+
+        .slider_text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .slider_text h1,
+        .slider_text h3 {
+            text-transform: none !important;
+        }
+
+        .hero_title {
+            text-transform: none !important;
+            font-size: clamp(2.6rem, 6vw + 1rem, 4.2rem);
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin: 0;
+            padding: 0;
+        }
+
+        a.boxed-btn3 {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 6px;
+            transition: .3s;
+        }
+        a.boxed-btn3:hover { background-color: #218838; }
+
+        .single_recepie h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        .line_btn {
+            font-family: var(--font-sans);
+            font-weight: 500;
+            letter-spacing: .02em;
+        }
+
+        .section_title h3,
+        .trand_info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .footer_widget h3 {
+            font-weight: 700;
+            color: #111;
+            font-size: 1.2rem;
+        }
+        .footer_widget ul li a {
+            color: #666;
+            transition: color .3s;
+        }
+        .footer_widget ul li a:hover { color: #28a745; }
+        .newsletter_text { color: #555; }
+        .copy_right { font-size: .9rem; color: #777; }
+
+        .recepie_area,
+        .dish_area,
+        .latest_trand_area {
+            margin-top: 60px;
+        }
+    </style>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -34,32 +161,29 @@
 
     <!-- header-start -->
     <header>
-        <div class="header-area ">
-            <div id="sticky-header" class="main-header-area ">
+        <div class="header-area">
+            <div id="sticky-header" class="main-header-area">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
-                                <a href="index">
-                                    <img src="img/logo.png" alt="">
+                                <a href="index.html">
+                                    <img src="img/resepinid_logofix.png" alt="Logo resepin.id">
                                 </a>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
-                            <div class="main-menu white_text  d-none d-lg-block">
+                            <div class="main-menu white_text d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index">home</a></li>
-                                        <li><a href="about">about</a></li>
-                                        <li><a href="recipes">Recipes</a></li>
-                                        <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
-                                                <li><a href="recipes_details">Recipes Details</a></li>
-                                                
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact">Contact</a></li>
-                                    </ul>
-                                </nav>
+                                        <li><a href="index.php">Beranda</a></li>
+                                        <li><a href="about">Tentang</a></li>
+                                        <li><a href="recipes">Resep</a></li>
+                                       <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
+                                        <li><a href="recipes_details">Halaman</a></li>
+                                        <li><a href="contact">Kontak</a></li>
+
+                                </nav>   
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
@@ -83,10 +207,11 @@
     <!-- bradcam_area  -->
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-8 text-center slider_text">
                     <div class="bradcam_text text-center">
-                        <h3>About Us</h3>
+                        <h3>About</h3>
+                        <h3>resepin.id</h3>
                     </div>
                 </div>
             </div>
@@ -94,20 +219,6 @@
     </div>
     <!-- /bradcam_area  -->
 
-    <!-- recepie_header_area  -->
-    <div class="recepie_header_area">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10">
-                    <div class="recepie_text text-center">
-                        <h3>Recipe videos that never <br>
-                            misses any portion</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--/ recepie_header_area  -->
 
     <!-- recepie_videos   -->
@@ -119,7 +230,7 @@
                         <h3>Recipe videos 
                             that never misses 
                             any portion</h3>
-                    <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women.</p>
+                    <p>A collection of step-by-step recipe videos designed to guide you through every stage of cooking with perfect precision. No steps skipped, no portions missed—just clear, reliable instructions for delicious results every time.</p>
                     <div class="video_watch d-flex align-items-center">
                         <a class="popup-video" href="https://www.youtube.com/watch?v=lr6AMBsjxrY"> <i class="ti-control-play"></i> </a>
                         <div class="watch_text" >
@@ -147,69 +258,19 @@
     </div>
     <!--/ recepie_videos   -->
 
-    <!-- download_app_area -->
-    <div class="download_app_area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-6 col-md-6">
-                    <div class="download_thumb">
-                        <div class="big_img">
-                            <img src="img/video/big_1.png" alt="">
-                        </div>
-                        <div class="small_01">
-                            <img src="img/video/small_sm1.png" alt="">
-                        </div>
-                        <div class="small_02">
-                            <img src="img/video/sm2.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6">
-                    <div class="download_text">
-                        <h3>Download app to
-                            get recipes from
-                            Everywhere</h3>
-                        <div class="download_android_apple">
-                            <a class="active" href="#">
-                                <div class="download_link d-flex">
-                                    <i class="fa fa-apple"></i>
-                                    <div class="store">
-                                        <h5>Available</h5>
-                                        <p>on App Store</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="download_link d-flex">
-                                    <i class="fa fa-android"></i>
-                                    <div class="store">
-                                        <h5>Download</h5>
-                                        <p>from Play Store</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/ download_app_area -->
-    <!-- latest_trand     -->
     <div class="latest_trand_area">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="trand_info text-center">
-                        <p>Thousands of recipes are waiting to be watched</p>
-                        <h3>Discover latest trending recipes</h3>
-                        <a href="recipes" class="boxed-btn3">View all Recipes</a>
+                        <p>Ribuan resep siap kamu coba di rumah</p>
+                        <h3>Temukan resep nusantara yang sedang tren</h3>
+                        <a href="recipes" class="boxed-btn3">Lihat Semua Resep</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--/ latest_trand     -->
 
     <!-- customer_feedback_area  -->
     <div class="customer_feedback_area padding_plus">
