@@ -65,6 +65,13 @@
             color: #fff !important;
         }
 
+        /* Penanda menu aktif */
+        #navigation > li > a.active {
+            color: #28a745 !important;
+            font-weight: 700 !important;
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 3px;
+        }
 
         .slider_bg_1 {
             background-image: url('img/banner/banner.png');
@@ -287,55 +294,8 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-area">
-            <div id="sticky-header" class="main-header-area">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-xl-3 col-lg-2">
-                            <div class="logo">
-                                <a href="index.html">
-                                    <img src="img/resepinid_logofix.png" alt="Logo resepin.id">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-7">
-                            <div class="main-menu white_text d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation">
-                                        <li><a href="index.php">Beranda</a></li>
-                                        <li><a href="about">Tentang</a></li>
-                                        <li><a href="recipes">Resep</a></li>
-                                        <li><a href="bookmarks">Bookmarks</a></li>
-                                        <li><a href="pages">Halaman</a>
-                                            <ul class="submenu">
-                                                <li><a href="recipes_details">Detail Resep</a></li>
-                                                <li><a href="elements">Elemen</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact">Kontak</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="header_right d-flex justify-content-end align-items-center">
-                                <div class="search_icon mr-3">
-                                    <a href="#"><i class="ti-search"></i></a>
-                                </div>
-                                <div class="login_btn">
-                                    <a href="/login" class="boxed-btn3">Masuk</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+
+    <?php include 'header.php'; ?>
 
     <div class="slider_area">
         <div class="single_slider d-flex align-items-center slider_bg_1">
@@ -361,7 +321,7 @@
                         <h3>Nasi Goreng Kampung</h3>
                         <span>Menu Utama</span>
                         <p>Waktu: 30 menit</p>
-                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
+                        <a href="recipes_details.php" class="line_btn">Lihat Resep Lengkap</a>
                     </div>
                 </div>
 
@@ -373,7 +333,7 @@
                         <h3>Soto Ayam Nusantara</h3>
                         <span>Sup &amp; Kuah</span>
                         <p>Waktu: 30 menit</p>
-                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
+                        <a href="recipes_details.php" class="line_btn">Lihat Resep Lengkap</a>
                     </div>
                 </div>
 
@@ -385,7 +345,7 @@
                         <h3>Mie Goreng Jawa</h3>
                         <span>Menu Utama</span>
                         <p>Waktu: 30 menit</p>
-                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
+                        <a href="recipes_details.php" class="line_btn">Lihat Resep Lengkap</a>
                     </div>
                 </div>
             </div>
@@ -408,7 +368,7 @@
                 <div class="col-xl-12">
                     <div class="dish_wrap">
 
-                        <a href="recipes" class="favorite_card favorite_card-1">
+                        <a href="recipes.php" class="favorite_card favorite_card-1">
                             <div class="single_dish text-center">
                                 <div class="favorite_badge">
                                     <i class="fa fa-star"></i>
@@ -423,7 +383,7 @@
                             </div>
                         </a>
 
-                        <a href="recipes" class="favorite_card favorite_card-2">
+                        <a href="recipes.php" class="favorite_card favorite_card-2">
                             <div class="single_dish text-center">
                                 <div class="favorite_badge">
                                     <i class="fa fa-star"></i>
@@ -438,7 +398,7 @@
                             </div>
                         </a>
 
-                        <a href="recipes" class="favorite_card favorite_card-3">
+                        <a href="recipes.php" class="favorite_card favorite_card-3">
                             <div class="single_dish text-center">
                                 <div class="favorite_badge">
                                     <i class="fa fa-star"></i>
@@ -467,7 +427,7 @@
                     <div class="trand_info text-center">
                         <p>Ribuan resep siap kamu coba di rumah</p>
                         <h3>Temukan resep nusantara yang sedang tren</h3>
-                        <a href="recipes" class="boxed-btn3">Lihat Semua Resep</a>
+                        <a href="recipes.php" class="boxed-btn3">Lihat Semua Resep</a>
                     </div>
                 </div>
             </div>

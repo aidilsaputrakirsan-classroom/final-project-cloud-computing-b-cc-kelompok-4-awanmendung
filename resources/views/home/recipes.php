@@ -34,7 +34,7 @@
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="index.php">
-                                    <img src="img/resepinid_logofix.png" alt="resepin.id" style="height: 80px; width: auto;">
+                                    <img src="img/resepinid_logofix.png" alt="resepin.id" style="height: 120px; width: auto;">
                                 </a>
                             </div>
                         </div>
