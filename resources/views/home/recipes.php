@@ -40,21 +40,16 @@
                         </div>
                         <div class="col-xl-6 col-lg-7">
                             <div class="main-menu white_text d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation">
+                            <nav>
+                                 <ul id="navigation">
                                         <li><a href="index.php">Beranda</a></li>
-                                        <li><a href="about">Tentang</a></li>
-                                        <li><a href="recipes">Resep</a></li>
-                                        <li><a href="bookmarks">Bookmarks</a></li>
-                                        <li><a href="pages">Halaman</a>
-                                            <ul class="submenu">
-                                                <li><a href="recipes_details">Detail Resep</a></li>
-                                                <li><a href="elements">Elemen</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a href="about.php">Tentang</a></li>
+                                        <li><a href="recipes.php">Resep</a></li>
+                                        <li><a href="bookmarks.php">Bookmarks</a></li>
+                                        <li><a href="pages.php">Halaman</a></li>
                                         <li><a href="contact">Kontak</a></li>
                                     </ul>
-                                </nav>
+                            </nav>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
