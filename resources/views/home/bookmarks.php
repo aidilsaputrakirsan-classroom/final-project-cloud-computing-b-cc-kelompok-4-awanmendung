@@ -40,17 +40,17 @@
                             <div class="main-menu white_text  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">home</a></li>
-                                        <li><a href="about">about</a></li>
-                                        <li><a href="recipes">Recipes</a></li>
-                                        <li><a href="bookmarks">Bookmarks </a></li>
-                                        <li><a href="pages">pages</a>
+                                        <li><a href="index.php">Beranda</a></li>
+                                        <li><a href="about">Tentang</a></li>
+                                        <li><a href="recipes">Resep</a></li>
+                                        <li><a href="bookmarks">Bookmarks</a></li>
+                                        <li><a href="pages">Halaman</a>
                                             <ul class="submenu">
-                                                <li><a href="recipes_details">Recipes Details</a></li>
-                                                <li><a href="elements">elements</a></li>
+                                                <li><a href="recipes_details">Detail Resep</a></li>
+                                                <li><a href="elements">Elemen</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact">Contact</a></li>
+                                        <li><a href="contact">Kontak</a></li>
                                     </ul>
                                 </nav>
                             </div>

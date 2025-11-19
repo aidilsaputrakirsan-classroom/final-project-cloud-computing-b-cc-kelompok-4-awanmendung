@@ -49,13 +49,18 @@
                             <div class="main-menu white_text  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">home</a></li>
-                                        <li><a href="about">about</a></li>
-                                        <li><a href="recipes">Recipes</a></li>
-                                       <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
-                                        <li><a href="recipes_details">Recipes Details</a></li>
-                                        <li><a href="contact">Contact</a></li>
-
+                                        <li><a href="index.php">Beranda</a></li>
+                                        <li><a href="about">Tentang</a></li>
+                                        <li><a href="recipes">Resep</a></li>
+                                        <li><a href="bookmarks">Bookmarks</a></li>
+                                        <li><a href="pages">Halaman</a>
+                                            <ul class="submenu">
+                                                <li><a href="recipes_details">Detail Resep</a></li>
+                                                <li><a href="elements">Elemen</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact">Kontak</a></li>
+                                    </ul>
                                 </nav>
                             </div>
                         </div>
@@ -115,10 +120,10 @@
               scrollwheel:  false
             });
           }
-          
+
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
-        
+
       </div>
 
 
@@ -131,7 +136,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="form-group">
-                  
+
                     <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder = 'Enter Message'></textarea>
                 </div>
               </div>
@@ -255,7 +260,7 @@
                                         <input type="text" placeholder="Enter your mail">
                                         <button type="submit"> <i class="ti-arrow-right"></i> </button>
                                     </form>
-                                    
+
                                 </div>
                     </div>
                 </div>
