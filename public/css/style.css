@@ -2722,10 +2722,20 @@ h3 {
 /* line 10, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_bradcam.scss */
 .breadcam_bg_4 {
   background-image: url(../img/recipe-details.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .breadcam_bg_5 {
-  background-image: url(../img/contact.jpeg);
+    background-image: url("../img/contact.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 
@@ -3757,6 +3767,7 @@ h3 {
 /* line 12, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_download.scss */
 .download_app_area.plus_padding {
   padding-top: 200px;
+  background-color: #ffffff !important;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -4170,6 +4181,7 @@ h3 {
 .recepie_area {
   padding-top: 200px;
   padding-bottom: 50px;
+  background-color: #ffffff !important;
 }
 
 @media (max-width: 767px) {
@@ -4730,6 +4742,7 @@ h3 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #ffffff !important;
 }
 
 @media (max-width: 767px) {
@@ -4768,6 +4781,7 @@ h3 {
 .recepie_header_area {
   padding-top: 195px;
   padding-bottom: 96px;
+  background-color: #ffffff !important;
 }
 
 @media (max-width: 767px) {
@@ -5183,9 +5197,10 @@ h3 {
 
 /* line 133, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_contact.scss */
 .contact-section {
-  padding: 130px 0 100px;
+    background: #ffffff !important;
+    position: relative;
+    z-index: 2;
 }
-
 @media (max-width: 991px) {
   /* line 133, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_contact.scss */
   .contact-section {
@@ -7022,6 +7037,7 @@ h6 {
 /* line 525, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_blog.scss */
 .blog_item {
   margin-bottom: 50px;
+  ;background-color: floralwhite;
 }
 
 /* line 529, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_blog.scss */
@@ -7165,6 +7181,7 @@ h6 {
 .blog_right_sidebar .widget_title {
   font-size: 20px;
   margin-bottom: 40px;
+  ;background-color: #F5F5FF;
 }
 
 /* line 652, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_blog.scss */

@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 
-   <style>
+    <style>
         :root {
             --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
             "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
@@ -126,12 +126,145 @@
         .latest_trand_area {
             margin-top: 60px;
         }
+
+        .dish_area {
+            margin-top: 80px;
+            padding: 80px 0 90px;
+            background: radial-gradient(circle at top, #fffefd 0%, #fafafa 45%, #f5f7fa 100%);
+        }
+
+        .dish_area .section_title h3 {
+            margin-bottom: 8px;
+        }
+
+        .dish_area .section_title p {
+            margin-bottom: 0;
+            color: #666;
+        }
+
+        .dish_area .section_title span.small_hint {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: .9rem;
+            color: #888;
+        }
+
+        .dish_area .dish_wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 52px;
+        }
+
+        .favorite_card {
+            text-decoration: none !important;
+            color: inherit !important;
+            display: block;
+        }
+
+        .dish_area .single_dish {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 32px 24px 30px;
+            box-shadow: 0 12px 32px rgba(0,0,0,.06);
+            max-width: 330px;
+            transition: .25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .favorite_card:hover .single_dish {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 38px rgba(0,0,0,.12);
+        }
+
+        .favorite_badge {
+            position: absolute;
+            top: 16px;
+            left: 18px;
+            padding: 4px 11px;
+            border-radius: 999px;
+            font-size: .78rem;
+            font-weight: 600;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            letter-spacing: .03em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0,0,0,.18);
+        }
+
+        .favorite_badge i {
+            font-size: .9rem;
+        }
+
+        .favorite_card-1 .favorite_badge {
+            background: linear-gradient(135deg, #f8b500, #ff7b00);
+        }
+
+        .favorite_card-2 .favorite_badge {
+            background: linear-gradient(135deg, #ff6f91, #ff9671);
+        }
+
+        .favorite_card-3 .favorite_badge {
+            background: linear-gradient(135deg, #4facfe, #00c9a7);
+        }
+
+        .dish_area .single_dish .thumb {
+            position: static !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+            margin: 10px auto 18px auto !important;
+            text-align: center;
+        }
+
+        .dish_area .single_dish .thumb img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 6px 18px rgba(0,0,0,.14);
+        }
+
+        .dish_area .single_dish h3 {
+            margin-top: 4px;
+            font-size: 1.12rem;
+        }
+
+        .dish_area .single_dish p {
+            font-size: .97rem;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        .favorite_rank {
+            display: inline-block;
+            margin-top: 4px;
+            padding: 2px 10px;
+            font-size: .78rem;
+            border-radius: 999px;
+            background: #f3f4ff;
+            color: #555;
+        }
+
+        @media (max-width: 767.98px) {
+            .dish_area {
+                padding: 60px 0 70px;
+            }
+            .dish_area .single_dish {
+                max-width: 100%;
+            }
+        }
     </style>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tasty Recipes</title>
+    <title>Tentang - resepin.id</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -177,7 +310,6 @@
                                         <li><a href="about">Tentang</a></li>
                                         <li><a href="recipes">Resep</a></li>
                                        <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
-                                        <li><a href="recipes_details">Halaman</a></li>
                                         <li><a href="contact">Kontak</a></li>
 
                                 </nav> 
@@ -201,13 +333,13 @@
     </header>
 
 <!-- bradcam_area -->
-<div class="bradcam_area bradcam_bg_1">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-xl-8 text-center slider_text">
-                <div class="bradcam_text text-center">
-                        <h3>About</h3>
-                        <h3>resepin.id</h3>
+<div class="slider_area bradcam_bg_1">
+            <div class="single_slider d-flex align-items-center bradcam_bg_1">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                         <div class="col-xl-8 text-center slider_text">
+                            <div class="bradcam_text text-center">
+                        <h1 class="hero_title">About Us</h1>
                     </div>
                 </div>
             </div>
@@ -247,77 +379,86 @@
 </div>
 
 <!-- FOOTER -->
-<footer class="footer">
-    <div class="footer_top">
-        <div class="container">
-            <div class="row">
+   <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
 
-                <div class="col-xl-2 col-md-6 col-lg-2">
-                    <div class="footer_widget">
-                        <h3 class="footer_title">Top Products</h3>
-                        <ul>
-                            <li><a href="#">Managed Website</a></li>
-                            <li><a href="#">Reputation</a></li>
-                            <li><a href="#">Tools</a></li>
-                            <li><a href="#">Marketing</a></li>
-                        </ul>
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Layanan Utama</h3>
+                            <ul>
+                                <li><a href="#">Website Resep</a></li>
+                                <li><a href="#">Pengaturan Koleksi Resep</a></li>
+                                <li><a href="#">Alat Bantu Memasak</a></li>
+                                <li><a href="#">Layanan Promosi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Tautan Cepat</h3>
+                            <ul>
+                                <li><a href="#">Karier</a></li>
+                                <li><a href="#">Aset Brand</a></li>
+                                <li><a href="#">Hubungan Investor</a></li>
+                                <li><a href="#">Syarat Layanan</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Fitur</h3>
+                            <ul>
+                                <li><a href="#">Resep Tersimpan</a></li>
+                                <li><a href="#">Mode Memasak</a></li>
+                                <li><a href="#">Rating &amp; Ulasan</a></li>
+                                <li><a href="#">Berbagi ke Teman</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Sumber Daya</h3>
+                            <ul>
+                                <li><a href="#">Panduan Memasak</a></li>
+                                <li><a href="#">Artikel &amp; Riset</a></li>
+                                <li><a href="#">Tips dari Ahli</a></li>
+                                <li><a href="#">Komunitas &amp; Mitra</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Berlangganan</h3>
+                            <p class="newsletter_text">Dapatkan info resep dan tren masakan terbaru langsung ke email kamu.</p>
+                            <form action="#" class="newsletter_form">
+                                <input type="email" placeholder="Masukkan email kamu">
+                                <button type="submit"><i class="ti-angle-right"></i></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-xl-2 col-md-6 col-lg-2">
-                    <div class="footer_widget">
-                        <h3 class="footer_title">Quick Links</h3>
-                        <ul>
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Investor</a></li>
-                            <li><a href="#">Terms</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="footer_widget">
-                        <h3 class="footer_title">Subscribe</h3>
-                        <p class="newsletter_text">Kami hanya mengirimkan informasi terbaru dan promo menarik.</p>
-                        <form action="#" class="newsletter_form">
-                            <input type="text" placeholder="Masukkan email">
-                            <button type="submit"><i class="ti-arrow-right"></i></button>
-                        </form>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </div>
 
-    <div class="copy-right_text">
-        <div class="container">
-            <div class="footer_border"></div>
-            <div class="row align-items-center">
-
-                <div class="col-xl-8 col-md-8">
-                    <p class="copy_right">
-                        © <script>document.write(new Date().getFullYear());</script>
-                        Semua hak dilindungi | resepin.id
-                    </p>
-                </div>
-
-                <div class="col-xl-4 col-md-4">
-                    <div class="socail_links">
-                        <ul>
-                            <li><a href="#"><i class="ti-facebook"></i></a></li>
-                            <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        </ul>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Hak cipta dilindungi.
+                        </p>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
 <!-- JS -->
 <script src="js/vendor/modernizr-3.5.0.min.js"></script>

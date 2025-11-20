@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>resepin.id</title>
+    <title>Beranda - resepin.id</title>
     <meta name="description" content="Kumpulan resep masakan rumahan dan nusantara terbaik dari resepin.id">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -307,12 +307,6 @@
                                         <li><a href="about">Tentang</a></li>
                                         <li><a href="recipes">Resep</a></li>
                                         <li><a href="bookmarks">Bookmarks</a></li>
-                                        <li><a href="pages">Halaman</a>
-                                            <ul class="submenu">
-                                                <li><a href="recipes_details">Detail Resep</a></li>
-                                                <li><a href="elements">Elemen</a></li>
-                                            </ul>
-                                        </li>
                                         <li><a href="contact">Kontak</a></li>
                                     </ul>
                                 </nav>
