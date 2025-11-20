@@ -314,17 +314,17 @@
                                         <li><a href="about">Tentang</a></li>
                                         <li><a href="recipes">Resep</a></li>
                                         <li><a href="bookmarks">Bookmarks</a></li>
-                                        <li><a href="contact">Kontak</a></li>
+                                          <li>
+                                            <a href="contact.php"
+                                            style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
+                                            Kontak
+                                            </a>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="search_icon">
-                                <a href="#">
-                                    <i class="ti-search"></i>
-                                </a>
-                            </div>
+                       
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -344,7 +344,7 @@
             <div class="row align-items-center justify-content-center">
                  <div class="col-xl-8 text-center slider_text">
                     <div class="bradcam_text text-center">
-                        <h1 class="hero_title">Contact Us</h1>
+                        <h1 class="hero_title">Hubungi Kami</h1>
                     </div>
                 </div>
             </div>
@@ -358,13 +358,13 @@
   <section class="contact-section section_padding">
     <div class="container">
  <div class="d-none d-sm-block mb-5 pb-4">
-    <iframe 
+    <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.014757520218!2d116.85910672496547!3d-1.1499481988390394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df149298f826ab5%3A0x8489d5309f45c0db!2sInstitut%20Teknologi%20Kalimantan!5e0!3m2!1sid!2sid!4v1763620368974!5m2!1sid!2sid"
-        width="100%" 
-        height="480" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy" 
+        width="100%"
+        height="480"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">
     </iframe>
 </div>

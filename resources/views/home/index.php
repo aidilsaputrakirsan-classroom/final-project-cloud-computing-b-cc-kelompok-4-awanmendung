@@ -67,7 +67,7 @@
 
 
         .slider_bg_1 {
-            background-image: url('img/banner/banner.png');
+            background-image: url('img/banner/banner_baru.png');
             background-size: cover;
             background-position: center center;
             position: relative;
@@ -303,7 +303,13 @@
                             <div class="main-menu white_text d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">Beranda</a></li>
+                                         <li>
+                                            <a href="index.php"
+                                            style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
+                                            Beranda
+                                            </a>
+                                        </li>
+
                                         <li><a href="about">Tentang</a></li>
                                         <li><a href="recipes">Resep</a></li>
                                         <li><a href="bookmarks">Bookmarks</a></li>
@@ -312,11 +318,7 @@
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="header_right d-flex justify-content-end align-items-center">
-                                <div class="search_icon mr-3">
-                                    <a href="#"><i class="ti-search"></i></a>
-                                </div>
+
                                 <div class="login_btn">
                                     <a href="/login" class="boxed-btn3">Masuk</a>
                                 </div>
@@ -454,19 +456,19 @@
     </div>
 
 
-    <div class="latest_trand_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="trand_info text-center">
-                        <p>Ribuan resep siap kamu coba di rumah</p>
-                        <h3>Temukan resep nusantara yang sedang tren</h3>
-                        <a href="recipes" class="boxed-btn3">Lihat Semua Resep</a>
-                    </div>
+<div class="latest_trand_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="trand_info text-center">
+                    <p style="color: #fff;">Ribuan resep siap kamu coba di rumah</p>
+                    <h3 style="color: #fff;">Temukan resep yang sedang tren</h3>
+                    <a href="recipes" class="boxed-btn3">Lihat Semua Resep</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
     <footer class="footer">

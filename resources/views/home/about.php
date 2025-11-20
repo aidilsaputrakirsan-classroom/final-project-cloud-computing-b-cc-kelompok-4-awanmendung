@@ -306,21 +306,22 @@
                             <div class="main-menu white_text d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
+
                                         <li><a href="index.php">Beranda</a></li>
-                                        <li><a href="about">Tentang</a></li>
+                                            <li>
+                                            <a href="about.php"
+                                            style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
+                                            Tentang
+                                            </a>
+                                        </li>
                                         <li><a href="recipes">Resep</a></li>
                                        <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
                                         <li><a href="contact">Kontak</a></li>
 
-                                </nav> 
+                                </nav>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="search_icon">
-                                <a href="#">
-                                    <i class="ti-search"></i>
-                                </a>
-                            </div>
+                        
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -339,7 +340,7 @@
                     <div class="row align-items-center justify-content-center">
                          <div class="col-xl-8 text-center slider_text">
                             <div class="bradcam_text text-center">
-                        <h1 class="hero_title">About Us</h1>
+                        <h1 class="hero_title">Tentang resepin.id</h1>
                     </div>
                 </div>
             </div>

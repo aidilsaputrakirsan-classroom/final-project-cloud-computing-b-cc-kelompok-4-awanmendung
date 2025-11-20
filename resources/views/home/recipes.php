@@ -304,7 +304,12 @@
                                     <ul id="navigation">
                                         <li><a href="index.php">Beranda</a></li>
                                         <li><a href="about">Tentang</a></li>
-                                        <li><a href="recipes">Resep</a></li>
+                                         <li>
+                                            <a href="recipes.php"
+                                            style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
+                                            Resep
+                                            </a>
+                                        </li>
                                         <li><a href="bookmarks">Bookmarks</a></li>
                                         <li><a href="contact">Kontak</a></li>
                                     </ul>
@@ -336,7 +341,7 @@
                     <div class="row align-items-center justify-content-center">
                          <div class="col-xl-8 text-center slider_text">
                             <div class="bradcam_text text-center">
-                        <h1 class="hero_title">Find your next favorite meal here</h1>
+                        <h1 class="hero_title">Temukan makanan favorit Anda berikutnya di sini</h1>
                     </div>
                 </div>
             </div>
@@ -462,19 +467,7 @@
     <!-- /recepie_area_start  -->
 
     <!-- latest_trand     -->
-    <div class="latest_trand_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="trand_info text-center">
-                        <p>Thousands of recipes are waiting to be watched</p>
-                        <h3>Discover latest trending recipes</h3>
-                        <a href="recipes" class="boxed-btn3">View all Recipes</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!--/ latest_trand     -->
 
     <!-- download_app_area -->
