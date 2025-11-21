@@ -334,18 +334,18 @@
     </header>
 
 <!-- bradcam_area -->
-<div class="slider_area bradcam_bg_1">
-            <div class="single_slider d-flex align-items-center bradcam_bg_1">
-                <div class="container">
-                    <div class="row align-items-center justify-content-center">
-                         <div class="col-xl-8 text-center slider_text">
-                            <div class="bradcam_text text-center">
+<div class="slider_area">
+    <div class="single_slider d-flex align-items-center bradcam_bg_1">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-8 text-center slider_text">
+                        <div class="bradcam_text text-center">
                         <h1 class="hero_title">Tentang resepin.id</h1>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
     <!-- /bradcam_area  -->
 
 <!-- recepie_header_area -->
@@ -379,7 +379,7 @@
     </div>
 </div>
 
-<!-- FOOTER -->
+ <!-- FOOTER -->
    <footer class="footer">
         <div class="footer_top">
             <div class="container">
@@ -467,7 +467,7 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
-script src="js/isotope.pkgd.min.js"></script>
+<script>script src="js/isotope.pkgd.min.js"></script>
 <script src="js/ajax-form.js"></script>
 <script src="js/waypoints.min.js"></script>
 <script src="js/jquery.counterup.min.js"></script>

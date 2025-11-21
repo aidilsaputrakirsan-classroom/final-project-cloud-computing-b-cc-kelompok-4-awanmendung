@@ -335,8 +335,8 @@
     <!-- header-end -->
 
 <!-- bradcam_area -->
-<div class="slider_area bradcam_bg_1">
-            <div class="single_slider d-flex align-items-center bradcam_bg_1">
+<div class="slider_area">
+            <div class="single_slider d-flex align-items-center breadcam_bg_4">
                 <div class="container">
                     <div class="row align-items-center justify-content-center">
                          <div class="col-xl-8 text-center slider_text">
