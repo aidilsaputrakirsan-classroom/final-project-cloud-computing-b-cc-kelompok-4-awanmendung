@@ -330,7 +330,7 @@
 <!-- bradcam_area -->
 <div class="bradcam_area breadcam_bg_4">
     <div class="single_slider d-flex align-items-center">
-        <div class="container h-1000 d-flex justify-content-center align-items-center">">
+        <div class="container h-1000 d-flex justify-content-center align-items-center">
             <div class="row align-items-center justify-content-center">
                 <div class="col-xl-8 text-center slider_text">
                     <div class="bradcam_text text-center">

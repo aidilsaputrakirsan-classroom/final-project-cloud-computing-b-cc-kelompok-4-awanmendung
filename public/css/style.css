@@ -2706,7 +2706,7 @@ h3 {
 
 /* line 1, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_bradcam.scss */
 .bradcam_bg_1 {
-  background-image: url(../img/about.jpeg);
+  background-image: url(../img/banner/banner_baru.png);
 }
 
 /* line 4, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_bradcam.scss */
@@ -2716,12 +2716,12 @@ h3 {
 
 /* line 7, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_bradcam.scss */
 .breadcam_bg_3 {
-  background-image: url(../img/bookmarks.jpeg);
+  background-image: url(../img/banner/banner_baru.png);
 }
 
 /* line 10, ../../Arafath/CL/CL October/220 Tasty Recipes/HTML/scss/_bradcam.scss */
 .breadcam_bg_4 {
-  background-image: url(../img/recipe_detail.jpeg);
+  background-image: url(../img/banner/banner_baru_1.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2732,7 +2732,7 @@ h3 {
 }
 
 .breadcam_bg_5 {
-    background-image: url("../img/contact.jpeg");
+    background-image: url("../img/banner/banner_baru.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
