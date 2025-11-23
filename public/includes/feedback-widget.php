@@ -1,6 +1,6 @@
 <!-- ============================================ -->
 <!-- File: public/includes/feedback-widget.php -->
-<!-- Versi Preview - Tanpa Database Connection -->
+<!-- Versi Preview - Dengan Supabase Connection -->
 <!-- Simpan di: public/includes/feedback-widget.php -->
 <!-- ============================================ -->
 
@@ -691,8 +691,16 @@
     </div>
 </div>
 
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script>
 (function() {
+    // Supabase Configuration
+    const SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjg1MDgsImV4cCI6MjA3NjkwNDUwOH0.E_VI8-raJ3jRPAQc079j6jAhluiC4lSCmtIN9gMND6g";
+
+    const { createClient } = window.supabase;
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
     // Elements
     const feedbackBtn = document.getElementById('feedbackBtn');
     const modal = document.getElementById('feedbackModal');
@@ -812,42 +820,62 @@
     setupCharCounter('main_ingredients', 'main_ingredients_count');
     setupCharCounter('cooking_steps', 'cooking_steps_count');
 
-    // Submit Feedback Form (DEMO - Tanpa Database)
-    feedbackForm.addEventListener('submit', function(e) {
+    // Handle Feedback Form Submit
+    feedbackForm.addEventListener('submit', async function(e) {
         e.preventDefault();
+
         const submitBtn = document.getElementById('submitFeedbackBtn');
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Mengirim...';
 
-        // Simulasi pengiriman
-        setTimeout(() => {
-            console.log('Feedback submitted:', {
-                name: feedbackForm.fb_name.value,
-                email: feedbackForm.fb_email.value,
-                category: feedbackForm.fb_category.value,
-                message: feedbackForm.fb_message.value
-            });
-            showSuccess('Terima kasih atas kritik dan saran Anda! Kami akan segera meninjau masukan Anda.');
-        }, 1500);
+        try {
+            const { data, error } = await supabase
+                .from('feedback')
+                .insert([{
+                    name: feedbackForm.fb_name.value,
+                    email: feedbackForm.fb_email.value,
+                    category: feedbackForm.fb_category.value,
+                    message: feedbackForm.fb_message.value
+                }]);
+
+            if (error) throw error;
+
+            showSuccess('Terima kasih! Kritik dan saran Anda telah berhasil dikirim. Kami akan segera meninjau dan merespons.');
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Gagal mengirim feedback: ' + error.message);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fa fa-paper-plane"></i> Kirim';
+        }
     });
 
-    // Submit Recipe Form (DEMO - Tanpa Database)
-    recipeForm.addEventListener('submit', function(e) {
+    // Handle Recipe Form Submit
+    recipeForm.addEventListener('submit', async function(e) {
         e.preventDefault();
+
         const submitBtn = document.getElementById('submitRecipeBtn');
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Mengirim...';
 
-        // Simulasi pengiriman
-        setTimeout(() => {
-            console.log('Recipe submitted:', {
-                name: recipeForm.recipe_name.value,
-                ingredients: recipeForm.main_ingredients.value,
-                steps: recipeForm.cooking_steps.value,
-                contact: recipeForm.contact_number.value
-            });
-            showSuccess('Terima kasih atas saran resep Anda! Kami akan mempertimbangkan ide Anda.');
-        }, 1500);
+        try {
+            const { data, error } = await supabase
+                .from('recipe_suggestions')
+                .insert([{
+                    recipe_name: recipeForm.recipe_name.value,
+                    main_ingredients: recipeForm.main_ingredients.value,
+                    cooking_steps: recipeForm.cooking_steps.value,
+                    contact_number: recipeForm.contact_number.value
+                }]);
+
+            if (error) throw error;
+
+showSuccess('Terima kasih! Saran resep Anda telah berhasil dikirim. Kami akan meninjau dan mempertimbangkannya.');
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Gagal mengirim saran resep: ' + error.message);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fa fa-paper-plane"></i> Kirim';
+        }
     });
 
     // Show success message
