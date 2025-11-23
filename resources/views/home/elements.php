@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>SEOGO</title>
+	<title>Elements - resepin.id</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -48,22 +48,17 @@
                             <div class="main-menu white_text  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">home</a></li>
-                                        <li><a href="about">about</a></li>
-                                        <li><a href="recipes">Recipes</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
+                                        <li><a href="index.php">Beranda</a></li>
+                                        <li><a href="about">Tentang</a></li>
+                                        <li><a href="recipes">Resep</a></li>
+                                        <li><a href="bookmarks">Bookmarks</a></li>
+                                        <li><a href="pages">Halaman</a>
                                             <ul class="submenu">
-                                                <li><a href="blog">blog</a></li>
-                                                <li><a href="single-blog">single-blog</a></li>
+                                                <li><a href="recipes_details">Detail Resep</a></li>
+                                                <li><a href="elements">Elemen</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="recipes_details">Recipes Details</a></li>
-                                                <li><a href="elements">elements</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact">Contact</a></li>
+                                        <li><a href="contact">Kontak</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -822,7 +817,7 @@
 										<input type="text" placeholder="Enter your mail">
 										<button type="submit"> <i class="ti-arrow-right"></i> </button>
 									</form>
-									
+
 								</div>
 					</div>
 				</div>

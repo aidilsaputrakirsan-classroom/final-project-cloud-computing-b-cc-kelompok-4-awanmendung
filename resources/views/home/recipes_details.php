@@ -1,10 +1,271 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 
+
+    <style>
+        :root {
+            --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+            "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        }
+
+        html { font-size: 17px; }
+
+        body, button, input, select, textarea {
+            font-family: var(--font-sans) !important;
+            font-weight: 400;
+            color: #2e2e2e;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-sans) !important;
+            font-weight: 600;
+            color: #1a1a1a;
+            line-height: 1.4;
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: #3a3a3a;
+            line-height: 1.9;
+        }
+
+        .logo { display: flex; align-items: center; }
+        .logo img { max-height: 120px; width: auto; object-fit: contain; }
+
+        #navigation > li > a {
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 1rem;
+            color: #fff !important;
+        }
+
+
+        .slider_bg_1 {
+            background-image: url('img/banner/banner.png');
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+            min-height: 80vh;
+        }
+
+        @media (min-width: 1200px) {
+            .slider_bg_1 { min-height: 88vh; }
+        }
+
+        .slider_bg_1::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,.35);
+        }
+
+        .slider_text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .slider_text h1,
+        .slider_text h3 {
+            text-transform: none !important;
+        }
+
+        .hero_title {
+            text-transform: none !important;
+            font-size: clamp(2.6rem, 6vw + 1rem, 4.2rem);
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin: 0;
+            padding: 0;
+        }
+
+        a.boxed-btn3 {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 6px;
+            transition: .3s;
+        }
+        a.boxed-btn3:hover { background-color: #218838; }
+
+        .single_recepie h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        .line_btn {
+            font-family: var(--font-sans);
+            font-weight: 500;
+            letter-spacing: .02em;
+        }
+
+        .section_title h3,
+        .trand_info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .footer_widget h3 {
+            font-weight: 700;
+            color: #111;
+            font-size: 1.2rem;
+        }
+        .footer_widget ul li a {
+            color: #666;
+            transition: color .3s;
+        }
+        .footer_widget ul li a:hover { color: #28a745; }
+        .newsletter_text { color: #555; }
+        .copy_right { font-size: .9rem; color: #777; }
+
+        .recepie_area,
+        .dish_area,
+        .latest_trand_area {
+            margin-top: 60px;
+        }
+
+        .dish_area {
+            margin-top: 80px;
+            padding: 80px 0 90px;
+            background: radial-gradient(circle at top, #fffefd 0%, #fafafa 45%, #f5f7fa 100%);
+        }
+
+        .dish_area .section_title h3 {
+            margin-bottom: 8px;
+        }
+
+        .dish_area .section_title p {
+            margin-bottom: 0;
+            color: #666;
+        }
+
+        .dish_area .section_title span.small_hint {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: .9rem;
+            color: #888;
+        }
+
+        .dish_area .dish_wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 52px;
+        }
+
+        .favorite_card {
+            text-decoration: none !important;
+            color: inherit !important;
+            display: block;
+        }
+
+        .dish_area .single_dish {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 32px 24px 30px;
+            box-shadow: 0 12px 32px rgba(0,0,0,.06);
+            max-width: 330px;
+            transition: .25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .favorite_card:hover .single_dish {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 38px rgba(0,0,0,.12);
+        }
+
+        .favorite_badge {
+            position: absolute;
+            top: 16px;
+            left: 18px;
+            padding: 4px 11px;
+            border-radius: 999px;
+            font-size: .78rem;
+            font-weight: 600;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            letter-spacing: .03em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0,0,0,.18);
+        }
+
+        .favorite_badge i {
+            font-size: .9rem;
+        }
+
+        .favorite_card-1 .favorite_badge {
+            background: linear-gradient(135deg, #f8b500, #ff7b00);
+        }
+
+        .favorite_card-2 .favorite_badge {
+            background: linear-gradient(135deg, #ff6f91, #ff9671);
+        }
+
+        .favorite_card-3 .favorite_badge {
+            background: linear-gradient(135deg, #4facfe, #00c9a7);
+        }
+
+        .dish_area .single_dish .thumb {
+            position: static !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+            margin: 10px auto 18px auto !important;
+            text-align: center;
+        }
+
+        .dish_area .single_dish .thumb img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 6px 18px rgba(0,0,0,.14);
+        }
+
+        .dish_area .single_dish h3 {
+            margin-top: 4px;
+            font-size: 1.12rem;
+        }
+
+        .dish_area .single_dish p {
+            font-size: .97rem;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        .favorite_rank {
+            display: inline-block;
+            margin-top: 4px;
+            padding: 2px 10px;
+            font-size: .78rem;
+            border-radius: 999px;
+            background: #f3f4ff;
+            color: #555;
+        }
+
+        @media (max-width: 767.98px) {
+            .dish_area {
+                padding: 60px 0 70px;
+            }
+            .dish_area .single_dish {
+                max-width: 100%;
+            }
+        }
+    </style>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tasty Recipes</title>
+    <title>Resep Detail - resepin.id</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,88 +295,6 @@
       .comment-wrap .comment-list li{border-top:1px dashed #ddd;padding:10px 2px}
       .comment-wrap .comment-author{font-weight:600}
       .comment-wrap .comment-date{opacity:.6;font-size:12px;margin-left:6px}
-
-      /* ✨ Interactive Rating Styles */
-      .rating-interactive {
-        display: inline-flex;
-        gap: 4px;
-        cursor: pointer;
-        user-select: none;
-      }
-      
-      .rating-interactive .star {
-        font-size: 28px;
-        color: #ddd;
-        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        display: inline-block;
-        position: relative;
-      }
-      
-      .rating-interactive .star.filled {
-        color: #ffd700;
-      }
-      
-      /* Animasi hover berbeda untuk setiap rating */
-      .rating-interactive[data-hover="1"] .star:nth-child(-n+1) {
-        color: #ff4444;
-        transform: scale(1.3) rotate(-15deg);
-        filter: drop-shadow(0 0 8px rgba(255, 68, 68, 0.6));
-      }
-      
-      .rating-interactive[data-hover="2"] .star:nth-child(-n+2) {
-        color: #ff8c42;
-        transform: scale(1.25) rotate(-10deg);
-        filter: drop-shadow(0 0 8px rgba(255, 140, 66, 0.5));
-      }
-      
-      .rating-interactive[data-hover="3"] .star:nth-child(-n+3) {
-        color: #ffd93d;
-        transform: scale(1.2) rotate(-5deg);
-        filter: drop-shadow(0 0 8px rgba(255, 217, 61, 0.5));
-      }
-      
-      .rating-interactive[data-hover="4"] .star:nth-child(-n+4) {
-        color: #6bcf7f;
-        transform: scale(1.15) rotate(5deg);
-        filter: drop-shadow(0 0 8px rgba(107, 207, 127, 0.5));
-      }
-      
-      .rating-interactive[data-hover="5"] .star:nth-child(-n+5) {
-        color: #4ecdc4;
-        transform: scale(1.3) rotate(10deg);
-        filter: drop-shadow(0 0 12px rgba(78, 205, 196, 0.7));
-        animation: sparkle 0.6s ease-in-out;
-      }
-      
-      @keyframes sparkle {
-        0%, 100% { transform: scale(1.3) rotate(10deg); }
-        50% { transform: scale(1.4) rotate(15deg); }
-      }
-      
-      /* Efek bounce saat di-click */
-      .rating-interactive .star.clicked {
-        animation: bounce 0.5s ease;
-      }
-      
-      @keyframes bounce {
-        0%, 100% { transform: scale(1) translateY(0); }
-        25% { transform: scale(1.2) translateY(-10px); }
-        50% { transform: scale(1.1) translateY(-5px); }
-        75% { transform: scale(1.15) translateY(-7px); }
-      }
-      
-      .rating-text {
-        margin-left: 10px;
-        font-weight: 600;
-        color: #666;
-        transition: all 0.3s ease;
-      }
-      
-      .rating-interactive[data-hover="1"] ~ .rating-text { color: #ff4444; }
-      .rating-interactive[data-hover="2"] ~ .rating-text { color: #ff8c42; }
-      .rating-interactive[data-hover="3"] ~ .rating-text { color: #ffd93d; }
-      .rating-interactive[data-hover="4"] ~ .rating-text { color: #6bcf7f; }
-      .rating-interactive[data-hover="5"] ~ .rating-text { color: #4ecdc4; }
     </style>
 </head>
 
@@ -129,29 +308,24 @@
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="index">
-                                    <img src="img/logo.png" alt="">
+                                    <img src="img/resepinid_logofix.png" alt="Logo resepin.id">
                                 </a>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
                             <div class="main-menu white_text d-none d-lg-block">
                                 <nav>
-                                    <ul id="navigation">
-                                        <li><a href="index">home</a></li>
-                                        <li><a href="about">about</a></li>
-                                        <li><a href="recipes">Recipes</a></li>
+                                   <ul id="navigation">
+                                        <li><a href="index.php">Beranda</a></li>
+                                        <li><a href="about">Tentang</a></li>
+                                        <li><a href="recipes">Resep</a></li>
                                         <li><a href="bookmarks">Bookmarks</a></li>
-                                        <li><a href="recipes_details" class="active">Recipes Details</a></li>
-                                        <li><a href="contact">Contact</a></li>
+                                        <li><a href="contact">Kontak</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="search_icon">
-                                <a href="#"><i class="ti-search"></i></a>
-                            </div>
-                        </div>
+                        
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
                         </div>
@@ -162,12 +336,12 @@
     </header>
 
     <!-- TITLE -->
-    <div class="bradcam_area bradcam_bg_1">
+    <div class="bradcam_area breadcam_bg_4">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
-                        <h3>Recipe Details</h3>
+                        <h1 class="hero_title">Recipe Details </h1>
                     </div>
                 </div>
             </div>
@@ -194,18 +368,7 @@
 
                         <div class="resepies_details">
                             <ul>
-                                <li>
-                                    <p><strong>Rating</strong> : 
-                                        <span class="rating-interactive" id="rating-stars">
-                                            <span class="star" data-value="1">★</span>
-                                            <span class="star" data-value="2">★</span>
-                                            <span class="star" data-value="3">★</span>
-                                            <span class="star" data-value="4">★</span>
-                                            <span class="star" data-value="5">★</span>
-                                        </span>
-                                        <span class="rating-text" id="rating-text">Click to rate</span>
-                                    </p>
-                                </li>
+                                <li><p><strong>Rating</strong> : ★★★★★ </p></li>
                                 <li><p><strong>Time</strong> : 30 Mins </p></li>
                                 <li><p><strong>Category</strong> : Main Dish </p></li>
                                 <li><p><strong>Tags</strong> : Dinner, Main, Chicken, Dragon, Phoenix </p></li>
@@ -237,7 +400,7 @@
                 </div>
             </div>
 
-            
+
                 </div>
             </div>
         </div>
@@ -292,81 +455,6 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/mail-script.js"></script>
     <script src="js/main.js"></script>
-
-    <!-- ✅ Script Interactive Rating -->
-    <script>
-    (function(){
-      const ratingContainer = document.getElementById('rating-stars');
-      const ratingText = document.getElementById('rating-text');
-      const stars = ratingContainer.querySelectorAll('.star');
-      const LS_KEY = 'tasty-recipe-rating';
-      
-      const ratingMessages = {
-        1: 'Poor 😞',
-        2: 'Fair 😐',
-        3: 'Good 🙂',
-        4: 'Very Good 😊',
-        5: 'Excellent! 🤩'
-      };
-      
-      // Load saved rating
-      let currentRating = parseInt(localStorage.getItem(LS_KEY)) || 0;
-      
-      function updateStars(rating) {
-        stars.forEach((star, index) => {
-          if (index < rating) {
-            star.classList.add('filled');
-          } else {
-            star.classList.remove('filled');
-          }
-        });
-      }
-      
-      function setRating(rating) {
-        currentRating = rating;
-        localStorage.setItem(LS_KEY, rating);
-        updateStars(rating);
-        ratingText.textContent = ratingMessages[rating] || 'Click to rate';
-        
-        // Add clicked animation
-        stars.forEach((star, index) => {
-          if (index < rating) {
-            star.classList.add('clicked');
-            setTimeout(() => star.classList.remove('clicked'), 500);
-          }
-        });
-      }
-      
-      // Initialize saved rating
-      if (currentRating > 0) {
-        updateStars(currentRating);
-        ratingText.textContent = ratingMessages[currentRating];
-      }
-      
-      // Hover effect
-      stars.forEach(star => {
-        star.addEventListener('mouseenter', function() {
-          const hoverValue = this.dataset.value;
-          ratingContainer.setAttribute('data-hover', hoverValue);
-          ratingText.textContent = ratingMessages[hoverValue];
-        });
-        
-        star.addEventListener('click', function() {
-          const rating = parseInt(this.dataset.value);
-          setRating(rating);
-        });
-      });
-      
-      ratingContainer.addEventListener('mouseleave', function() {
-        this.removeAttribute('data-hover');
-        if (currentRating > 0) {
-          ratingText.textContent = ratingMessages[currentRating];
-        } else {
-          ratingText.textContent = 'Click to rate';
-        }
-      });
-    })();
-    </script>
 
     <!-- ✅ Script Like, Comment & Save -->
     <script>
