@@ -321,7 +321,7 @@
                                 </nav>
                             </div>
                         </div>
-                        
+
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -467,7 +467,7 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
-<script>script src="js/isotope.pkgd.min.js"></script>
+<script src="js/isotope.pkgd.min.js"></script>
 <script src="js/ajax-form.js"></script>
 <script src="js/waypoints.min.js"></script>
 <script src="js/jquery.counterup.min.js"></script>
@@ -486,6 +486,8 @@
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/mail-script.js"></script>
 <script src="js/main.js"></script>
+
+<?php include 'includes/feedback-widget.php'; ?>
 
 </body>
 </html>

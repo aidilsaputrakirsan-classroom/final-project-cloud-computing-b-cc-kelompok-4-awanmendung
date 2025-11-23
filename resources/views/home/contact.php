@@ -324,7 +324,7 @@
                                 </nav>
                             </div>
                         </div>
-                       
+
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -543,6 +543,9 @@
   <script src="js/mail-script.js"></script>
 
   <script src="js/main.js"></script>
+
+  <?php include 'includes/feedback-widget.php'; ?>
+  
 </body>
 
 </html>

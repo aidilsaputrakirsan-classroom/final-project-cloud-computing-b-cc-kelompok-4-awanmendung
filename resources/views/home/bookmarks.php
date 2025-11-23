@@ -526,5 +526,7 @@
     })();
     </script>
 
+    <?php include 'includes/feedback-widget.php'; ?>
+
 </body>
 </html>

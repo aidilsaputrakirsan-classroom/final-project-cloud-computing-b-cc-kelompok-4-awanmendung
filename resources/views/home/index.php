@@ -580,5 +580,8 @@
     <script src="js/mail-script.js"></script>
 
     <script src="js/main.js"></script>
+
+    <?php include 'includes/feedback-widget.php'; ?>
+    
 </body>
 </html>
