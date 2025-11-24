@@ -67,10 +67,6 @@ Route::get('/', function () {
     return view('home.index');
 });
 
-Route::get('/index', function () {
-    return view('home.index');
-});
-
 Route::get('/about', function () {
     return view('home.about');
 });
