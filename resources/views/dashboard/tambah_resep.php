@@ -64,6 +64,18 @@
                 <!-- Preview Gambar -->
                 <img id="previewImg" class="img-fluid border rounded mb-3 d-none" style="max-height:200px">
 
+                <!-- Alat -->
+                <div class="mb-3">
+                  <label class="form-label">Alat</label>
+                  <textarea name="alat" class="form-control" rows="3" required></textarea>
+                </div>
+
+                <!-- Bahan -->
+                <div class="mb-3">
+                  <label class="form-label">Bahan</label>
+                  <textarea name="bahan" class="form-control" rows="4" required></textarea>
+                </div>
+
                 <!-- Deskripsi -->
                 <div class="mb-3">
                   <label class="form-label">Deskripsi</label>

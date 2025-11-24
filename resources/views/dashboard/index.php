@@ -150,9 +150,11 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Nama Resep</th>
+                      <th>Nama</th>
                       <th>Kategori</th>
-                      <th class="text-center">Gambar</th>
+                      <th>Gambar</th>
+                      <th>Alat</th>
+                      <th>Bahan</th>
                       <th>Deskripsi</th>
                       <th>Action</th>
                     </tr>

@@ -61,6 +61,16 @@
                 </div>
 
                 <div class="mb-3">
+                  <label class="form-label">Alat</label>
+                  <textarea class="form-control" id="editAlat" rows="4" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Bahan</label>
+                  <textarea class="form-control" id="editBahan" rows="4" required></textarea>
+                </div>
+
+                <div class="mb-3">
                   <label class="form-label">Deskripsi</label>
                   <textarea class="form-control" id="editDeskripsi" rows="4" required></textarea>
                 </div>

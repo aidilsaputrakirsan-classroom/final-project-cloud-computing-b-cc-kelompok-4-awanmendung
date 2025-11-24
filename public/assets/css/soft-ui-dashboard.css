@@ -33,31 +33,54 @@
     border-bottom: 2px solid #e0e0e0;
 }
 
+/* Nama */
 .table th:nth-child(1),
 .table td:nth-child(1) {
     width: 15%;
 }
 
+/* Kategori */
 .table th:nth-child(2),
 .table td:nth-child(2) {
     width: 15%;
 }
 
+/* Gambar */
 .table th:nth-child(3),
 .table td:nth-child(3) {
-    width: 10%;
+    width: 15%;
 }
 
+/* Alat */
 .table th:nth-child(4),
 .table td:nth-child(4) {
-    width: 45%;
-    text-align: center;
+    width: 20%;
     white-space: normal;
     word-break: break-word;
+    text-align: center;
 }
 
+/* Bahan */
 .table th:nth-child(5),
 .table td:nth-child(5) {
+    width: 20%;
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+}
+
+/* Deskripsi */
+.table th:nth-child(6),
+.table td:nth-child(6) {
+    width: 20%;
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+}
+
+/* Aksi (Edit/Delete) */
+.table th:nth-child(7),
+.table td:nth-child(7) {
     width: 15%;
 }
 

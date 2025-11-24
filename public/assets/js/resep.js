@@ -61,6 +61,8 @@ if (form) {
         const nama_resep = e.target.nama_resep.value;
         const kategori = e.target.kategori.value;
         const deskripsi = e.target.deskripsi.value;
+        const alat = e.target.alat.value;
+        const bahan = e.target.bahan.value;
         const file = document.getElementById("gambarInput").files[0];
 
         if (!file) return alert("Gambar belum diupload!");
@@ -85,6 +87,8 @@ if (form) {
         const { error } = await supabase.from("resep").insert({
             nama_resep,
             kategori,
+            alat: alat,
+            bahan: bahan,
             deskripsi,
             gambar: gambar_url,
         });
@@ -104,11 +108,14 @@ if (form) {
 // ==========================
 async function loadResep(kategoriFilter = "", searchText = "") {
     const tableBody = document.getElementById("resepTableBody");
-    tableBody.innerHTML = `<tr><td colspan="5">Loading...</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="7">Loading...</td></tr>`;
 
     let query = supabase
         .from("resep")
-        .select("id, nama_resep, kategori, deskripsi, gambar");
+        .select(
+            "id, nama_resep, kategori, deskripsi, gambar, alat, bahan, created_at"
+        )
+        .order("id", { ascending: true });
 
     if (kategoriFilter !== "") query = query.eq("kategori", kategoriFilter);
 
@@ -116,7 +123,7 @@ async function loadResep(kategoriFilter = "", searchText = "") {
 
     if (error) {
         console.error("Error mengambil data:", error);
-        tableBody.innerHTML = `<tr><td colspan="5">Gagal mengambil data</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="7">Gagal mengambil data</td></tr>`;
         return;
     }
 
@@ -129,7 +136,7 @@ async function loadResep(kategoriFilter = "", searchText = "") {
 
     if (!list || list.length === 0) {
         tableBody.innerHTML = `
-            <tr><td colspan="5" class="text-center fw-bold">Resep tidak tersedia</td></tr>
+            <tr><td colspan="7" class="text-center fw-bold">Resep tidak tersedia</td></tr>
         `;
         return;
     }
@@ -139,13 +146,24 @@ async function loadResep(kategoriFilter = "", searchText = "") {
     list.forEach((resep) => {
         const row = `
             <tr>
-              <td>${resep.nama_resep}</td>
-              <td>${resep.kategori}</td>
-              <td class="text-center">
+            <td>${resep.nama_resep}</td>
+            <td>${resep.kategori}</td>
+
+            <td class="text-center">
                 <img src="${resep.gambar}" width="70" class="rounded">
-              </td>
-              <td>${resep.deskripsi.replace(/\n/g, "<br>")}</td>
-              <td>
+            </td>
+
+            <td>
+                ${resep.alat ? resep.alat.replace(/\n/g, "<br>") : "-"}
+            </td>
+
+            <td>
+                ${resep.bahan ? resep.bahan.replace(/\n/g, "<br>") : "-"}
+            </td>
+
+            <td>${resep.deskripsi.replace(/\n/g, "<br>")}</td>
+
+            <td>
                 <a href="edit_resep?id=${
                     resep.id
                 }" class="btn btn-warning px-3 py-3">
@@ -158,7 +176,7 @@ async function loadResep(kategoriFilter = "", searchText = "") {
         })">
                     <i class="fa-solid fa-trash"></i>
                 </button>
-              </td>
+            </td>
             </tr>
         `;
         tableBody.innerHTML += row;
@@ -222,6 +240,8 @@ const editId = urlParams.get("id");
 
 const editNama = document.getElementById("editNamaResep");
 const editKategori = document.getElementById("editKategori");
+const editAlat = document.getElementById("editAlat");
+const editBahan = document.getElementById("editBahan");
 const editDeskripsi = document.getElementById("editDeskripsi");
 const editGambarInput = document.getElementById("editGambarInput");
 const editPreviewImg = document.getElementById("editPreviewImg");
@@ -258,6 +278,8 @@ async function loadDataEditResep() {
     editNama.value = data.nama_resep;
     editKategori.value = data.kategori;
     editDeskripsi.value = data.deskripsi;
+    editAlat.value = data.alat;
+    editBahan.value = data.bahan;
 
     if (data.gambar) {
         editPreviewImg.src = data.gambar;
@@ -279,6 +301,8 @@ if (editForm) {
         const nama_resep = editNama.value;
         const kategori = editKategori.value;
         const deskripsi = editDeskripsi.value;
+        const alat = editAlat.value;
+        const bahan = editBahan.value;
 
         let gambar_url = null;
 
@@ -306,6 +330,8 @@ if (editForm) {
             nama_resep,
             kategori,
             deskripsi,
+            alat,
+            bahan,
         };
 
         if (gambar_url) updateData.gambar = gambar_url;
