@@ -196,14 +196,14 @@
                             <ul>
                                 <li>
                                     <p><strong>Rating</strong> : 
-                                        <span class="rating-interactive" id="rating-stars">
+                                        <span class="rating-interactive" id="rating-stars" data-recipe-id="chicken-mushroom-sauce">
                                             <span class="star" data-value="1">★</span>
                                             <span class="star" data-value="2">★</span>
                                             <span class="star" data-value="3">★</span>
                                             <span class="star" data-value="4">★</span>
                                             <span class="star" data-value="5">★</span>
                                         </span>
-                                        <span class="rating-text" id="rating-text">Click to rate</span>
+                                        <span class="rating-text" id="rating-text">Loading...</span>
                                     </p>
                                 </li>
                                 <li><p><strong>Time</strong> : 30 Mins </p></li>
@@ -293,13 +293,23 @@
     <script src="js/mail-script.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- ✅ Script Interactive Rating -->
+    <!-- ✅ Supabase SDK -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+    <!-- ✅ Script Interactive Rating with Supabase -->
     <script>
     (function(){
+      // Supabase Configuration
+      const SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjg1MDgsImV4cCI6MjA3NjkwNDUwOH0.E_VI8-raJ3jRPAQc079j6jAhluiC4lSCmtIN9gMND6g";
+
+      const { createClient } = window.supabase;
+      const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
       const ratingContainer = document.getElementById('rating-stars');
       const ratingText = document.getElementById('rating-text');
       const stars = ratingContainer.querySelectorAll('.star');
-      const LS_KEY = 'tasty-recipe-rating';
+      const recipeId = ratingContainer.dataset.recipeId;
       
       const ratingMessages = {
         1: 'Poor 😞',
@@ -309,8 +319,59 @@
         5: 'Excellent! 🤩'
       };
       
-      // Load saved rating
-      let currentRating = parseInt(localStorage.getItem(LS_KEY)) || 0;
+      let currentRating = 0;
+      let userSessionId = localStorage.getItem('user-session-id');
+      
+      // Generate unique session ID if not exists
+      if (!userSessionId) {
+        userSessionId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('user-session-id', userSessionId);
+      }
+      
+      // Load rating from Supabase
+      async function loadRating() {
+        try {
+          // Get user's rating
+          const { data: userRating, error: userError } = await supabase
+            .from('recipe_ratings')
+            .select('rating')
+            .eq('recipe_id', recipeId)
+            .eq('user_session_id', userSessionId)
+            .single();
+          
+          if (userError && userError.code !== 'PGRST116') {
+            console.error('Error loading user rating:', userError);
+          }
+          
+          if (userRating) {
+            currentRating = userRating.rating;
+            updateStars(currentRating);
+            ratingText.textContent = ratingMessages[currentRating];
+          } else {
+            // Get average rating
+            const { data: avgData, error: avgError } = await supabase
+              .from('recipe_ratings')
+              .select('rating')
+              .eq('recipe_id', recipeId);
+            
+            if (avgError) {
+              console.error('Error loading average rating:', avgError);
+              ratingText.textContent = 'Click to rate';
+              return;
+            }
+            
+            if (avgData && avgData.length > 0) {
+              const avg = avgData.reduce((sum, item) => sum + item.rating, 0) / avgData.length;
+              ratingText.textContent = `Average: ${avg.toFixed(1)} ⭐ (${avgData.length} ratings)`;
+            } else {
+              ratingText.textContent = 'Be the first to rate!';
+            }
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          ratingText.textContent = 'Click to rate';
+        }
+      }
       
       function updateStars(rating) {
         stars.forEach((star, index) => {
@@ -322,26 +383,66 @@
         });
       }
       
-      function setRating(rating) {
-        currentRating = rating;
-        localStorage.setItem(LS_KEY, rating);
-        updateStars(rating);
-        ratingText.textContent = ratingMessages[rating] || 'Click to rate';
-        
-        // Add clicked animation
-        stars.forEach((star, index) => {
-          if (index < rating) {
-            star.classList.add('clicked');
-            setTimeout(() => star.classList.remove('clicked'), 500);
+      async function setRating(rating) {
+        try {
+          // Check if user already rated
+          const { data: existing, error: checkError } = await supabase
+            .from('recipe_ratings')
+            .select('id')
+            .eq('recipe_id', recipeId)
+            .eq('user_session_id', userSessionId)
+            .single();
+          
+          if (checkError && checkError.code !== 'PGRST116') {
+            throw checkError;
           }
-        });
+          
+          if (existing) {
+            // Update existing rating
+            const { error: updateError } = await supabase
+              .from('recipe_ratings')
+              .update({ rating: rating })
+              .eq('id', existing.id);
+            
+            if (updateError) throw updateError;
+          } else {
+            // Insert new rating
+            const { error: insertError } = await supabase
+              .from('recipe_ratings')
+              .insert([{
+                recipe_id: recipeId,
+                user_session_id: userSessionId,
+                rating: rating
+              }]);
+            
+            if (insertError) throw insertError;
+          }
+          
+          currentRating = rating;
+          updateStars(rating);
+          ratingText.textContent = ratingMessages[rating];
+          
+          // Add clicked animation
+          stars.forEach((star, index) => {
+            if (index < rating) {
+              star.classList.add('clicked');
+              setTimeout(() => star.classList.remove('clicked'), 500);
+            }
+          });
+          
+          // Show success message
+          setTimeout(() => {
+            ratingText.textContent = ratingMessages[rating] + ' - Thank you!';
+          }, 500);
+          
+        } catch (error) {
+          console.error('Error saving rating:', error);
+          alert('Failed to save rating. Please try again.');
+        }
       }
       
-      // Initialize saved rating
-      if (currentRating > 0) {
-        updateStars(currentRating);
-        ratingText.textContent = ratingMessages[currentRating];
-      }
+      // Initialize
+      loadRating();
       
       // Hover effect
       stars.forEach(star => {
@@ -362,7 +463,7 @@
         if (currentRating > 0) {
           ratingText.textContent = ratingMessages[currentRating];
         } else {
-          ratingText.textContent = 'Click to rate';
+          loadRating(); // Reload to show average
         }
       });
     })();
