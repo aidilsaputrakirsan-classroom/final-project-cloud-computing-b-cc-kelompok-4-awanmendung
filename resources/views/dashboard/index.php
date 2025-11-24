@@ -161,24 +161,25 @@
                     <!-- Data dari Supabase akan muncul disini -->
                   </tbody>
                 </table>
-                    <!-- Konfirmasi Hapus -->
-                    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+                    <!-- Konfirmasi Hapus Resep -->
+                    <div class="modal fade" id="modalHapusResep" tabindex="-1">
                       <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                          <div class="modal-header bg-danger text-white">
-                            <h5 class="modal-title" id="hapusModalLabel"><i class="fa-solid fa-triangle-exclamation me-2"></i>Konfirmasi Hapus</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                          <div class="modal-body text-center">
+                            <h5>Yakin ingin menghapus <span id="namaResepHapus" class="fw-bold"></span>?</h5>
+                            <input type="hidden" id="idResepHapus">
                           </div>
-                          <div class="modal-body">
-                            Apakah Anda yakin ingin menghapus resep <strong id="namaResepHapus"></strong>?
+
+                          <div class="modal-footer px-5">
+                            <button class="btn btn-secondary me-auto" data-bs-dismiss="modal">Batal</button>
+                            <button id="btnHapusResepFinal" class="btn btn-danger">Hapus</button>
                           </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-danger" id="btnKonfirmasiHapus">Hapus</button>
-                          </div>
+
                         </div>
                       </div>
                     </div>
+                  </div>
+
                 </div>
             </div>
           </div>

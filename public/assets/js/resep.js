@@ -110,10 +110,7 @@ async function loadResep(kategoriFilter = "", searchText = "") {
         .from("resep")
         .select("id, nama_resep, kategori, deskripsi, gambar");
 
-    // filter kategori
-    if (kategoriFilter !== "") {
-        query = query.eq("kategori", kategoriFilter);
-    }
+    if (kategoriFilter !== "") query = query.eq("kategori", kategoriFilter);
 
     const { data, error } = await query;
 
@@ -125,24 +122,14 @@ async function loadResep(kategoriFilter = "", searchText = "") {
 
     let list = data;
 
-    // ==========================
-    // FILTER SEARCH (client side)
-    // ==========================
     if (searchText.trim() !== "") {
         const s = searchText.toLowerCase();
         list = list.filter((item) => item.nama_resep.toLowerCase().includes(s));
     }
 
-    // ==========================
-    // KALAU TIDAK ADA DATA
-    // ==========================
     if (!list || list.length === 0) {
         tableBody.innerHTML = `
-            <tr>
-                <td colspan="5" class="text-center fw-bold">
-                    Resep tidak tersedia
-                </td>
-            </tr>
+            <tr><td colspan="5" class="text-center fw-bold">Resep tidak tersedia</td></tr>
         `;
         return;
     }
@@ -155,9 +142,7 @@ async function loadResep(kategoriFilter = "", searchText = "") {
               <td>${resep.nama_resep}</td>
               <td>${resep.kategori}</td>
               <td class="text-center">
-                <img src="${resep.gambar}" alt="${
-            resep.nama_resep
-        }" width="70" class="rounded">
+                <img src="${resep.gambar}" width="70" class="rounded">
               </td>
               <td>${resep.deskripsi.replace(/\n/g, "<br>")}</td>
               <td>
@@ -166,9 +151,11 @@ async function loadResep(kategoriFilter = "", searchText = "") {
                 }" class="btn btn-warning px-3 py-3">
                     <i class="fa-solid fa-pen"></i>
                 </a>
-                <button class="btn btn-danger px-3 py-3" onclick="konfirmasiHapus('${
-                    resep.nama_resep
-                }', ${resep.id})">
+
+                <button class="btn btn-danger px-3 py-3" 
+                        onclick="konfirmasiHapus('${resep.nama_resep}', ${
+            resep.id
+        })">
                     <i class="fa-solid fa-trash"></i>
                 </button>
               </td>
@@ -207,7 +194,7 @@ async function loadKategoriFilter() {
 }
 
 // ==========================
-// EVENT LISTENER FILTER + SEARCH
+// EVENT FILTER + SEARCH
 // ==========================
 document.addEventListener("DOMContentLoaded", () => {
     loadKategoriFilter();
@@ -216,28 +203,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const filter = document.getElementById("categoryFilter");
     const searchInput = document.getElementById("searchInput");
 
-    if (filter) {
-        filter.addEventListener("change", () => {
-            loadResep(filter.value, searchInput.value);
-        });
-    }
+    if (filter)
+        filter.addEventListener("change", () =>
+            loadResep(filter.value, searchInput.value)
+        );
 
-    if (searchInput) {
-        searchInput.addEventListener("keyup", () => {
-            loadResep(filter.value, searchInput.value);
-        });
-    }
+    if (searchInput)
+        searchInput.addEventListener("keyup", () =>
+            loadResep(filter.value, searchInput.value)
+        );
 });
 
 // ==========================
 // EDIT RESEP
 // ==========================
-
-// Ambil ID dari URL ?id=123
 const urlParams = new URLSearchParams(window.location.search);
 const editId = urlParams.get("id");
 
-// Elemen form edit (di halaman edit_resep.html)
 const editNama = document.getElementById("editNamaResep");
 const editKategori = document.getElementById("editKategori");
 const editDeskripsi = document.getElementById("editDeskripsi");
@@ -245,9 +227,6 @@ const editGambarInput = document.getElementById("editGambarInput");
 const editPreviewImg = document.getElementById("editPreviewImg");
 const editForm = document.getElementById("formEditResep");
 
-// ---------------------------------------------------
-// LOAD KATEGORI SAAT EDIT
-// ---------------------------------------------------
 async function loadKategoriEdit() {
     if (!editKategori) return;
 
@@ -261,15 +240,10 @@ async function loadKategoriEdit() {
     editKategori.innerHTML = `<option value="">Pilih kategori...</option>`;
 
     data.forEach((k) => {
-        editKategori.innerHTML += `
-            <option value="${k.nama_kategori}">${k.nama_kategori}</option>
-        `;
+        editKategori.innerHTML += `<option value="${k.nama_kategori}">${k.nama_kategori}</option>`;
     });
 }
 
-// ---------------------------------------------------
-// LOAD DATA RESEP YANG AKAN DIEDIT
-// ---------------------------------------------------
 async function loadDataEditResep() {
     if (!editId || !editForm) return;
 
@@ -279,10 +253,7 @@ async function loadDataEditResep() {
         .eq("id", editId)
         .single();
 
-    if (error) {
-        console.error("Gagal load resep:", error);
-        return;
-    }
+    if (error) return;
 
     editNama.value = data.nama_resep;
     editKategori.value = data.kategori;
@@ -294,9 +265,6 @@ async function loadDataEditResep() {
     }
 }
 
-// ---------------------------------------------------
-// PREVIEW GAMBAR BARU SAAT EDIT
-// ---------------------------------------------------
 if (editGambarInput) {
     editGambarInput.addEventListener("change", function () {
         editPreviewImg.src = URL.createObjectURL(this.files[0]);
@@ -304,9 +272,6 @@ if (editGambarInput) {
     });
 }
 
-// ---------------------------------------------------
-// SUBMIT UPDATE RESEP
-// ---------------------------------------------------
 if (editForm) {
     editForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -317,7 +282,6 @@ if (editForm) {
 
         let gambar_url = null;
 
-        // Jika user upload gambar baru
         if (editGambarInput.files.length > 0) {
             const file = editGambarInput.files[0];
             const fileName = `resep_${Date.now()}_${file.name}`;
@@ -331,7 +295,6 @@ if (editForm) {
                 return alert("Gagal upload gambar baru!");
             }
 
-            // ambil URL baru
             const { data: urlData } = supabase.storage
                 .from("gambar")
                 .getPublicUrl(fileName);
@@ -339,7 +302,6 @@ if (editForm) {
             gambar_url = urlData.publicUrl;
         }
 
-        // Data update
         const updateData = {
             nama_resep,
             kategori,
@@ -363,8 +325,52 @@ if (editForm) {
     });
 }
 
-// Jalankan jika halaman edit
 if (editId) {
     loadKategoriEdit();
     loadDataEditResep();
+}
+
+// ===================================================================
+// ========================== FITUR HAPUS ============================
+// ===================================================================
+
+// BUKA MODAL KONFIRMASI
+window.konfirmasiHapus = function (nama, id) {
+    const modalNama = document.getElementById("namaResepHapus");
+    const modalId = document.getElementById("idResepHapus");
+
+    modalNama.innerText = nama;
+    modalId.value = id;
+
+    const modal = new bootstrap.Modal(
+        document.getElementById("modalHapusResep")
+    );
+    modal.show();
+};
+
+// HAPUS DATA DI SUPABASE
+async function hapusResepFinal() {
+    const id = document.getElementById("idResepHapus").value;
+
+    const { error } = await supabase.from("resep").delete().eq("id", id);
+
+    if (error) {
+        console.error(error);
+        alert("Gagal menghapus resep!");
+        return;
+    }
+
+    const modal = bootstrap.Modal.getInstance(
+        document.getElementById("modalHapusResep")
+    );
+    modal.hide();
+
+    loadResep(); // refresh tabel
+}
+
+// TOMBOL HAPUS
+const btnHapusAkhir = document.getElementById("btnHapusResepFinal");
+
+if (btnHapusAkhir) {
+    btnHapusAkhir.addEventListener("click", hapusResepFinal);
 }
