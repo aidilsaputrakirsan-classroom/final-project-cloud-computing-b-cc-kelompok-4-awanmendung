@@ -1,266 +1,264 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 
+<style>
+    :root {
+        --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    }
 
-    <style>
-        :root {
-            --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
-            "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-        }
+    html { font-size: 17px; }
 
-        html { font-size: 17px; }
+    body, button, input, select, textarea {
+        font-family: var(--font-sans) !important;
+        font-weight: 400;
+        color: #2e2e2e;
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
-        body, button, input, select, textarea {
-            font-family: var(--font-sans) !important;
-            font-weight: 400;
-            color: #2e2e2e;
-            line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-sans) !important;
+        font-weight: 600;
+        color: #1a1a1a;
+        line-height: 1.4;
+    }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-sans) !important;
-            font-weight: 600;
-            color: #1a1a1a;
-            line-height: 1.4;
-        }
+    p {
+        font-size: 1.05rem;
+        color: #3a3a3a;
+        line-height: 1.9;
+    }
 
-        p {
-            font-size: 1.05rem;
-            color: #3a3a3a;
-            line-height: 1.9;
-        }
+    .logo { display: flex; align-items: center; }
+    .logo img { max-height: 120px; width: auto; object-fit: contain; }
 
-        .logo { display: flex; align-items: center; }
-        .logo img { max-height: 120px; width: auto; object-fit: contain; }
+    #navigation > li > a {
+        font-family: var(--font-sans);
+        font-weight: 500;
+        font-size: 1rem;
+        color: #fff !important;
+    }
 
-        #navigation > li > a {
-            font-family: var(--font-sans);
-            font-weight: 500;
-            font-size: 1rem;
-            color: #fff !important;
-        }
+    .slider_bg_1 {
+        background-image: url('img/banner/banner.png');
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        min-height: 80vh;
+    }
 
+    @media (min-width: 1200px) {
+        .slider_bg_1 { min-height: 88vh; }
+    }
 
-        .slider_bg_1 {
-            background-image: url('img/banner/banner.png');
-            background-size: cover;
-            background-position: center center;
-            position: relative;
-            min-height: 80vh;
-        }
+    .slider_bg_1::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,.35);
+    }
 
-        @media (min-width: 1200px) {
-            .slider_bg_1 { min-height: 88vh; }
-        }
+    .slider_text {
+        position: relative;
+        z-index: 2;
+    }
 
-        .slider_bg_1::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,.35);
-        }
+    .slider_text h1,
+    .slider_text h3 {
+        text-transform: none !important;
+    }
 
-        .slider_text {
-            position: relative;
-            z-index: 2;
-        }
+    .hero_title {
+        text-transform: none !important;
+        font-size: clamp(2.6rem, 6vw + 1rem, 4.2rem);
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.5px;
+        margin: 0;
+        padding: 0;
+    }
 
-        .slider_text h1,
-        .slider_text h3 {
-            text-transform: none !important;
-        }
+    a.boxed-btn3 {
+        background-color: #28a745;
+        border-color: #28a745;
+        color: #fff;
+        padding: 10px 24px;
+        border-radius: 6px;
+        transition: .3s;
+    }
+    a.boxed-btn3:hover { background-color: #218838; }
 
-        .hero_title {
-            text-transform: none !important;
-            font-size: clamp(2.6rem, 6vw + 1rem, 4.2rem);
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: -0.5px;
-            margin: 0;
-            padding: 0;
-        }
+    .single_recepie h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-top: 15px;
+    }
+    .line_btn {
+        font-family: var(--font-sans);
+        font-weight: 500;
+        letter-spacing: .02em;
+    }
 
-        a.boxed-btn3 {
-            background-color: #28a745;
-            border-color: #28a745;
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 6px;
-            transition: .3s;
-        }
-        a.boxed-btn3:hover { background-color: #218838; }
+    .section_title h3,
+    .trand_info h3 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
 
-        .single_recepie h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-top: 15px;
-        }
-        .line_btn {
-            font-family: var(--font-sans);
-            font-weight: 500;
-            letter-spacing: .02em;
-        }
+    .footer_widget h3 {
+        font-weight: 700;
+        color: #111;
+        font-size: 1.2rem;
+    }
+    .footer_widget ul li a {
+        color: #666;
+        transition: color .3s;
+    }
+    .footer_widget ul li a:hover { color: #28a745; }
+    .newsletter_text { color: #555; }
+    .copy_right { font-size: .9rem; color: #777; }
 
-        .section_title h3,
-        .trand_info h3 {
-            font-size: 2rem;
-            font-weight: 700;
-        }
+    .recepie_area,
+    .dish_area,
+    .latest_trand_area {
+        margin-top: 60px;
+    }
 
-        .footer_widget h3 {
-            font-weight: 700;
-            color: #111;
-            font-size: 1.2rem;
-        }
-        .footer_widget ul li a {
-            color: #666;
-            transition: color .3s;
-        }
-        .footer_widget ul li a:hover { color: #28a745; }
-        .newsletter_text { color: #555; }
-        .copy_right { font-size: .9rem; color: #777; }
+    .dish_area {
+        margin-top: 80px;
+        padding: 80px 0 90px;
+        background: radial-gradient(circle at top, #fffefd 0%, #fafafa 45%, #f5f7fa 100%);
+    }
 
-        .recepie_area,
-        .dish_area,
-        .latest_trand_area {
-            margin-top: 60px;
-        }
+    .dish_area .section_title h3 {
+        margin-bottom: 8px;
+    }
 
+    .dish_area .section_title p {
+        margin-bottom: 0;
+        color: #666;
+    }
+
+    .dish_area .section_title span.small_hint {
+        display: inline-block;
+        margin-top: 6px;
+        font-size: .9rem;
+        color: #888;
+    }
+
+    .dish_area .dish_wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 32px;
+        margin-top: 52px;
+    }
+
+    .favorite_card {
+        text-decoration: none !important;
+        color: inherit !important;
+        display: block;
+    }
+
+    .dish_area .single_dish {
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 32px 24px 30px;
+        box-shadow: 0 12px 32px rgba(0,0,0,.06);
+        max-width: 330px;
+        transition: .25s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .favorite_card:hover .single_dish {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 38px rgba(0,0,0,.12);
+    }
+
+    .favorite_badge {
+        position: absolute;
+        top: 16px;
+        left: 18px;
+        padding: 4px 11px;
+        border-radius: 999px;
+        font-size: .78rem;
+        font-weight: 600;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        letter-spacing: .03em;
+        text-transform: uppercase;
+        box-shadow: 0 4px 12px rgba(0,0,0,.18);
+    }
+
+    .favorite_badge i {
+        font-size: .9rem;
+    }
+
+    .favorite_card-1 .favorite_badge {
+        background: linear-gradient(135deg, #f8b500, #ff7b00);
+    }
+
+    .favorite_card-2 .favorite_badge {
+        background: linear-gradient(135deg, #ff6f91, #ff9671);
+    }
+
+    .favorite_card-3 .favorite_badge {
+        background: linear-gradient(135deg, #4facfe, #00c9a7);
+    }
+
+    .dish_area .single_dish .thumb {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 10px auto 18px auto !important;
+        text-align: center;
+    }
+
+    .dish_area .single_dish .thumb img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #fff;
+        box-shadow: 0 6px 18px rgba(0,0,0,.14);
+    }
+
+    .dish_area .single_dish h3 {
+        margin-top: 4px;
+        font-size: 1.12rem;
+    }
+
+    .dish_area .single_dish p {
+        font-size: .97rem;
+        color: #555;
+        margin-top: 8px;
+    }
+
+    .favorite_rank {
+        display: inline-block;
+        margin-top: 4px;
+        padding: 2px 10px;
+        font-size: .78rem;
+        border-radius: 999px;
+        background: #f3f4ff;
+        color: #555;
+    }
+
+    @media (max-width: 767.98px) {
         .dish_area {
-            margin-top: 80px;
-            padding: 80px 0 90px;
-            background: radial-gradient(circle at top, #fffefd 0%, #fafafa 45%, #f5f7fa 100%);
+            padding: 60px 0 70px;
         }
-
-        .dish_area .section_title h3 {
-            margin-bottom: 8px;
-        }
-
-        .dish_area .section_title p {
-            margin-bottom: 0;
-            color: #666;
-        }
-
-        .dish_area .section_title span.small_hint {
-            display: inline-block;
-            margin-top: 6px;
-            font-size: .9rem;
-            color: #888;
-        }
-
-        .dish_area .dish_wrap {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 32px;
-            margin-top: 52px;
-        }
-
-        .favorite_card {
-            text-decoration: none !important;
-            color: inherit !important;
-            display: block;
-        }
-
         .dish_area .single_dish {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 32px 24px 30px;
-            box-shadow: 0 12px 32px rgba(0,0,0,.06);
-            max-width: 330px;
-            transition: .25s ease;
-            position: relative;
-            overflow: hidden;
+            max-width: 100%;
         }
-
-        .favorite_card:hover .single_dish {
-            transform: translateY(-8px);
-            box-shadow: 0 18px 38px rgba(0,0,0,.12);
-        }
-
-        .favorite_badge {
-            position: absolute;
-            top: 16px;
-            left: 18px;
-            padding: 4px 11px;
-            border-radius: 999px;
-            font-size: .78rem;
-            font-weight: 600;
-            color: #fff;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            letter-spacing: .03em;
-            text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(0,0,0,.18);
-        }
-
-        .favorite_badge i {
-            font-size: .9rem;
-        }
-
-        .favorite_card-1 .favorite_badge {
-            background: linear-gradient(135deg, #f8b500, #ff7b00);
-        }
-
-        .favorite_card-2 .favorite_badge {
-            background: linear-gradient(135deg, #ff6f91, #ff9671);
-        }
-
-        .favorite_card-3 .favorite_badge {
-            background: linear-gradient(135deg, #4facfe, #00c9a7);
-        }
-
-        .dish_area .single_dish .thumb {
-            position: static !important;
-            top: auto !important;
-            left: auto !important;
-            transform: none !important;
-            margin: 10px auto 18px auto !important;
-            text-align: center;
-        }
-
-        .dish_area .single_dish .thumb img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 6px 18px rgba(0,0,0,.14);
-        }
-
-        .dish_area .single_dish h3 {
-            margin-top: 4px;
-            font-size: 1.12rem;
-        }
-
-        .dish_area .single_dish p {
-            font-size: .97rem;
-            color: #555;
-            margin-top: 8px;
-        }
-
-        .favorite_rank {
-            display: inline-block;
-            margin-top: 4px;
-            padding: 2px 10px;
-            font-size: .78rem;
-            border-radius: 999px;
-            background: #f3f4ff;
-            color: #555;
-        }
-
-        @media (max-width: 767.98px) {
-            .dish_area {
-                padding: 60px 0 70px;
-            }
-            .dish_area .single_dish {
-                max-width: 100%;
-            }
-        }
-    </style>
+    }
+</style>
 
 <head>
     <meta charset="utf-8">
@@ -290,7 +288,7 @@
       .react-bar button:hover{background:rgba(0,0,0,.05)}
       .react-bar .btn-like.liked .fa-heart{color:#e0245e;transform:scale(1.08)}
       .react-bar .btn-save.saved .fa-bookmark{color:#f0ad4e;transform:scale(1.1)}
-      .comment-wrap{border:1px solid #eee;border-radius:10px;padding:14px;margin:8px 0 20px;background:#fff}
+      .comment-wrap{border:none !important;border-radius:10px;padding:0;margin:8px 0 20px;background:transparent}
       .comment-wrap .comment-list{list-style:none;margin:12px 0 0;padding:0}
       .comment-wrap .comment-list li{border-top:1px dashed #ddd;padding:10px 2px}
       .comment-wrap .comment-author{font-weight:600}
@@ -325,7 +323,7 @@
                                 </nav>
                             </div>
                         </div>
-                        
+
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
                         </div>
@@ -341,88 +339,263 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
-                        <h1 class="hero_title">Recipe Details </h1>
+                        <h1 class="hero_title">Resep Detail</h1>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- RECIPE CONTENT -->
-    <div class="recepie_details_area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-6 col-md-6">
-                    <div class="recepies_thumb">
-                        <img src="img/recepie/recepie_details.png" alt="">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6">
-                    <div class="recepies_info">
-                        <h3>Chicken Mushroom Sauce</h3>
-                        <p>1. Goreng kentang di minyak panas lalu sisihkan</p>
-                        <p>2. Marinasi ayam 15 menit, lalu pan fried dengan sedikit minyak dan sisihkan</p>
-                        <p>3. Tumis bawang putih dan bombay lalu masukkan jamur champignon iris tumis hingga wangi</p>
-                        <p>4. Tambahkan bawang putih dan bombay lalu masukkan jamur champignon iris tumis hingga wangi</p>
-                        <p>5. Tata ayam dan kentang di piring siram dengan saus jamur lalu sajikan</p>
+<!-- =============================== -->
+<!-- COOKPAD-STYLE RECIPE LAYOUT FIX -->
+<!-- =============================== -->
 
-                        <div class="resepies_details">
-                            <ul>
-                                <li><p><strong>Rating</strong> : ★★★★★ </p></li>
-                                <li><p><strong>Time</strong> : 30 Mins </p></li>
-                                <li><p><strong>Category</strong> : Main Dish </p></li>
-                                <li><p><strong>Tags</strong> : Dinner, Main, Chicken, Dragon, Phoenix </p></li>
-                            </ul>
-                        </div>
+<style>
+/* Header judul kecil di dalam konten */
+.recipe-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
 
-                        <!-- ✅ Like / Comment / Save -->
-                        <div class="react-bar" data-item-id="dragon-tiger-phoenix">
-                            <button class="btn-like"><i class="fa fa-heart"></i> <span class="like-count">0</span></button>
-                            <button class="btn-comment-toggle"><i class="fa fa-comment"></i> <span class="comment-count">0</span></button>
-                            <button class="btn-save"><i class="fa fa-bookmark"></i></button>
-                        </div>
+/* Container utama gambar + panel kanan */
+.recipe-cookpad-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
 
-                        <div class="comment-wrap" data-for="dragon-tiger-phoenix" hidden>
-                            <form class="comment-form">
-                                <input type="text" name="name" placeholder="Nama (opsional)" class="form-control mb-2">
-                                <textarea name="message" placeholder="Tulis komentar..." class="form-control mb-2" required></textarea>
-                                <button type="submit" class="btn btn-sm btn-primary">Kirim</button>
-                            </form>
-                            <ul class="comment-list"></ul>
-                        </div>
+/* Gambar utama */
+.recipe-image {
+    width: 480px;
+    max-width: 100%;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+    box-shadow:0 8px 22px rgba(0,0,0,0.15);
+}
 
-                        <div class="links">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+/* Panel kanan: Like – Comment – Save + komentar */
+.recipe-action-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
 
+/* Komentar di samping kanan */
+.comment-box-side {
+    width: 280px;
+    padding: 0;
+}
 
-                </div>
-            </div>
+.comment-box-side .form-control{
+    font-size: 14px;
+}
+
+/* Fix original template yang bikin paragraf menjorok */
+.recipe-section p,
+.recipe-section li,
+.step-list p,
+.step-list li {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    text-align: left;
+}
+
+/* List langkah memasak */
+.step-list {
+    list-style: decimal;
+    padding-left: 25px !important;
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+/* Judul section hijau tengah */
+.section-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 40px 0 15px;
+    color: #28a745;
+}
+</style>
+
+<!-- ================= START RECIPE HEADER (GAMBAR + TITLE + REACT) ================= -->
+<div class="container" style="margin-top:60px;">
+    <h2 class="recipe-title">Chicken Mushroom Sauce</h2>
+
+    <div class="recipe-cookpad-container">
+
+        <!-- GAMBAR -->
+        <div>
+            <img src="img/recepie/recepie_details.png" class="recipe-image" alt="Chicken Mushroom Sauce">
         </div>
+
+        <!-- PANEL KANAN: Like / Comment / Save + Komentar -->
+        <div class="recipe-action-panel">
+
+            <!-- BAR REACT -->
+            <div class="react-bar" data-item-id="dragon-tiger-phoenix">
+                <button class="btn-like">
+                    <i class="fa fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <button class="btn-comment-toggle">
+                    <i class="fa fa-comment"></i> <span class="comment-count">0</span>
+                </button>
+                <button class="btn-save">
+                    <i class="fa fa-bookmark"></i>
+                </button>
+            </div>
+
+            <!-- KOMENTAR (kanan, tidak mendorong konten bawah) -->
+            <div class="comment-wrap comment-box-side" data-for="dragon-tiger-phoenix" hidden>
+                <form class="comment-form">
+                    <input type="text" name="name" placeholder="Nama (opsional)" class="form-control mb-2">
+                    <textarea name="message" placeholder="Tulis komentar..." class="form-control mb-2" required></textarea>
+                    <button type="submit" class="btn btn-sm btn-primary">Kirim</button>
+                </form>
+                <ul class="comment-list"></ul>
+            </div>
+
+        </div>
+
     </div>
+</div>
+<!-- ================= END RECIPE HEADER ================= -->
+
+<!-- ================= START DETAIL RESEP CARD ================= -->
+<div style="
+    max-width: 680px;
+    margin: 50px auto;
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 14px;
+    padding: 35px 40px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+">
+
+    <h2 style="text-align:center; color:#28a745; font-weight:700; margin-bottom:25px;">
+        Detail Resep
+    </h2>
+
+    <!-- Alat -->
+    <h3 style="text-align:center; color:#28a745; margin-bottom:12px;">Alat Memasak</h3>
+    <ul style="list-style:none; padding:0; text-align:center; line-height:1.7;">
+        <li>Wajan anti lengket</li>
+        <li>Spatula</li>
+        <li>Pisau &amp; Talenan</li>
+        <li>Mangkuk marinasi</li>
+    </ul>
+
+    <!-- Bahan -->
+    <h3 style="text-align:center; color:#28a745; margin:25px 0 12px 0;">Bahan</h3>
+    <ul style="list-style:none; padding:0; text-align:center; line-height:1.7;">
+        <li>200g dada ayam</li>
+        <li>1 siung bawang putih</li>
+        <li>½ bawang bombay</li>
+        <li>Jamur champignon</li>
+        <li>Garam, lada, dan bumbu marinasi</li>
+        <li>Kentang goreng (opsional)</li>
+    </ul>
+
+    <!-- Langkah Memasak -->
+    <h3 style="text-align:center; color:#28a745; margin:25px 0 12px 0;">Langkah Memasak</h3>
+    <ol style="
+        max-width:650px;
+        margin:0 auto;
+        padding-left:20px;
+        line-height:1.8;">
+        <li>Marinasi ayam selama 15 menit dengan bumbu.</li>
+        <li>Pan-fry ayam hingga kecokelatan, sisihkan.</li>
+        <li>Tumis bawang putih dan bawang bombay hingga harum.</li>
+        <li>Masukkan jamur champignon, tumis hingga layu.</li>
+        <li>Tambahkan sedikit air &amp; bumbu, masak hingga menjadi saus.</li>
+        <li>Sajikan ayam dan kentang dengan saus jamur.</li>
+    </ol>
+
+</div>
+<!-- ================= END DETAIL RESEP CARD ================= -->
 
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer_top">
             <div class="container">
                 <div class="row">
-                    <!-- isi footer tetap sama -->
+
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Layanan Utama</h3>
+                            <ul>
+                                <li><a href="#">Website Resep</a></li>
+                                <li><a href="#">Pengaturan Koleksi Resep</a></li>
+                                <li><a href="#">Alat Bantu Memasak</a></li>
+                                <li><a href="#">Layanan Promosi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Tautan Cepat</h3>
+                            <ul>
+                                <li><a href="#">Karier</a></li>
+                                <li><a href="#">Aset Brand</a></li>
+                                <li><a href="#">Hubungan Investor</a></li>
+                                <li><a href="#">Syarat Layanan</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Fitur</h3>
+                            <ul>
+                                <li><a href="#">Resep Tersimpan</a></li>
+                                <li><a href="#">Mode Memasak</a></li>
+                                <li><a href="#">Rating &amp; Ulasan</a></li>
+                                <li><a href="#">Berbagi ke Teman</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Sumber Daya</h3>
+                            <ul>
+                                <li><a href="#">Panduan Memasak</a></li>
+                                <li><a href="#">Artikel &amp; Riset</a></li>
+                                <li><a href="#">Tips dari Ahli</a></li>
+                                <li><a href="#">Komunitas &amp; Mitra</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">Berlangganan</h3>
+                            <p class="newsletter_text">Dapatkan info resep dan tren masakan terbaru langsung ke email kamu.</p>
+                            <form action="#" class="newsletter_form">
+                                <input type="email" placeholder="Masukkan email kamu">
+                                <button type="submit"><i class="ti-angle-right"></i></button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="copy-right_text">
             <div class="container">
                 <div class="footer_border"></div>
-                <div class="row align-items-center">
-                    <div class="col-xl-8 col-md-8">
-                        <p class="copy_right">
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                            All rights reserved | Template by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Hak cipta dilindungi.
                         </p>
                     </div>
                 </div>
@@ -481,6 +654,8 @@
           const cCount=bar.querySelector('.comment-count');
           const saveBtn=bar.querySelector('.btn-save');
           const wrap=document.querySelector(`.comment-wrap[data-for="${id}"]`);
+
+          if(!wrap) return;
 
           likeCount.textContent=item.likes;
           cCount.textContent=item.comments.length;
