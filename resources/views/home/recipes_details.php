@@ -2,6 +2,74 @@
 <html class="no-js" lang="zxx">
 
 <style>
+    /* CSS untuk Rating Bintang */
+.rating-box {
+    margin-top: 20px;
+    padding: 15px 20px;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.rating-stars {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-size: 28px;
+    color: #ccc; /* Warna bintang default (kosong) */
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.star {
+    transition: color 0.15s, transform 0.1s;
+}
+
+/* Warna bintang terisi */
+.star.filled,
+.rating-stars:hover .star {
+    color: #f8b500;
+}
+
+/* Efek hover (mengisi hingga posisi kursor) */
+.rating-stars:hover .star:hover,
+.rating-stars:hover .star:hover ~ .star {
+    color: #ccc;
+}
+.rating-stars:hover .star:hover {
+    color: #f8b500;
+}
+.star.filled ~ .star {
+    color: #ccc; /* Pastikan bintang setelah yang terisi menjadi kosong */
+}
+
+/* Efek hover saat bintang diisi (berdasarkan data-hover) */
+.rating-stars[data-hover="1"] .star:nth-child(-n+1),
+.rating-stars[data-hover="2"] .star:nth-child(-n+2),
+.rating-stars[data-hover="3"] .star:nth-child(-n+3),
+.rating-stars[data-hover="4"] .star:nth-child(-n+4),
+.rating-stars[data-hover="5"] .star:nth-child(-n+5) {
+    color: #f8b500;
+}
+
+/* Efek Klik */
+.star.clicked {
+    animation: click-anim 0.5s ease-out;
+}
+@keyframes click-anim {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); color: #f8b500; }
+    100% { transform: scale(1); }
+}
+
+#rating-text {
+    font-weight: 600;
+    color: #555;
+    font-size: 1rem;
+    min-height: 1.5em; /* Jaga tinggi agar tidak bergeser */
+}
     :root {
         --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
@@ -471,6 +539,16 @@
             <img src="img/recepie/recepie_details.png" class="recipe-image" alt="Chicken Mushroom Sauce">
 
             <div class="recipe-action-panel">
+                <div class="rating-box">
+    <div id="rating-stars" class="rating-stars" data-recipe-id="chicken-mushroom-sauce">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+    </div>
+    <p id="rating-text">Click to rate</p>
+</div>
                 <div class="react-bar" data-item-id="chicken-mushroom-sauce">
                     <button class="btn-like" type="button">
                         <i class="fa fa-heart"></i>
@@ -710,6 +788,183 @@
       }
 
       document.addEventListener('DOMContentLoaded',init);
+    })();
+    </script>
+
+    
+    <!-- ✅ Supabase SDK -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+    <!-- ✅ Script Interactive Rating with Supabase -->
+    <script>
+    (function(){
+      // Supabase Configuration
+      const SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjg1MDgsImV4cCI6MjA3NjkwNDUwOH0.E_VI8-raJ3jRPAQc079j6jAhluiC4lSCmtIN9gMND6g";
+
+      const { createClient } = window.supabase;
+      const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      const ratingContainer = document.getElementById('rating-stars');
+      const ratingText = document.getElementById('rating-text');
+      const stars = ratingContainer.querySelectorAll('.star');
+      const recipeId = ratingContainer.dataset.recipeId;
+      
+      const ratingMessages = {
+        1: 'Poor 😞',
+        2: 'Fair 😐',
+        3: 'Good 🙂',
+        4: 'Very Good 😊',
+        5: 'Excellent! 🤩'
+      };
+      
+      let currentRating = 0;
+      let userSessionId = localStorage.getItem('user-session-id');
+      
+      // Generate unique session ID if not exists
+      if (!userSessionId) {
+        userSessionId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('user-session-id', userSessionId);
+      }
+      
+      // Load rating from Supabase
+      async function loadRating() {
+        try {
+          // Get user's rating
+          const { data: userRating, error: userError } = await supabase
+            .from('recipe_ratings')
+            .select('rating')
+            .eq('recipe_id', recipeId)
+            .eq('user_session_id', userSessionId)
+            .single();
+          
+          if (userError && userError.code !== 'PGRST116') {
+            console.error('Error loading user rating:', userError);
+          }
+          
+          if (userRating) {
+            currentRating = userRating.rating;
+            updateStars(currentRating);
+            ratingText.textContent = ratingMessages[currentRating];
+          } else {
+            // Get average rating
+            const { data: avgData, error: avgError } = await supabase
+              .from('recipe_ratings')
+              .select('rating')
+              .eq('recipe_id', recipeId);
+            
+            if (avgError) {
+              console.error('Error loading average rating:', avgError);
+              ratingText.textContent = 'Click to rate';
+              return;
+            }
+            
+            if (avgData && avgData.length > 0) {
+              const avg = avgData.reduce((sum, item) => sum + item.rating, 0) / avgData.length;
+              ratingText.textContent = `Average: ${avg.toFixed(1)} ⭐ (${avgData.length} ratings)`;
+            } else {
+              ratingText.textContent = 'Be the first to rate!';
+            }
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          ratingText.textContent = 'Click to rate';
+        }
+      }
+      
+      function updateStars(rating) {
+        stars.forEach((star, index) => {
+          if (index < rating) {
+            star.classList.add('filled');
+          } else {
+            star.classList.remove('filled');
+          }
+        });
+      }
+      
+      async function setRating(rating) {
+        try {
+          // Check if user already rated
+          const { data: existing, error: checkError } = await supabase
+            .from('recipe_ratings')
+            .select('id')
+            .eq('recipe_id', recipeId)
+            .eq('user_session_id', userSessionId)
+            .single();
+          
+          if (checkError && checkError.code !== 'PGRST116') {
+            throw checkError;
+          }
+          
+          if (existing) {
+            // Update existing rating
+            const { error: updateError } = await supabase
+              .from('recipe_ratings')
+              .update({ rating: rating })
+              .eq('id', existing.id);
+            
+            if (updateError) throw updateError;
+          } else {
+            // Insert new rating
+            const { error: insertError } = await supabase
+              .from('recipe_ratings')
+              .insert([{
+                recipe_id: recipeId,
+                user_session_id: userSessionId,
+                rating: rating
+              }]);
+            
+            if (insertError) throw insertError;
+          }
+          
+          currentRating = rating;
+          updateStars(rating);
+          ratingText.textContent = ratingMessages[rating];
+          
+          // Add clicked animation
+          stars.forEach((star, index) => {
+            if (index < rating) {
+              star.classList.add('clicked');
+              setTimeout(() => star.classList.remove('clicked'), 500);
+            }
+          });
+          
+          // Show success message
+          setTimeout(() => {
+            ratingText.textContent = ratingMessages[rating] + ' - Thank you!';
+          }, 500);
+          
+        } catch (error) {
+          console.error('Error saving rating:', error);
+          alert('Failed to save rating. Please try again.');
+        }
+      }
+      
+      // Initialize
+      loadRating();
+      
+      // Hover effect
+      stars.forEach(star => {
+        star.addEventListener('mouseenter', function() {
+          const hoverValue = this.dataset.value;
+          ratingContainer.setAttribute('data-hover', hoverValue);
+          ratingText.textContent = ratingMessages[hoverValue];
+        });
+        
+        star.addEventListener('click', function() {
+          const rating = parseInt(this.dataset.value);
+          setRating(rating);
+        });
+      });
+      
+      ratingContainer.addEventListener('mouseleave', function() {
+        this.removeAttribute('data-hover');
+        if (currentRating > 0) {
+          ratingText.textContent = ratingMessages[currentRating];
+        } else {
+          loadRating(); // Reload to show average
+        }
+      });
     })();
     </script>
 </body>
