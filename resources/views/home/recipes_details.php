@@ -258,6 +258,124 @@
             max-width: 100%;
         }
     }
+
+    .recipe-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.recipe-cookpad-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.recipe-image {
+    width: 480px;
+    max-width: 100%;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+    box-shadow:0 8px 22px rgba(0,0,0,0.15);
+}
+
+.recipe-action-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.comment-box-side {
+    width: 280px;
+    padding: 0;
+}
+
+.comment-box-side .form-control{
+    font-size: 14px;
+}
+
+.recipe-section p,
+.recipe-section li,
+.step-list p,
+.step-list li {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    text-align: left;
+}
+
+/* List langkah memasak */
+.step-list {
+    list-style: decimal;
+    padding-left: 25px !important;
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+/* Judul section hijau tengah */
+.section-title {
+    text-align: right;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 40px 0 15px;
+    color: #28a745;
+}
+
+/* CUSTOM STYLE UNTUK LAYOUT BARU */
+.recipe-layout-container {
+    display: flex; /* Mengaktifkan Flexbox untuk layout berdampingan */
+    flex-wrap: wrap; 
+    gap: 30px;
+    margin-top: 30px;
+    justify-content: center; 
+}
+
+.recipe-main-content {
+    flex-basis: 480px; 
+    flex-grow: 0;
+    max-width: 100%;
+}
+
+.recipe-side-panel {
+    flex-basis: 350px; 
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.detail-resep-card {
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.detail-resep-card h2,
+.detail-resep-card h3 {
+    color: #28a745;
+    font-weight: 700;
+    text-align: center;
+    
+}
+
+
+/* Media Query untuk Responsif */
+@media (max-width: 850px) {
+    .recipe-layout-container {
+        flex-direction: column; /* Tumpuk ke bawah di layar kecil */
+        align-items: center;
+    }
+    .recipe-main-content,
+    .recipe-side-panel {
+        flex-basis: auto;
+        max-width: 100%;
+    }
+}
 </style>
 
 <head>
@@ -345,115 +463,31 @@
             </div>
         </div>
     </div>
-
-<!-- =============================== -->
-<!-- COOKPAD-STYLE RECIPE LAYOUT FIX -->
-<!-- =============================== -->
-
-<style>
-/* Header judul kecil di dalam konten */
-.recipe-title {
-    text-align: center;
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 25px;
-}
-
-/* Container utama gambar + panel kanan */
-.recipe-cookpad-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
-
-/* Gambar utama */
-.recipe-image {
-    width: 480px;
-    max-width: 100%;
-    border-radius: 20px;
-    display: block;
-    margin: 0 auto;
-    box-shadow:0 8px 22px rgba(0,0,0,0.15);
-}
-
-/* Panel kanan: Like – Comment – Save + komentar */
-.recipe-action-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 20px;
-}
-
-/* Komentar di samping kanan */
-.comment-box-side {
-    width: 280px;
-    padding: 0;
-}
-
-.comment-box-side .form-control{
-    font-size: 14px;
-}
-
-/* Fix original template yang bikin paragraf menjorok */
-.recipe-section p,
-.recipe-section li,
-.step-list p,
-.step-list li {
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    text-align: left;
-}
-
-/* List langkah memasak */
-.step-list {
-    list-style: decimal;
-    padding-left: 25px !important;
-    margin: 0 auto;
-    max-width: 480px;
-}
-
-/* Judul section hijau tengah */
-.section-title {
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    margin: 40px 0 15px;
-    color: #28a745;
-}
-</style>
-
-<!-- ================= START RECIPE HEADER (GAMBAR + TITLE + REACT) ================= -->
-<div class="container" style="margin-top:60px;">
+<div class="container" style="margin-top:60px; margin-bottom:80px;">
     <h2 class="recipe-title">Chicken Mushroom Sauce</h2>
 
-    <div class="recipe-cookpad-container">
-
-        <!-- GAMBAR -->
-        <div>
+    <div class="recipe-layout-container">
+        <div class="recipe-main-content"> 
             <img src="img/recepie/recepie_details.png" class="recipe-image" alt="Chicken Mushroom Sauce">
-        </div>
 
-        <!-- PANEL KANAN: Like / Comment / Save + Komentar -->
-        <div class="recipe-action-panel">
-
-            <!-- BAR REACT -->
-            <div class="react-bar" data-item-id="dragon-tiger-phoenix">
-                <button class="btn-like">
-                    <i class="fa fa-heart"></i> <span class="like-count">0</span>
-                </button>
-                <button class="btn-comment-toggle">
-                    <i class="fa fa-comment"></i> <span class="comment-count">0</span>
-                </button>
-                <button class="btn-save">
-                    <i class="fa fa-bookmark"></i>
-                </button>
+            <div class="recipe-action-panel">
+                <div class="react-bar" data-item-id="chicken-mushroom-sauce">
+                    <button class="btn-like" type="button">
+                        <i class="fa fa-heart"></i>
+                        <span class="like-count">0</span> Suka
+                    </button>
+                    <button class="btn-comment-toggle" type="button">
+                        <i class="fa fa-comment"></i>
+                        <span class="comment-count">0</span> Komentar
+                    </button>
+                    <button class="btn-save" type="button">
+                        <i class="fa fa-bookmark"></i>
+                        Simpan
+                    </button>
+                </div>
             </div>
-
-            <!-- KOMENTAR (kanan, tidak mendorong konten bawah) -->
-            <div class="comment-wrap comment-box-side" data-for="dragon-tiger-phoenix" hidden>
+            
+            <div class="comment-wrap" data-for="chicken-mushroom-sauce" hidden>
                 <form class="comment-form">
                     <input type="text" name="name" placeholder="Nama (opsional)" class="form-control mb-2">
                     <textarea name="message" placeholder="Tulis komentar..." class="form-control mb-2" required></textarea>
@@ -461,65 +495,41 @@
                 </form>
                 <ul class="comment-list"></ul>
             </div>
+        </div> 
+        <div class="recipe-side-panel"> 
+            <div class="detail-resep-card"> 
+                <h2>Detail Resep</h2>
+                <h3>Alat Memasak</h3>
+                <ol>
+                    <li>Wajan anti lengket</li>
+                    <li>Spatula</li>
+                    <li>Pisau &amp; Talenan</li>
+                    <li>Mangkuk marinasi</li>
+                </ol>
 
+                <h3>Bahan</h3>
+                <ol>
+                    <li>200g dada ayam</li>
+                    <li>1 siung bawang putih</li>
+                    <li>½ bawang bombay</li>
+                    <li>Jamur champignon</li>
+                    <li>Garam, lada, dan bumbu marinasi</li>
+                    <li>Kentang goreng (opsional)</li>
+                </ol>
+
+                <h3>Langkah Memasak</h3>
+                <ol>
+                    <li>Marinasi ayam selama 15 menit dengan bumbu.</li>
+                    <li>Pan-fry ayam hingga kecokelatan, sisihkan.</li>
+                    <li>Tumis bawang putih dan bawang bombay hingga harum.</li>
+                    <li>Masukkan jamur champignon, tumis hingga layu.</li>
+                    <li>Tambahkan sedikit air &amp; bumbu, masak hingga menjadi saus.</li>
+                    <li>Sajikan ayam dan kentang dengan saus jamur.</li>
+                </ol>
+            </div>
         </div>
-
+        </div> 
     </div>
-</div>
-<!-- ================= END RECIPE HEADER ================= -->
-
-<!-- ================= START DETAIL RESEP CARD ================= -->
-<div style="
-    max-width: 680px;
-    margin: 50px auto;
-    background: #ffffff;
-    border: 1px solid #e6e6e6;
-    border-radius: 14px;
-    padding: 35px 40px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-">
-
-    <h2 style="text-align:center; color:#28a745; font-weight:700; margin-bottom:25px;">
-        Detail Resep
-    </h2>
-
-    <!-- Alat -->
-    <h3 style="text-align:center; color:#28a745; margin-bottom:12px;">Alat Memasak</h3>
-    <ul style="list-style:none; padding:0; text-align:center; line-height:1.7;">
-        <li>Wajan anti lengket</li>
-        <li>Spatula</li>
-        <li>Pisau &amp; Talenan</li>
-        <li>Mangkuk marinasi</li>
-    </ul>
-
-    <!-- Bahan -->
-    <h3 style="text-align:center; color:#28a745; margin:25px 0 12px 0;">Bahan</h3>
-    <ul style="list-style:none; padding:0; text-align:center; line-height:1.7;">
-        <li>200g dada ayam</li>
-        <li>1 siung bawang putih</li>
-        <li>½ bawang bombay</li>
-        <li>Jamur champignon</li>
-        <li>Garam, lada, dan bumbu marinasi</li>
-        <li>Kentang goreng (opsional)</li>
-    </ul>
-
-    <!-- Langkah Memasak -->
-    <h3 style="text-align:center; color:#28a745; margin:25px 0 12px 0;">Langkah Memasak</h3>
-    <ol style="
-        max-width:650px;
-        margin:0 auto;
-        padding-left:20px;
-        line-height:1.8;">
-        <li>Marinasi ayam selama 15 menit dengan bumbu.</li>
-        <li>Pan-fry ayam hingga kecokelatan, sisihkan.</li>
-        <li>Tumis bawang putih dan bawang bombay hingga harum.</li>
-        <li>Masukkan jamur champignon, tumis hingga layu.</li>
-        <li>Tambahkan sedikit air &amp; bumbu, masak hingga menjadi saus.</li>
-        <li>Sajikan ayam dan kentang dengan saus jamur.</li>
-    </ol>
-
-</div>
-<!-- ================= END DETAIL RESEP CARD ================= -->
 
     <!-- FOOTER -->
     <footer class="footer">
