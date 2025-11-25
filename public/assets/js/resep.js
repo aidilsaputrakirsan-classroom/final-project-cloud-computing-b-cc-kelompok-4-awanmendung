@@ -8,6 +8,39 @@ const SUPABASE_KEY =
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// --- LISTENER DEBUG SESSION ---
+supabase.auth.onAuthStateChange((event, session) => {
+    console.log("Auth State Changed:", event, session);
+});
+
+// === FIX: GET USER UUID ===
+async function getCurrentUser() {
+    const { data, error } = await supabase.auth.getUser();
+    if (error) return null;
+    return data?.user?.id || null;
+}
+
+// === FIX: LOG ACTIVITY ===
+async function logActivity(description, detail = null) {
+    const userId = await getCurrentUser();
+    if (!userId) {
+        console.warn("User belum login, aktivitas tidak dicatat.");
+        return;
+    }
+
+    const { error } = await supabase.from("activity_logs").insert({
+        user_id: userId,
+        description: description,
+        detail: detail,
+    });
+
+    if (error) console.error("Gagal log aktivitas:", error);
+    else console.log("Aktivitas tercatat:", description);
+}
+
+// LOG buka halaman
+logActivity("Membuka halaman Resep");
+
 // ==========================
 // LOAD KATEGORI DROPDOWN
 // ==========================

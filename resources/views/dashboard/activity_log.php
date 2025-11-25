@@ -149,22 +149,8 @@
                     </span>
                     <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Cari resep...">
                   </div>
-
-                  <!-- Filter kategori -->
-                  <div class="input-group" style="max-width: 220px;">
-                    <span class="input-group-text bg-white border-end-0">
-                      <i class="fa-solid fa-filter text-secondary"></i>
-                    </span>
-                    <select id="categoryFilter" class="form-select border-start-0">
-                      <option value="">Semua Kategori</option>
-                    </select>
-                  </div>
                 </div>
-                <!-- Tombol tambah -->
-                <h6 class="mb-0"></h6>
-                <a href="tambah_resep" class="btn-primary">
-                  <i class="fa-solid fa-plus"></i> Tambah Resep
-                </a>
+
               </div>
               <div class="table-container">
                 <table class="table">
@@ -177,22 +163,22 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody id="resepTableBody">
+                  <tbody id="activityTableBody">
                     <!-- Data dari Supabase akan muncul disini -->
                   </tbody>
                 </table>
                     <!-- Konfirmasi Hapus Resep -->
-                    <div class="modal fade" id="modalHapusResep" tabindex="-1">
+                    <div class="modal fade" id="deleteModal" tabindex="-1">
                       <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-body text-center">
-                            <h5>Yakin ingin menghapus <span id="namaResepHapus" class="fw-bold"></span>?</h5>
-                            <input type="hidden" id="idResepHapus">
+                            <h5>Yakin ingin menghapus <span id="deleteName" class="fw-bold"></span>?</h5>
+                            <input type="hidden" id="deleteId">
                           </div>
 
                           <div class="modal-footer px-5">
                             <button class="btn btn-secondary me-auto" data-bs-dismiss="modal">Batal</button>
-                            <button id="btnHapusResepFinal" class="btn btn-danger">Hapus</button>
+                            <button id="confirmDeleteBtn" class="btn btn-danger">Hapus</button>
                           </div>
 
                         </div>
