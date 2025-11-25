@@ -3,12 +3,9 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="assets/css/style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tambah Resep | Resepin.id</title>
 
-  <!-- Fonts and Icons -->
   <link href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,800" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -16,9 +13,8 @@
   <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
 </head>
 
-<body class="g-sidenav-show bg-gray-100">
+<body class="bg-gray-100">
 
-  <!-- Main -->
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl">
       <div class="container-fluid py-1 px-3">
@@ -32,7 +28,6 @@
       </div>
     </nav>
 
-    <!-- Form Tambah Resep -->
     <div class="container-fluid py-4">
       <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -41,37 +36,50 @@
               <h5 class="mb-0">Form Tambah Resep</h5>
               <p class="text-sm text-muted mb-0">Isi data resep secara lengkap di bawah ini</p>
             </div>
+
             <div class="card-body">
 
-              <form id="formTambahResep" enctype="multipart/form-data">
+              <form id="formTambahResep">
+
                 <!-- Nama Resep -->
                 <div class="mb-3">
                   <label class="form-label">Nama Resep</label>
-                  <input type="text" class="form-control" name="nama_resep" placeholder="Masukkan nama resep" required>
+                  <input type="text" name="nama_resep" class="form-control" required>
                 </div>
 
-                <!-- Kategori -->
+                <!-- Kategori (FK) -->
                 <div class="mb-3">
                   <label class="form-label">Kategori</label>
-                  <select class="form-select" name="kategori" required>
-                    <option value="">Pilih kategori...</option>
-                    <option value="Makanan Utama">Makanan Utama</option>
-                    <option value="Makanan Penutup">Makanan Penutup</option>
-                    <option value="Minuman">Minuman</option>
+                  <select name="kategori" id="kategoriSelect" class="form-select" required>
+                    <option value="">Memuat kategori...</option>
                   </select>
                 </div>
 
                 <!-- Gambar -->
                 <div class="mb-3">
                   <label class="form-label">Gambar</label>
-                  <input type="file" class="form-control" name="gambar" accept="image/*" required>
-                  <small class="text-muted">Format yang diperbolehkan: JPG, PNG, JPEG.</small>
+                  <input type="file" name="gambar" id="gambarInput" class="form-control" accept="image/*" required>
+                </div>
+
+                <!-- Preview Gambar -->
+                <img id="previewImg" class="img-fluid border rounded mb-3 d-none" style="max-height:200px">
+
+                <!-- Alat -->
+                <div class="mb-3">
+                  <label class="form-label">Alat</label>
+                  <textarea name="alat" class="form-control" rows="3" required></textarea>
+                </div>
+
+                <!-- Bahan -->
+                <div class="mb-3">
+                  <label class="form-label">Bahan</label>
+                  <textarea name="bahan" class="form-control" rows="4" required></textarea>
                 </div>
 
                 <!-- Deskripsi -->
                 <div class="mb-3">
                   <label class="form-label">Deskripsi</label>
-                  <textarea class="form-control" name="deskripsi" rows="4" placeholder="Tuliskan deskripsi resep..." required></textarea>
+                  <textarea name="deskripsi" class="form-control" rows="4" required></textarea>
                 </div>
 
                 <!-- Tombol -->
@@ -80,9 +88,10 @@
                     <i class="fa-solid fa-arrow-left"></i> Kembali
                   </a>
                   <button type="submit" class="btn btn-success">
-                    <i class="fa-solid fa-save me-1"></i> Simpan Resep
+                    <i class="fa-solid fa-save"></i> Simpan Resep
                   </button>
                 </div>
+
               </form>
 
             </div>
@@ -92,19 +101,9 @@
     </div>
   </main>
 
-  <!-- JS -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
+  <!-- File JS Eksternal -->
+  <script type="module" src="/assets/js/resep.js"></script>
 
-  <script>
-    document.getElementById('formTambahResep').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Resep berhasil disimpan!');
-      window.location.href = "dashboard"; // kembali ke halaman utama resep
-    });
-  </script>
 </body>
 
 </html>
