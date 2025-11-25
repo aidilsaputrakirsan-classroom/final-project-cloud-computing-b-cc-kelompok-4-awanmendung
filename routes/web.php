@@ -31,6 +31,10 @@ Route::get('/kategori', function () {
     return view('dashboard.kategori');
 });
 
+Route::get('/activity', function () {
+    return view('dashboard.activity_log');
+});
+
 Route::get('/bookmarks', function () {
     return view('home.bookmarks');
 });
