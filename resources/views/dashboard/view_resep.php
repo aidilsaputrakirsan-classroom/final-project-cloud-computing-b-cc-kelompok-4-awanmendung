@@ -42,19 +42,16 @@
 
             <div class="card-body">
 
-              <!-- Alat -->
               <div class="mb-3">
                 <label class="judul-section">Alat</label>
                 <div id="alat_resep" class="text-dark"></div>
               </div>
 
-              <!-- Bahan -->
               <div class="mb-3">
                 <label class="judul-section">Bahan</label>
                 <div id="bahan_resep" class="text-dark"></div>
               </div>
 
-              <!-- Deskripsi -->
               <div class="mb-3">
                 <label class="judul-section">Deskripsi</label>
                 <div id="deskripsi_resep" class="text-dark"></div>

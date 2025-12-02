@@ -55,6 +55,29 @@ Route::get('/edit_kategori', function () {
     return view('dashboard.edit_kategori');
 });
 
+Route::get('/saran', function () {
+    return view('dashboard.saran');
+});
+
+Route::get('/view_saran', function () {
+    return view('dashboard.view_saran');
+});
+
+Route::get('/saran_resep', function () {
+    return view('dashboard.saran_resep');
+});
+
+Route::get('/view_saranresep', function () {
+    return view('dashboard.view_saranresep');
+});
+
+Route::get('/activity_logs', function () {
+    return view('dashboard.activity_logs');
+});
+
+Route::get('/view_activitylogs', function () {
+    return view('dashboard.view_activitylogs');
+});
 
 Route::get('/login', function () {
     return view('login.index');

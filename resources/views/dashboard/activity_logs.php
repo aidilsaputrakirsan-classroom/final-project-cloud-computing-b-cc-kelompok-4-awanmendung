@@ -50,7 +50,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  active" href="../dashboard">
+          <a class="nav-link  " href="../dashboard">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -132,7 +132,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="../activity_logs">
+          <a class="nav-link  active" href="../activity_logs">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>
@@ -161,9 +161,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Resep</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Saran Resep</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Resep</h6>
+          <h6 class="font-weight-bolder mb-0">Saran Resep</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -189,52 +189,36 @@
                     <span class="input-group-text bg-white border-end-0">
                       <i class="fa-solid fa-magnifying-glass text-secondary"></i>
                     </span>
-                    <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Cari resep...">
-                  </div>
-
-                  <!-- Filter kategori -->
-                  <div class="input-group" style="max-width: 220px;">
-                    <span class="input-group-text bg-white border-end-0">
-                      <i class="fa-solid fa-filter text-secondary"></i>
-                    </span>
-                    <select id="categoryFilter" class="form-select border-start-0">
-                      <option value="">Semua Kategori</option>
-                    </select>
+                    <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Cari activity...">
                   </div>
                 </div>
-                <!-- Tombol tambah -->
-                <h6 class="mb-0"></h6>
-                <a href="tambah_resep" class="btn-primary">
-                  <i class="fa-solid fa-plus"></i> Tambah Resep
-                </a>
+
               </div>
               <div class="table-container">
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Nama</th>
-                      <th>Kategori</th>
-                      <th>Gambar</th>
+                      <th>Email</th>
                       <th>View</th>
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody id="resepTableBody">
+                  <tbody id="activityTableBody">
                     <!-- Data dari Supabase akan muncul disini -->
                   </tbody>
                 </table>
                     <!-- Konfirmasi Hapus Resep -->
-                    <div class="modal fade" id="modalHapusResep" tabindex="-1">
+                    <div class="modal fade" id="modalHapusActivity" tabindex="-1">
                       <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-body text-center">
-                            <h5>Yakin ingin menghapus <span id="namaResepHapus" class="fw-bold"></span>?</h5>
-                            <input type="hidden" id="idResepHapus">
+                            <h5>Yakin ingin menghapus <span id="namaActivityHapus" class="fw-bold"></span>?</h5>
+                            <input type="hidden" id="idActivityHapus">
                           </div>
 
                           <div class="modal-footer px-5">
                             <button class="btn btn-secondary me-auto" data-bs-dismiss="modal">Batal</button>
-                            <button id="btnHapusResepFinal" class="btn btn-danger">Hapus</button>
+                            <button id="btnHapusActivityFinal" class="btn btn-danger">Hapus</button>
                           </div>
 
                         </div>
@@ -254,7 +238,7 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script type="module" src="../assets/js/resep.js"></script>
+  <script type="module" src="../assets/js/activity_logs.js"></script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
