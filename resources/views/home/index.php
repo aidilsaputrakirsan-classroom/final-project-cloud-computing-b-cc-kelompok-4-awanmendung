@@ -113,7 +113,22 @@
             border-radius: 6px;
             transition: .3s;
         }
-        a.boxed-btn3:hover { background-color: #218838; }
+        a.boxed-btn3:hover { background-color: #; }
+        .btn-logout-red {
+
+            background-color: #ff4444 !important;
+            border-color: #ff4444 !important;
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .btn-logout-red:hover {
+            background-color: #cc0000 !important;
+            border-color: #cc0000 !important;
+        }
 
         .single_recepie h3 {
             font-size: 1.3rem;
@@ -300,28 +315,42 @@
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
-                            <div class="main-menu white_text d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation">
-                                         <li>
-                                            <a href="index.php"
-                                            style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
-                                            Beranda
-                                            </a>
-                                        </li>
+    <div class="main-menu white_text d-none d-lg-block">
+        <nav>
+            <ul id="navigation">
+                <li>
+                    <a href="/index"
+                       style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
+                        Beranda
+                    </a>
+                </li>
+                <li><a href="/about">Tentang</a></li>
+                <li><a href="/recipes">Resep</a></li>
+                <li><a href="/bookmarks">Bookmarks</a></li>
+                <li><a href="/contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
 
-                                        <li><a href="about">Tentang</a></li>
-                                        <li><a href="recipes">Resep</a></li>
-                                        <li><a href="bookmarks">Bookmarks</a></li>
-                                        <li><a href="contact">Kontak</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
+<div class="col-xl-3 col-lg-3 d-none d-lg-block">
+    <div class="login_btn text-right">
+        <?php if (session()->has('supabase_token')): ?>
+            <!-- KETIKA SUDAH LOGIN: kotak merah KELUAR -->
+            <a href="#"
+               class="btn-logout-red"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Keluar
+            </a>
+        <?php else: ?>
+            <!-- KETIKA BELUM LOGIN: tombol MASUK hijau -->
+            <a href="/login" class="boxed-btn3">
+                Masuk
+            </a>
+        <?php endif; ?>
+    </div>
+</div>
 
-                                <div class="login_btn">
-                                    <a href="/login" class="boxed-btn3">Masuk</a>
-                                </div>
                             </div>
                         </div>
                         <div class="col-12">
@@ -332,6 +361,10 @@
             </div>
         </div>
     </header>
+
+<form id="logout-form" action="<?php echo route('logout'); ?>" method="POST" style="display:none;">
+    <?php echo csrf_field(); ?>
+</form>
 
     <div class="slider_area">
         <div class="single_slider d-flex align-items-center slider_bg_1">
@@ -533,6 +566,6 @@
 
 
     <?php include 'includes/feedback-widget.php'; ?>
-    
+
 </body>
 </html>
