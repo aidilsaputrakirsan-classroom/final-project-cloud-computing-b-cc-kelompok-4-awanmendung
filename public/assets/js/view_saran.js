@@ -19,8 +19,8 @@ async function loadABD() {
     }
 
     const { data, error } = await supabase
-        .from("resep")
-        .select("alat, bahan, deskripsi")
+        .from("feedback")
+        .select("email, message")
         .eq("id", id)
         .single();
 
@@ -30,56 +30,48 @@ async function loadABD() {
     }
 
     // ========================
-    // Tampilkan Alat
+    // Tampilkan Email
     // ========================
-    const alatList = document.getElementById("alat_resep");
-    alatList.innerHTML = "";
+    const emailList = document.getElementById("email_resep");
+    emailList.innerHTML = "";
 
-    alatList.style.listStyle = "none";
-    alatList.style.paddingLeft = "0";
+    emailList.style.listStyle = "none";
+    emailList.style.paddingLeft = "0";
 
-    if (data.alat) {
-        data.alat.split("\n").forEach((item) => {
-            if (item.trim() !== "") {
-                const li = document.createElement("li");
-                li.textContent = item;
-                li.style.listStyle = "none"; // aman
-                alatList.appendChild(li);
-            }
-        });
-    } else {
-        alatList.innerHTML = "<li style='list-style:none;'>-</li>";
-    }
-
-    // ========================
-    // Tampilkan Bahan
-    // ========================
-    const bahanList = document.getElementById("bahan_resep");
-    bahanList.innerHTML = "";
-
-    bahanList.style.listStyle = "none";
-    bahanList.style.paddingLeft = "0";
-
-    if (data.bahan) {
-        data.bahan.split("\n").forEach((item) => {
+    if (data.email) {
+        data.email.split("\n").forEach((item) => {
             if (item.trim() !== "") {
                 const li = document.createElement("li");
                 li.textContent = item;
                 li.style.listStyle = "none";
-                bahanList.appendChild(li);
+                emailList.appendChild(li);
             }
         });
     } else {
-        bahanList.innerHTML = "<li style='list-style:none;'>-</li>";
+        emailList.innerHTML = "<li style='list-style:none;'>-</li>";
     }
 
     // ========================
-    // Tampilkan Deskripsi
+    // Tampilkan Saran
     // ========================
-    const desc = document.getElementById("deskripsi_resep");
-    desc.innerHTML = data.deskripsi
-        ? data.deskripsi.replace(/\n/g, "<br>")
-        : "-";
+    const saranList = document.getElementById("saran_resep");
+    saranList.innerHTML = "";
+
+    saranList.style.listStyle = "none";
+    saranList.style.paddingLeft = "0";
+
+    if (data.message) {
+        data.message.split("\n").forEach((item) => {
+            if (item.trim() !== "") {
+                const li = document.createElement("li");
+                li.textContent = item;
+                li.style.listStyle = "none";
+                saranList.appendChild(li);
+            }
+        });
+    } else {
+        saranList.innerHTML = "<li style='list-style:none;'>-</li>";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", loadABD);

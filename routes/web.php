@@ -56,5 +56,11 @@ Route::middleware(['checkSupabase'])->group(function () {
     Route::get('/view_resep', fn() => view('dashboard.view_resep'));
     Route::get('/tambah_kategori', fn() => view('dashboard.tambah_kategori'));
     Route::get('/edit_kategori', fn() => view('dashboard.edit_kategori'));
+    Route::get('/view_saran', fn() => view('dashboard.view_saran'));
+    Route::get('/saran', fn() => view('dashboard.saran'));
+    Route::get('/saran_resep', fn() => view('dashboard.saran_resep'));
+    Route::get('/view_saranresep', fn() => view('dashboard.view_saranresep'));
+    Route::get('/activity_logs', fn() => view('dashboard.activity_logs'));
+    Route::get('/view_activityLogs', fn() => view('dashboard.view_activityLogs'));
 
 });

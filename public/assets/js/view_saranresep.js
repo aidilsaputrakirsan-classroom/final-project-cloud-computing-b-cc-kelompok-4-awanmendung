@@ -7,7 +7,7 @@ const SUPABASE_KEY =
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ==========================
-// LOAD ALAT – BAHAN – DESKRIPSI
+// LOAD NAMA
 // ==========================
 async function loadABD() {
     const params = new URLSearchParams(window.location.search);
@@ -19,8 +19,8 @@ async function loadABD() {
     }
 
     const { data, error } = await supabase
-        .from("resep")
-        .select("alat, bahan, deskripsi")
+        .from("recipe_suggestions")
+        .select("contact_number, main_ingredients, cooking_steps")
         .eq("id", id)
         .single();
 
@@ -30,25 +30,25 @@ async function loadABD() {
     }
 
     // ========================
-    // Tampilkan Alat
+    // Tampilkan Kontak
     // ========================
-    const alatList = document.getElementById("alat_resep");
-    alatList.innerHTML = "";
+    const kontakList = document.getElementById("kontak_resep");
+    kontakList.innerHTML = "";
 
-    alatList.style.listStyle = "none";
-    alatList.style.paddingLeft = "0";
+    kontakList.style.listStyle = "none";
+    kontakList.style.paddingLeft = "0";
 
-    if (data.alat) {
-        data.alat.split("\n").forEach((item) => {
+    if (data.contact_number) {
+        data.contact_number.split("\n").forEach((item) => {
             if (item.trim() !== "") {
                 const li = document.createElement("li");
                 li.textContent = item;
-                li.style.listStyle = "none"; // aman
-                alatList.appendChild(li);
+                li.style.listStyle = "none";
+                kontakList.appendChild(li);
             }
         });
     } else {
-        alatList.innerHTML = "<li style='list-style:none;'>-</li>";
+        kontakList.innerHTML = "<li style='list-style:none;'>-</li>";
     }
 
     // ========================
@@ -60,8 +60,8 @@ async function loadABD() {
     bahanList.style.listStyle = "none";
     bahanList.style.paddingLeft = "0";
 
-    if (data.bahan) {
-        data.bahan.split("\n").forEach((item) => {
+    if (data.main_ingredients) {
+        data.main_ingredients.split("\n").forEach((item) => {
             if (item.trim() !== "") {
                 const li = document.createElement("li");
                 li.textContent = item;
@@ -74,12 +74,26 @@ async function loadABD() {
     }
 
     // ========================
-    // Tampilkan Deskripsi
+    // Tampilkan Langkah
     // ========================
-    const desc = document.getElementById("deskripsi_resep");
-    desc.innerHTML = data.deskripsi
-        ? data.deskripsi.replace(/\n/g, "<br>")
-        : "-";
+    const langkahList = document.getElementById("langkah_resep");
+    langkahList.innerHTML = "";
+
+    langkahList.style.listStyle = "none";
+    langkahList.style.paddingLeft = "0";
+
+    if (data.cooking_steps) {
+        data.cooking_steps.split("\n").forEach((item) => {
+            if (item.trim() !== "") {
+                const li = document.createElement("li");
+                li.textContent = item;
+                li.style.listStyle = "none";
+                langkahList.appendChild(li);
+            }
+        });
+    } else {
+        langkahList.innerHTML = "<li style='list-style:none;'>-</li>";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", loadABD);
