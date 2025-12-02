@@ -294,7 +294,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="index">
                                     <img src="img/resepinid_logofix.png" alt="Logo resepin.id">
                                 </a>
                             </div>
@@ -347,44 +347,9 @@
 
     <div class="recepie_area">
         <div class="container">
-            <div class="row">
-
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_1.png" alt="Nasi Goreng Kampung">
-                        </div>
-                        <h3>Nasi Goreng Kampung</h3>
-                        <span>Menu Utama</span>
-                        <p>Waktu: 30 menit</p>
-                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_2.png" alt="Soto Ayam Nusantara">
-                        </div>
-                        <h3>Soto Ayam Nusantara</h3>
-                        <span>Sup &amp; Kuah</span>
-                        <p>Waktu: 30 menit</p>
-                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_3.png" alt="Mie Goreng Jawa">
-                        </div>
-                        <h3>Mie Goreng Jawa</h3>
-                        <span>Menu Utama</span>
-                        <p>Waktu: 30 menit</p>
-                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
-                    </div>
-                </div>
+            <div class="row" id="home_resep">
             </div>
+            <div id="resep_lainnya_btn"></div>
         </div>
     </div>
 
@@ -580,6 +545,8 @@
     <script src="js/mail-script.js"></script>
 
     <script src="js/main.js"></script>
+    <script type="module" src="../js/home.js"></script>
+
 
     <?php include 'includes/feedback-widget.php'; ?>
     

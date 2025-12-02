@@ -110,7 +110,7 @@
     }
 
     .slider_bg_1 {
-        background-image: url('img/banner/banner.png');
+        background-image: url('img/banner/banner_baru_1.png');
         background-size: cover;
         background-position: center center;
         position: relative;
@@ -491,7 +491,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
-                                <a href="index">
+                                <a href="recipes_details">
                                     <img src="img/resepinid_logofix.png" alt="Logo resepin.id">
                                 </a>
                             </div>
@@ -520,93 +520,98 @@
     </header>
 
     <!-- TITLE -->
-    <div class="bradcam_area breadcam_bg_4">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text text-center">
-                        <h1 class="hero_title">Resep Detail</h1>
+<div class="bradcam_area breadcam_bg_4">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h1 class="hero_title">Resep Detail</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top:60px; margin-bottom:80px;">
+
+    <!-- Nama Resep (Dynamic) -->
+        <h2 id="nama_resep" class="recipe-title">Loading...</h2>
+
+        <div class="recipe-layout-container">
+
+            <div class="recipe-main-content">
+
+                <!-- Gambar Resep (Dynamic) -->
+                <img id="gambar_resep" class="recipe-image"
+                    src="assets/img/no-image.jpg" alt="Gambar Resep">
+
+                <div class="recipe-action-panel">
+
+                    <!-- Rating Tetap -->
+                    <div class="rating-box">
+                        <div id="rating-stars" class="rating-stars">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <p id="rating-text">Click to rate</p>
+                    </div>
+
+                    <!-- Like / Comment / Save Tetap -->
+                    <div class="react-bar">
+                        <button class="btn-like" type="button">
+                            <i class="fa fa-heart"></i>
+                            <span class="like-count">0</span> Suka
+                        </button>
+                        <button class="btn-comment-toggle" type="button">
+                            <i class="fa fa-comment"></i>
+                            <span class="comment-count">0</span> Komentar
+                        </button>
+                        <button class="btn-save" type="button">
+                            <i class="fa fa-bookmark"></i>
+                            Simpan
+                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-<div class="container" style="margin-top:60px; margin-bottom:80px;">
-    <h2 class="recipe-title">Chicken Mushroom Sauce</h2>
 
-    <div class="recipe-layout-container">
-        <div class="recipe-main-content"> 
-            <img src="img/recepie/recepie_details.png" class="recipe-image" alt="Chicken Mushroom Sauce">
-
-            <div class="recipe-action-panel">
-                <div class="rating-box">
-    <div id="rating-stars" class="rating-stars" data-recipe-id="chicken-mushroom-sauce">
-        <span class="star" data-value="1">★</span>
-        <span class="star" data-value="2">★</span>
-        <span class="star" data-value="3">★</span>
-        <span class="star" data-value="4">★</span>
-        <span class="star" data-value="5">★</span>
-    </div>
-    <p id="rating-text">Click to rate</p>
-</div>
-                <div class="react-bar" data-item-id="chicken-mushroom-sauce">
-                    <button class="btn-like" type="button">
-                        <i class="fa fa-heart"></i>
-                        <span class="like-count">0</span> Suka
-                    </button>
-                    <button class="btn-comment-toggle" type="button">
-                        <i class="fa fa-comment"></i>
-                        <span class="comment-count">0</span> Komentar
-                    </button>
-                    <button class="btn-save" type="button">
-                        <i class="fa fa-bookmark"></i>
-                        Simpan
-                    </button>
+                <!-- Komentar Tetap -->
+                <div class="comment-wrap" hidden>
+                    <form class="comment-form">
+                        <input type="text" name="name" placeholder="Nama (opsional)" class="form-control mb-2">
+                        <textarea name="message" placeholder="Tulis komentar..." class="form-control mb-2" required></textarea>
+                        <button type="submit" class="btn btn-sm btn-primary">Kirim</button>
+                    </form>
+                    <ul class="comment-list"></ul>
                 </div>
             </div>
-            
-            <div class="comment-wrap" data-for="chicken-mushroom-sauce" hidden>
-                <form class="comment-form">
-                    <input type="text" name="name" placeholder="Nama (opsional)" class="form-control mb-2">
-                    <textarea name="message" placeholder="Tulis komentar..." class="form-control mb-2" required></textarea>
-                    <button type="submit" class="btn btn-sm btn-primary">Kirim</button>
-                </form>
-                <ul class="comment-list"></ul>
-            </div>
-        </div> 
-        <div class="recipe-side-panel"> 
-            <div class="detail-resep-card"> 
-                <h2>Detail Resep</h2>
-                <h3>Alat Memasak</h3>
-                <ol>
-                    <li>Wajan anti lengket</li>
-                    <li>Spatula</li>
-                    <li>Pisau &amp; Talenan</li>
-                    <li>Mangkuk marinasi</li>
-                </ol>
 
-                <h3>Bahan</h3>
-                <ol>
-                    <li>200g dada ayam</li>
-                    <li>1 siung bawang putih</li>
-                    <li>½ bawang bombay</li>
-                    <li>Jamur champignon</li>
-                    <li>Garam, lada, dan bumbu marinasi</li>
-                    <li>Kentang goreng (opsional)</li>
-                </ol>
+            <div class="recipe-side-panel">
+                <div class="detail-resep-card">
+                    <h2 class="detail-title">Detail Resep</h2>
 
-                <h3>Langkah Memasak</h3>
-                <ol>
-                    <li>Marinasi ayam selama 15 menit dengan bumbu.</li>
-                    <li>Pan-fry ayam hingga kecokelatan, sisihkan.</li>
-                    <li>Tumis bawang putih dan bawang bombay hingga harum.</li>
-                    <li>Masukkan jamur champignon, tumis hingga layu.</li>
-                    <li>Tambahkan sedikit air &amp; bumbu, masak hingga menjadi saus.</li>
-                    <li>Sajikan ayam dan kentang dengan saus jamur.</li>
-                </ol>
+                    <h3>Kategori</h3>
+                    <p id="kategori_resep">-</p>
+
+                    <h3>Alat Memasak</h3>
+                    <ol id="alat_resep">
+                        <li>Loading...</li>
+                    </ol>
+
+                    <h3>Bahan</h3>
+                    <ol id="bahan_resep">
+                        <li>Loading...</li>
+                    </ol>
+
+                    <h3>Langkah Memasak</h3>
+                    <ol id="langkah_resep">
+                        <li>Loading...</li>
+                    </ol>
+                </div>
             </div>
+
         </div>
-        </div> 
     </div>
 
     <!-- FOOTER -->
@@ -716,6 +721,7 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/mail-script.js"></script>
     <script src="js/main.js"></script>
+    <script type="module" src="../js/recipes_details.js"></script>
 
     <!-- ✅ Script Like, Comment & Save -->
     <script>

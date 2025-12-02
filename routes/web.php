@@ -43,6 +43,10 @@ Route::get('/edit_resep', function () {
     return view('dashboard.edit_resep');
 });
 
+Route::get('/view_resep', function () {
+    return view('dashboard.view_resep');
+});
+
 Route::get('/tambah_kategori', function () {
     return view('dashboard.tambah_kategori');
 });
