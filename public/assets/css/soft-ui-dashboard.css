@@ -6,6 +6,14 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+.judul-section {
+    font-size: 20px;      /* lebih besar */
+    font-weight: 700;     /* tebal */
+    margin-top: 20px;     /* beri jarak */
+    margin-bottom: 8px;
+    color: #333;          /* warna sedikit lebih gelap */
+}
+
 .table-container {
     width: 100%;
     overflow-x: auto;

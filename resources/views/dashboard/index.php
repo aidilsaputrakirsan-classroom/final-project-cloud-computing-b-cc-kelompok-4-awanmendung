@@ -153,9 +153,7 @@
                       <th>Nama</th>
                       <th>Kategori</th>
                       <th>Gambar</th>
-                      <th>Alat</th>
-                      <th>Bahan</th>
-                      <th>Deskripsi</th>
+                      <th>View</th>
                       <th>Action</th>
                     </tr>
                   </thead>

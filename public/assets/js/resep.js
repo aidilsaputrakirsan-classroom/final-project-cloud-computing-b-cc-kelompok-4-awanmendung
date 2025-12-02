@@ -153,27 +153,20 @@ async function loadResep(kategoriFilter = "", searchText = "") {
                 <img src="${resep.gambar}" width="70" class="rounded">
             </td>
 
-            <td>
-                ${resep.alat ? resep.alat.replace(/\n/g, "<br>") : "-"}
+            <td class="text-center">
+                <a href="view_resep?id=${resep.id}" 
+                class="btn btn-info px-3 py-3">
+                    <i class="fa-solid fa-eye"></i> View
+                </a>
             </td>
 
             <td>
-                ${resep.bahan ? resep.bahan.replace(/\n/g, "<br>") : "-"}
-            </td>
-
-            <td>${resep.deskripsi.replace(/\n/g, "<br>")}</td>
-
-            <td>
-                <a href="edit_resep?id=${
-                    resep.id
-                }" class="btn btn-warning px-3 py-3">
+                <a href="edit_resep?id=${resep.id}" class="btn btn-warning px-3 py-3">
                     <i class="fa-solid fa-pen"></i>
                 </a>
 
                 <button class="btn btn-danger px-3 py-3" 
-                        onclick="konfirmasiHapus('${resep.nama_resep}', ${
-            resep.id
-        })">
+                        onclick="konfirmasiHapus('${resep.nama_resep}', ${resep.id})">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </td>
