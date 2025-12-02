@@ -350,67 +350,38 @@
     <!-- /bradcam_area  -->
 
     <!-- recepie_area_start  -->
+
     <div class="recepie_area plus_padding">
         <div class="container">
+            <div class="container mt-5">
+                <div class="card p-4 shadow-sm border-0">
+                    <div class="row g-3 align-items-center">
+
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-end-0">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                                <input type="text" id="searchInput" class="form-control border-start-0"
+                                    placeholder="Cari resep...">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <select id="kategoriFilter" class="form-select">
+                                <option value="">Semua Kategori</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             <div class="row" id="recipes_resep">
                 <!-- Resep dari Supabase akan muncul otomatis disini -->
             </div>
         </div>
     </div>
     <!-- /recepie_area_start  -->
-
-    <!-- latest_trand     -->
-
-    <!--/ latest_trand     -->
-
-    <!-- download_app_area -->
-    <div class="download_app_area plus_padding">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-6 col-md-6">
-                    <div class="download_thumb">
-                        <div class="big_img">
-                            <img src="img/video/big_1.png" alt="">
-                        </div>
-                        <div class="small_01">
-                            <img src="img/video/small_sm1.png" alt="">
-                        </div>
-                        <div class="small_02">
-                            <img src="img/video/sm2.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6">
-                    <div class="download_text">
-                        <h3>Download app to
-                            get recipes from
-                            Everywhere</h3>
-                        <div class="download_android_apple">
-                            <a class="active" href="#">
-                                <div class="download_link d-flex">
-                                    <i class="fa fa-apple"></i>
-                                    <div class="store">
-                                        <h5>Available</h5>
-                                        <p>on App Store</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="download_link d-flex">
-                                    <i class="fa fa-android"></i>
-                                    <div class="store">
-                                        <h5>Download</h5>
-                                        <p>from Play Store</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/ download_app_area -->
 
  <!-- FOOTER -->
    <footer class="footer">

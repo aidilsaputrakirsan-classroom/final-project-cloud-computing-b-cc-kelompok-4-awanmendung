@@ -1,6 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,900|Satisfy&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,900|Satisfy&display=swap");
 
+#recipes_resep {
+    margin-top: 50px; /* jarak dari menu */
+}
+
+.card {
+    border-radius: 14px !important;
+}
+
 #alat_resep,
 #bahan_resep,
 #langkah_resep {

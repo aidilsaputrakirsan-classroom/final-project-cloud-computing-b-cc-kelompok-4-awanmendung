@@ -420,22 +420,6 @@
         </div>
     </div>
 
-
-<div class="latest_trand_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="trand_info text-center">
-                    <p style="color: #fff;">Ribuan resep siap kamu coba di rumah</p>
-                    <h3 style="color: #fff;">Temukan resep yang sedang tren</h3>
-                    <a href="recipes" class="boxed-btn3">Lihat Semua Resep</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
     <footer class="footer">
         <div class="footer_top">
             <div class="container">
