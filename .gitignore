@@ -22,10 +22,6 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
-<<<<<<< Updated upstream
-# /resources/views/home
-=======
 #/resources/views/home
->>>>>>> Stashed changes
 /index.js
 /resources/views/home/register.php
