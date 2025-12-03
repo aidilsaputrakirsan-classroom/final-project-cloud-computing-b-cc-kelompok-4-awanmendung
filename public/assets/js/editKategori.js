@@ -1,153 +1,87 @@
-// Import Supabase
-import ActivityLogController from "./controllers/ActivityLogController.js";
 import { supabase } from "./supabaseClient.js";
+import ActivityLogController from "./controllers/ActivityLogController.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
-    await ActivityLogController.log(
-        "Buka halaman activity logs",
-        {},
-        user?.id,
-        user?.email
-    );
-});
+// 🔗 Supabase client sudah diimport dari supabaseClient.js
 
-// ==========================
-// LOAD DATA (TABEL)
-// ==========================
-async function loadResep(searchText = "") {
-    const tableBody = document.getElementById("activityTableBody");
-    tableBody.innerHTML = `<tr><td colspan="7">Loading...</td></tr>`;
+// 🔍 Ambil ID kategori dari URL
+const urlParams = new URLSearchParams(window.location.search);
+const kategoriId = urlParams.get("id");
+
+// 🚀 Fungsi ambil data kategori
+async function loadKategori() {
+    if (!kategoriId) {
+        alert("ID kategori tidak ditemukan!");
+        window.location.href = "kategori";
+        return;
+    }
 
     const { data, error } = await supabase
-        .from("activity_logs")
-        .select("id, detail, user_id, description, email, created_at")
-        .order("id", { ascending: true });
-
-    if (error) {
-        console.error("Error mengambil data:", error);
-        tableBody.innerHTML = `<tr><td colspan="7">Gagal mengambil data</td></tr>`;
-        return;
-    }
-
-    let list = data;
-
-    // SEARCH
-    if (searchText.trim() !== "") {
-        const s = searchText.toLowerCase();
-        list = list.filter((item) =>
-            (item.email || "").toLowerCase().includes(s)
-        );
-    }
-
-    tableBody.innerHTML = "";
-
-    if (!list || list.length === 0) {
-        tableBody.innerHTML = `
-            <tr><td colspan="7" class="text-center fw-bold">Data tidak tersedia</td></tr>
-        `;
-        return;
-    }
-
-    list.forEach((item) => {
-        const tr = document.createElement("tr");
-
-        // Email
-        const tdEmail = document.createElement("td");
-        tdEmail.textContent = item.email;
-        tr.appendChild(tdEmail);
-
-        // View button
-        const tdView = document.createElement("td");
-        tdView.className = "text-center";
-        const aView = document.createElement("a");
-        aView.href = `view_activitylogs?id=${item.id}`;
-        aView.className = "btn btn-info px-3 py-3";
-        aView.innerHTML = `<i class="fa-solid fa-eye"></i> View`;
-        tdView.appendChild(aView);
-        tr.appendChild(tdView);
-
-        // Delete button
-        const tdDelete = document.createElement("td");
-        const btnDelete = document.createElement("button");
-        btnDelete.className = "btn btn-danger px-3 py-3";
-        btnDelete.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-        btnDelete.addEventListener("click", () =>
-            konfirmasiHapus(item.email, item.id)
-        );
-        tdDelete.appendChild(btnDelete);
-        tr.appendChild(tdDelete);
-
-        tableBody.appendChild(tr);
-    });
-}
-
-// ==========================
-// EVENT SEARCH
-// ==========================
-document.addEventListener("DOMContentLoaded", () => {
-    loadResep();
-
-    const searchInput = document.getElementById("searchInput");
-
-    if (searchInput)
-        searchInput.addEventListener("keyup", () =>
-            loadResep(searchInput.value)
-        );
-});
-
-// ===================================================================
-// ========================== FITUR HAPUS ============================
-// ===================================================================
-window.konfirmasiHapus = function (nama, id) {
-    const modalNama = document.getElementById("namaActivityHapus");
-    const modalId = document.getElementById("idActivityHapus");
-
-    modalNama.innerText = nama;
-    modalId.value = id;
-
-    const modal = new bootstrap.Modal(
-        document.getElementById("modalHapusActivity")
-    );
-    modal.show();
-};
-
-async function hapusActivityFinal() {
-    const id = document.getElementById("idActivityHapus").value;
-
-    const { error } = await supabase
-        .from("activity_logs")
-        .delete()
-        .eq("id", id);
+        .from("kategori")
+        .select("*")
+        .eq("id", kategoriId)
+        .maybeSingle();
 
     if (error) {
         console.error(error);
-        alert("Gagal menghapus data!");
+        alert("Gagal mengambil data kategori!");
         return;
     }
 
-    const modal = bootstrap.Modal.getInstance(
-        document.getElementById("modalHapusActivity")
-    );
-    modal.hide();
+    if (data) {
+        document.getElementById("namaKategori").value = data.nama_kategori;
+    } else {
+        alert("Kategori tidak ditemukan!");
+        window.location.href = "kategori";
+    }
 
-    // 🔄 Log hapus activity log
+    // 🔄 Log buka halaman edit
     const {
         data: { user },
     } = await supabase.auth.getUser();
     await ActivityLogController.log(
-        "Hapus activity_logs",
-        { id },
+        "Buka halaman edit kategori",
+        { id: kategoriId },
         user?.id,
         user?.email
     );
-
-    loadResep();
 }
 
-const btnHapusAkhir = document.getElementById("btnHapusActivityFinal");
-if (btnHapusAkhir) {
-    btnHapusAkhir.addEventListener("click", hapusActivityFinal);
-}
+// 💾 Simpan perubahan
+document
+    .getElementById("formEditKategori")
+    .addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const namaBaru = document.getElementById("namaKategori").value.trim();
+        if (!namaBaru) {
+            alert("Nama kategori tidak boleh kosong!");
+            return;
+        }
+
+        const { error } = await supabase
+            .from("kategori")
+            .update({ nama_kategori: namaBaru })
+            .eq("id", kategoriId);
+
+        if (error) {
+            console.error(error);
+            alert("❌ Gagal memperbarui kategori!");
+        } else {
+            // 🔄 Log update
+            const {
+                data: { user },
+            } = await supabase.auth.getUser();
+            await ActivityLogController.log(
+                "Edit kategori",
+                { id: kategoriId, namaBaru },
+                user?.id,
+                user?.email
+            );
+
+            alert("✅ Kategori berhasil diperbarui!");
+            window.location.href = "kategori";
+        }
+    });
+
+// ⏳ Jalankan load saat halaman dibuka
+loadKategori();

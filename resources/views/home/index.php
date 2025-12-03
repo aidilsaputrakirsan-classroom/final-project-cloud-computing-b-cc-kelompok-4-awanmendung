@@ -400,53 +400,8 @@
 
             <div class="row justify-content-center">
                 <div class="col-xl-12">
-                    <div class="dish_wrap">
-
-                        <a href="recipes" class="favorite_card favorite_card-1">
-                            <div class="single_dish text-center">
-                                <div class="favorite_badge">
-                                    <i class="fa fa-star"></i>
-                                    Favorit #1
-                                </div>
-                                <div class="thumb">
-                                    <img src="img/recepie/recpie_4.png" alt="Ayam Bakar Madu">
-                                </div>
-                                <h3>Ayam Bakar Madu</h3>
-                                <span class="favorite_rank">Paling sering dimasak</span>
-                                <p>Ayam berbumbu manis gurih dengan sentuhan madu, cocok untuk makan malam keluarga atau acara spesial.</p>
-                            </div>
-                        </a>
-
-                        <a href="recipes" class="favorite_card favorite_card-2">
-                            <div class="single_dish text-center">
-                                <div class="favorite_badge">
-                                    <i class="fa fa-star"></i>
-                                    Favorit #2
-                                </div>
-                                <div class="thumb">
-                                    <img src="img/recepie/recpie_5.png" alt="Rendang Daging Padang">
-                                </div>
-                                <h3>Rendang Daging Padang</h3>
-                                <span class="favorite_rank">Rating tertinggi</span>
-                                <p>Dimasak pelan dengan santan dan rempah lengkap sampai meresap, jadi lauk andalan di meja makan.</p>
-                            </div>
-                        </a>
-
-                        <a href="recipes" class="favorite_card favorite_card-3">
-                            <div class="single_dish text-center">
-                                <div class="favorite_badge">
-                                    <i class="fa fa-star"></i>
-                                    Favorit #3
-                                </div>
-                                <div class="thumb">
-                                    <img src="img/recepie/recpie_6.png" alt="Sate Ayam Bumbu Kacang">
-                                </div>
-                                <h3>Sate Ayam Bumbu Kacang</h3>
-                                <span class="favorite_rank">Paling banyak disimpan</span>
-                                <p>Potongan ayam empuk dengan bumbu kacang kental dan taburan bawang goreng, favorit di setiap kesempatan.</p>
-                            </div>
-                        </a>
-
+                    <div class="dish_wrap" id="favorite_recipes_container">
+                        <!-- Resep favorit akan dimuat otomatis lewat JS -->
                     </div>
                 </div>
             </div>

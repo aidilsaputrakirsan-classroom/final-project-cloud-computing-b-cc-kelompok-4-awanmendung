@@ -61,6 +61,6 @@ Route::middleware(['checkSupabase'])->group(function () {
     Route::get('/saran_resep', fn() => view('dashboard.saran_resep'));
     Route::get('/view_saranresep', fn() => view('dashboard.view_saranresep'));
     Route::get('/activity_logs', fn() => view('dashboard.activity_logs'));
-    Route::get('/view_activityLogs', fn() => view('dashboard.view_activityLogs'));
+    Route::get('/view_activitylogs', fn() => view('dashboard.view_activitylogs'));
 
 });
