@@ -43,7 +43,7 @@
 
 
         .slider_bg_1 {
-            background-image: url('img/banner/banner.png');
+            background-image: url('img/banner/banner_baru.png');
             background-size: cover;
             background-position: center center;
             position: relative;

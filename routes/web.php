@@ -3,118 +3,64 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupabaseController;
 
-// halaman login
+// =====================
+// AUTH (LOGIN, REGISTER, LOGOUT)
+// =====================
+
 Route::get('/login', function () {
     return view('login.index');
 })->name('login');
 
-// proses login
 Route::post('/login', [SupabaseController::class, 'login'])->name('login.process');
 
-// halaman register
 Route::get('/register', function () {
     return view('register.index');
 })->name('register');
 
-// proses logout
-Route::post('/logout', [SupabaseController::class, 'logout'])->name('logout');
+Route::post('/logout', function () {
+    session()->forget('supabase_token');
+    return redirect('/index.php');
+})->name('logout');
 
-Route::get('/loginadmin', function () {
-    return view('loginadmin.index');
-});
+// =====================
+// PUBLIC PAGES (TIDAK PERLU LOGIN)
+// =====================
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-});
+Route::get('/', fn() => view('home.index'));
+Route::get('/index', fn() => view('home.index'));
+Route::get('/about', fn() => view('home.about'));
+Route::get('/blog', fn() => view('home.blog'));
+Route::get('/contact', fn() => view('home.contact'));
+Route::get('/elements', fn() => view('home.elements'));
+Route::get('/recipes', fn() => view('home.recipes'));
+Route::get('/bookmarks', fn() => view('home.bookmarks'));
 
-Route::get('/kategori', function () {
-    return view('dashboard.kategori');
-});
-
-Route::get('/bookmarks', function () {
-    return view('home.bookmarks');
-});
-
-Route::get('/tambah_resep', function () {
-    return view('dashboard.tambah_resep');
-});
-
-Route::get('/edit_resep', function () {
-    return view('dashboard.edit_resep');
-});
-
-Route::get('/tambah_kategori', function () {
-    return view('dashboard.tambah_kategori');
-});
-
-Route::get('/edit_kategori', function () {
-    return view('dashboard.edit_kategori');
-});
-
-
-Route::get('/login', function () {
-    return view('login.index');
-});
-
-Route::post('/login', [SupabaseController::class, 'login'])->name('login');
-
-Route::get('/register', function () {
-    return view('register.index');
-});
-
-
-Route::get('/', function () {
-    return view('home.index');
-});
-
-Route::get('/index', function () {
-    return view('home.index');
-});
-
-Route::get('/about', function () {
-    return view('home.about');
-});
-
-Route::get('/blog', function () {
-    return view('home.blog');
-});
-
-Route::get('/contact', function () {
-    return view('home.contact');
-});
-
-Route::get('/elements', function () {
-    return view('home.elements');
-});
-
+// =====================
+// RECIPE DETAIL PAGES (Menggunakan nama file yang benar)
+// =====================
 Route::get('/recipes_details', function () {
     return view('home.recipes_details');
-});
+})->name('recipe.detail');
 
-Route::get('/recipes', function () {
-    return view('home.recipes');
-});
+// Jika ingin pakai slug dynamic (opsional)
+Route::get('/recipes_details/{slug}', function ($slug) {
+    return view('home.recipes_details', compact('slug'));
+})->name('recipe.detail.slug');
 
-Route::get('/single-blog', function () {
-    return view('home.single-blog');
-});
+Route::middleware(['checkSupabase'])->group(function () {
 
-Route::get('/main', function () {
-    return view('home.main');
-});
+    Route::get('/dashboard', fn() => view('dashboard.index'));
+    Route::get('/kategori', fn() => view('dashboard.kategori'));
+    Route::get('/tambah_resep', fn() => view('dashboard.tambah_resep'));
+    Route::get('/edit_resep', fn() => view('dashboard.edit_resep'));
+    Route::get('/view_resep', fn() => view('dashboard.view_resep'));
+    Route::get('/tambah_kategori', fn() => view('dashboard.tambah_kategori'));
+    Route::get('/edit_kategori', fn() => view('dashboard.edit_kategori'));
+    Route::get('/view_saran', fn() => view('dashboard.view_saran'));
+    Route::get('/saran', fn() => view('dashboard.saran'));
+    Route::get('/saran_resep', fn() => view('dashboard.saran_resep'));
+    Route::get('/view_saranresep', fn() => view('dashboard.view_saranresep'));
+    Route::get('/activity_logs', fn() => view('dashboard.activity_logs'));
+    Route::get('/view_activityLogs', fn() => view('dashboard.view_activityLogs'));
 
-// =====================
-// PROTECTED ROUTES (Baru butuh login)
-// =====================
-
-Route::group(['middleware' => function ($request, $next) {
-    if (!session()->has('supabase_token')) {
-        return redirect('/login')->withErrors(['login' => 'Silakan login terlebih dahulu.']);
-    }
-    return $next($request);
-}], function () {
-
-    Route::get('/dashboard', function () {
-        return view('dashboard.index'); // misalnya halaman khusus setelah login
-    });
 });

@@ -293,7 +293,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
-                                <a href="index.php">
+                                <a href="recipes">
                                     <img src="img/resepinid_logofix.png" alt="resepin.id" style="height: 120px; width: auto;">
                                 </a>
                             </div>
@@ -302,10 +302,10 @@
                             <div class="main-menu white_text d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.php">Beranda</a></li>
+                                        <li><a href="index">Beranda</a></li>
                                         <li><a href="about">Tentang</a></li>
                                          <li>
-                                            <a href="recipes.php"
+                                            <a href="recipes"
                                             style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
                                             Resep
                                             </a>
@@ -317,11 +317,6 @@
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="search_icon">
-                                <a href="#">
-                                    <i class="ti-search"></i>
-                                </a>
-                            </div>
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -350,174 +345,38 @@
     <!-- /bradcam_area  -->
 
     <!-- recepie_area_start  -->
+
     <div class="recepie_area plus_padding">
         <div class="container">
-            <div class="row">
-                <!-- 1 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_1.png" alt="">
+            <div class="container mt-5">
+                <div class="card p-4 shadow-sm border-0">
+                    <div class="row g-3 align-items-center">
+
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-end-0">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                                <input type="text" id="searchInput" class="form-control border-start-0"
+                                    placeholder="Cari resep...">
+                            </div>
                         </div>
-                        <h3>Egg Manchurian</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
+
+                        <div class="col-md-4">
+                            <select id="kategoriFilter" class="form-select">
+                                <option value="">Semua Kategori</option>
+                            </select>
+                        </div>
+
                     </div>
                 </div>
-                <!-- 2 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_2.png" alt="">
-                        </div>
-                        <h3>Pure Vegetable Bowl</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <!-- 3 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_3.png" alt="">
-                        </div>
-                        <h3>Egg Masala Ramen</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <!-- 4 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_1.png" alt="">
-                        </div>
-                        <h3>Egg Manchurian</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <!-- 5 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_2.png" alt="">
-                        </div>
-                        <h3>Pure Vegetable Bowl</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <!-- 6 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_3.png" alt="">
-                        </div>
-                        <h3>Egg Masala Ramen</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <!-- 7 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_1.png" alt="">
-                        </div>
-                        <h3>Egg Manchurian</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <!-- 8 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_2.png" alt="">
-                        </div>
-                        <h3>Pure Vegetable Bowl</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <!-- 9 -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_3.png" alt="">
-                        </div>
-                        <h3>Egg Masala Ramen</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="recipes_details" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
+            </div>
+            <div class="row" id="recipes_resep">
+                <!-- Resep dari Supabase akan muncul otomatis disini -->
             </div>
         </div>
     </div>
     <!-- /recepie_area_start  -->
-
-    <!-- latest_trand     -->
-
-    <!--/ latest_trand     -->
-
-    <!-- download_app_area -->
-    <div class="download_app_area plus_padding">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-6 col-md-6">
-                    <div class="download_thumb">
-                        <div class="big_img">
-                            <img src="img/video/big_1.png" alt="">
-                        </div>
-                        <div class="small_01">
-                            <img src="img/video/small_sm1.png" alt="">
-                        </div>
-                        <div class="small_02">
-                            <img src="img/video/sm2.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6">
-                    <div class="download_text">
-                        <h3>Download app to
-                            get recipes from
-                            Everywhere</h3>
-                        <div class="download_android_apple">
-                            <a class="active" href="#">
-                                <div class="download_link d-flex">
-                                    <i class="fa fa-apple"></i>
-                                    <div class="store">
-                                        <h5>Available</h5>
-                                        <p>on App Store</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="download_link d-flex">
-                                    <i class="fa fa-android"></i>
-                                    <div class="store">
-                                        <h5>Download</h5>
-                                        <p>from Play Store</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/ download_app_area -->
 
  <!-- FOOTER -->
    <footer class="footer">
@@ -629,6 +488,7 @@
     <script src="js/mail-script.js"></script>
 
     <script src="js/main.js"></script>
+    <script type="module" src="../js/recipes.js"></script>
 
     <?php include 'includes/feedback-widget.php'; ?>
     

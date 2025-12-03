@@ -41,13 +41,11 @@
 
               <form id="formTambahResep">
 
-                <!-- Nama Resep -->
                 <div class="mb-3">
                   <label class="form-label">Nama Resep</label>
                   <input type="text" name="nama_resep" class="form-control" required>
                 </div>
 
-                <!-- Kategori (FK) -->
                 <div class="mb-3">
                   <label class="form-label">Kategori</label>
                   <select name="kategori" id="kategoriSelect" class="form-select" required>
@@ -55,34 +53,28 @@
                   </select>
                 </div>
 
-                <!-- Gambar -->
                 <div class="mb-3">
                   <label class="form-label">Gambar</label>
                   <input type="file" name="gambar" id="gambarInput" class="form-control" accept="image/*" required>
                 </div>
 
-                <!-- Preview Gambar -->
                 <img id="previewImg" class="img-fluid border rounded mb-3 d-none" style="max-height:200px">
 
-                <!-- Alat -->
                 <div class="mb-3">
                   <label class="form-label">Alat</label>
                   <textarea name="alat" class="form-control" rows="3" required></textarea>
                 </div>
 
-                <!-- Bahan -->
                 <div class="mb-3">
                   <label class="form-label">Bahan</label>
                   <textarea name="bahan" class="form-control" rows="4" required></textarea>
                 </div>
 
-                <!-- Deskripsi -->
                 <div class="mb-3">
                   <label class="form-label">Deskripsi</label>
                   <textarea name="deskripsi" class="form-control" rows="4" required></textarea>
                 </div>
 
-                <!-- Tombol -->
                 <div class="d-flex justify-content-between mt-4">
                   <a href="dashboard" class="btn btn-outline-secondary">
                     <i class="fa-solid fa-arrow-left"></i> Kembali
