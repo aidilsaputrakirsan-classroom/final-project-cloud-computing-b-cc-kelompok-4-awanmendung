@@ -113,7 +113,22 @@
             border-radius: 6px;
             transition: .3s;
         }
-        a.boxed-btn3:hover { background-color: #218838; }
+        a.boxed-btn3:hover { background-color: #; }
+        .btn-logout-red {
+
+            background-color: #ff4444 !important;
+            border-color: #ff4444 !important;
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .btn-logout-red:hover {
+            background-color: #cc0000 !important;
+            border-color: #cc0000 !important;
+        }
 
         .single_recepie h3 {
             font-size: 1.3rem;
@@ -294,34 +309,48 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="index">
                                     <img src="img/resepinid_logofix.png" alt="Logo resepin.id">
                                 </a>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
-                            <div class="main-menu white_text d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation">
-                                         <li>
-                                            <a href="index.php"
-                                            style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
-                                            Beranda
-                                            </a>
-                                        </li>
+    <div class="main-menu white_text d-none d-lg-block">
+        <nav>
+            <ul id="navigation">
+                <li>
+                    <a href="/index"
+                       style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
+                        Beranda
+                    </a>
+                </li>
+                <li><a href="/about">Tentang</a></li>
+                <li><a href="/recipes">Resep</a></li>
+                <li><a href="/bookmarks">Bookmarks</a></li>
+                <li><a href="/contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
 
-                                        <li><a href="about">Tentang</a></li>
-                                        <li><a href="recipes">Resep</a></li>
-                                        <li><a href="bookmarks">Bookmarks</a></li>
-                                        <li><a href="contact">Kontak</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
+<div class="col-xl-3 col-lg-3 d-none d-lg-block">
+    <div class="login_btn text-right">
+        <?php if (session()->has('supabase_token')): ?>
+            <!-- KETIKA SUDAH LOGIN: kotak merah KELUAR -->
+            <a href="#"
+               class="btn-logout-red"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Keluar
+            </a>
+        <?php else: ?>
+            <!-- KETIKA BELUM LOGIN: tombol MASUK hijau -->
+            <a href="/login" class="boxed-btn3">
+                Masuk
+            </a>
+        <?php endif; ?>
+    </div>
+</div>
 
-                                <div class="login_btn">
-                                    <a href="/login" class="boxed-btn3">Masuk</a>
-                                </div>
                             </div>
                         </div>
                         <div class="col-12">
@@ -332,6 +361,10 @@
             </div>
         </div>
     </header>
+
+<form id="logout-form" action="<?php echo route('logout'); ?>" method="POST" style="display:none;">
+    <?php echo csrf_field(); ?>
+</form>
 
     <div class="slider_area">
         <div class="single_slider d-flex align-items-center slider_bg_1">
@@ -347,44 +380,9 @@
 
     <div class="recepie_area">
         <div class="container">
-            <div class="row">
-
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_1.png" alt="Nasi Goreng Kampung">
-                        </div>
-                        <h3>Nasi Goreng Kampung</h3>
-                        <span>Menu Utama</span>
-                        <p>Waktu: 30 menit</p>
-                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_2.png" alt="Soto Ayam Nusantara">
-                        </div>
-                        <h3>Soto Ayam Nusantara</h3>
-                        <span>Sup &amp; Kuah</span>
-                        <p>Waktu: 30 menit</p>
-                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_3.png" alt="Mie Goreng Jawa">
-                        </div>
-                        <h3>Mie Goreng Jawa</h3>
-                        <span>Menu Utama</span>
-                        <p>Waktu: 30 menit</p>
-                        <a href="recipes_details" class="line_btn">Lihat Resep Lengkap</a>
-                    </div>
-                </div>
+            <div class="row" id="home_resep">
             </div>
+            <div id="resep_lainnya_btn"></div>
         </div>
     </div>
 
@@ -454,22 +452,6 @@
             </div>
         </div>
     </div>
-
-
-<div class="latest_trand_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="trand_info text-center">
-                    <p style="color: #fff;">Ribuan resep siap kamu coba di rumah</p>
-                    <h3 style="color: #fff;">Temukan resep yang sedang tren</h3>
-                    <a href="recipes" class="boxed-btn3">Lihat Semua Resep</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
     <footer class="footer">
         <div class="footer_top">
@@ -580,8 +562,10 @@
     <script src="js/mail-script.js"></script>
 
     <script src="js/main.js"></script>
+    <script type="module" src="../js/home.js"></script>
+
 
     <?php include 'includes/feedback-widget.php'; ?>
-    
+
 </body>
 </html>
