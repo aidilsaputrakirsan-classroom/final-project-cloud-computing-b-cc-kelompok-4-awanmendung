@@ -35,6 +35,7 @@ Route::get('/elements', fn() => view('home.elements'));
 Route::get('/recipes', fn() => view('home.recipes'));
 Route::get('/bookmarks', fn() => view('home.bookmarks'));
 
+
 // =====================
 // RECIPE DETAIL PAGES (Menggunakan nama file yang benar)
 // =====================

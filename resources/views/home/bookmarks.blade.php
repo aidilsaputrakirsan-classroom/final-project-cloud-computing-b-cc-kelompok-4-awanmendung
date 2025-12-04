@@ -140,6 +140,76 @@
         }
     </style>
 </head>
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
+const SUPABASE_ANON_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjg1MDgsImV4cCI6MjA3NjkwNDUwOH0.E_VI8-raJ3jRPAQc079j6jAhluiC4lSCmtIN9gMND6g";
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Ambil user dari session Laravel
+const userId = "{{ session('supabase_user_id') }}";
+
+const container = document.querySelector(".blog_left_sidebar");
+
+if (!userId || userId === "" || userId === "null") {
+    container.innerHTML = `
+        <p style="text-align:center;">
+            Kamu belum login.<br>
+            <a href="/login" style="color:blue;">Login dulu untuk melihat bookmark.</a>
+        </p>
+    `;
+    throw new Error("User tidak login");
+}
+
+// --- LOAD BOOKMARKS DARI SUPABASE ---
+async function loadBookmarks() {
+    container.innerHTML = `<p>Sedang mengambil data...</p>`;
+
+    const { data, error } = await supabase
+        .from("bookmarks")
+        .select("recipe_slug")
+        .eq("user_id", userId);
+
+    if (error) {
+        console.error(error);
+        container.innerHTML = "<p style='color:red;'>⚠ Gagal mengambil bookmark dari Supabase.</p>";
+        return;
+    }
+
+    if (!data.length) {
+        container.innerHTML = "<p>Tidak ada resep tersimpan.</p>";
+        return;
+    }
+
+    container.innerHTML = "";
+    data.forEach(item => container.innerHTML += createCard(item.recipe_slug));
+}
+
+function createCard(slug) {
+    const title = slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    const url = "/recipes_details?slug=" + slug;
+
+    return `
+        <article class="blog_item">
+            <div class="blog_item_img">
+                <img class="card-img rounded-0" src="/img/recepie/recepie_details.png" alt="${title}">
+            </div>
+            <div class="blog_details">
+                <a class="d-inline-block" href="${url}">
+                    <h2>${title}</h2>
+                </a>
+                <p>Resep ini tersimpan di akunmu.</p>
+            </div>
+        </article>
+    `;
+}
+
+loadBookmarks();
+</script>
+
 
 <body>
     <!-- header-start -->
@@ -325,67 +395,8 @@
     <script src="js/mail-script.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Script untuk menampilkan resep tersimpan di bookmarks -->
-    <script>
-    (function () {
-        const LS_KEY = "resepin-saved-recipes";
-        const container = document.querySelector(".blog_left_sidebar");
-        if (!container) return;
 
-        container.innerHTML = "";
 
-        let savedSlugs = [];
-        try {
-            savedSlugs = JSON.parse(localStorage.getItem(LS_KEY)) || [];
-            if (!Array.isArray(savedSlugs)) savedSlugs = [];
-        } catch (e) {
-            savedSlugs = [];
-        }
-
-        if (!savedSlugs.length) {
-            container.innerHTML = `
-                <p>Belum ada resep yang disimpan.
-                Buka salah satu resep dan tekan tombol <strong>Simpan</strong> dulu ya.</p>
-            `;
-            return;
-        }
-
-        function createRecipeCard(slug) {
-            const niceTitle = slug
-                .replace(/-/g, " ")
-                .replace(/\b\w/g, c => c.toUpperCase());
-
-            const url = "/recipes_details?slug=" + encodeURIComponent(slug);
-
-            return `
-            <article class="blog_item">
-                <div class="blog_item_img">
-                    <img class="card-img rounded-0"
-                         src="/img/recepie/recepie_details.png"
-                         alt="${niceTitle}">
-                    <a href="${url}" class="blog_item_date">
-                        <h3>Resep</h3>
-                        <p>Tersimpan</p>
-                    </a>
-                </div>
-                <div class="blog_details">
-                    <a class="d-inline-block" href="${url}">
-                        <h2>${niceTitle}</h2>
-                    </a>
-                    <p>Resep ini disimpan dari halaman detail.</p>
-                    <ul class="blog-info-link">
-                        <li><a href="${url}"><i class="fa fa-cutlery"></i> Lihat Resep</a></li>
-                    </ul>
-                </div>
-            </article>
-            `;
-        }
-
-        savedSlugs.forEach(slug => {
-            container.innerHTML += createRecipeCard(slug);
-        });
-    })();
-    </script>
 
     <?php include 'includes/feedback-widget.php'; ?>
 
