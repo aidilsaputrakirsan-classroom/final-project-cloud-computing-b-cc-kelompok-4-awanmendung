@@ -298,6 +298,38 @@
                 max-width: 100%;
             }
         }
+
+.galeri_card {
+    display:block;
+    background:#fff;
+    border-radius:18px;
+    padding:18px;
+    text-align:center;
+    text-decoration:none;
+    box-shadow:0 10px 28px rgba(0,0,0,.08);
+    transition:.25s ease;
+}
+
+.galeri_card:hover {
+    transform:translateY(-6px);
+    box-shadow:0 16px 36px rgba(0,0,0,.15);
+}
+
+.galeri_image img {
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:14px;
+}
+
+.galeri_title {
+    font-size:1.25rem;
+    font-weight:600;
+    margin-top:12px;
+    color:#222;
+}
+
+
     </style>
 </head>
 
@@ -383,75 +415,84 @@
             <div class="row" id="home_resep">
             </div>
             <div id="resep_lainnya_btn"></div>
-        </div>
-    </div>
 
-    <div class="dish_area">
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col-xl-12">
-                    <div class="section_title text-center">
-                        <h3>Resep Paling Favorit</h3>
-                        <p>Koleksi menu yang paling sering dimasak dan disukai oleh pengguna resepin.id.</p>
-                        <span class="small_hint">Dipilih berdasarkan resep yang paling banyak dilihat dan disimpan.</span>
+       </div>
+<div class="dish_area" id="galeri_makanan">
+    <div class="container">
+
+        <div class="section_title text-center mb-5">
+            <h3>Galeri Makanan Daerah</h3>
+            <p>Inilah makanan dari berbagai pulau di Indonesia.</p>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-4 mb-4">
+                <a href="/galeri?region=jawa" class="galeri_card">
+                    <div class="galeri_image">
+                        <img src="img/galeri/jawa.jpg" alt="Makanan Khas Jawa">
                     </div>
-                </div>
+                    <h4 class="galeri_title">Makanan Khas Jawa</h4>
+                </a>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-xl-12">
-                    <div class="dish_wrap">
-
-                        <a href="recipes" class="favorite_card favorite_card-1">
-                            <div class="single_dish text-center">
-                                <div class="favorite_badge">
-                                    <i class="fa fa-star"></i>
-                                    Favorit #1
-                                </div>
-                                <div class="thumb">
-                                    <img src="img/recepie/recpie_4.png" alt="Ayam Bakar Madu">
-                                </div>
-                                <h3>Ayam Bakar Madu</h3>
-                                <span class="favorite_rank">Paling sering dimasak</span>
-                                <p>Ayam berbumbu manis gurih dengan sentuhan madu, cocok untuk makan malam keluarga atau acara spesial.</p>
-                            </div>
-                        </a>
-
-                        <a href="recipes" class="favorite_card favorite_card-2">
-                            <div class="single_dish text-center">
-                                <div class="favorite_badge">
-                                    <i class="fa fa-star"></i>
-                                    Favorit #2
-                                </div>
-                                <div class="thumb">
-                                    <img src="img/recepie/recpie_5.png" alt="Rendang Daging Padang">
-                                </div>
-                                <h3>Rendang Daging Padang</h3>
-                                <span class="favorite_rank">Rating tertinggi</span>
-                                <p>Dimasak pelan dengan santan dan rempah lengkap sampai meresap, jadi lauk andalan di meja makan.</p>
-                            </div>
-                        </a>
-
-                        <a href="recipes" class="favorite_card favorite_card-3">
-                            <div class="single_dish text-center">
-                                <div class="favorite_badge">
-                                    <i class="fa fa-star"></i>
-                                    Favorit #3
-                                </div>
-                                <div class="thumb">
-                                    <img src="img/recepie/recpie_6.png" alt="Sate Ayam Bumbu Kacang">
-                                </div>
-                                <h3>Sate Ayam Bumbu Kacang</h3>
-                                <span class="favorite_rank">Paling banyak disimpan</span>
-                                <p>Potongan ayam empuk dengan bumbu kacang kental dan taburan bawang goreng, favorit di setiap kesempatan.</p>
-                            </div>
-                        </a>
-
+            <div class="col-md-4 mb-4">
+                <a href="/galeri?region=kalimantan" class="galeri_card">
+                    <div class="galeri_image">
+                        <img src="img/galeri/kalimantan.jpg" alt="Makanan Khas Kalimantan">
                     </div>
-                </div>
+                    <h4 class="galeri_title">Makanan Khas Kalimantan</h4>
+                </a>
             </div>
+
+            <div class="col-md-4 mb-4">
+                <a href="/galeri?region=sumatera" class="galeri_card">
+                    <div class="galeri_image">
+                        <img src="img/galeri/sumatera.jpg" alt="Makanan Khas Sumatera">
+                    </div>
+                    <h4 class="galeri_title">Makanan Khas Sumatera</h4>
+                </a>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <a href="/galeri?region=sulawesi" class="galeri_card">
+                    <div class="galeri_image">
+                        <img src="img/galeri/sulawesi.jpg" alt="Makanan Khas Sulawesi">
+                    </div>
+                    <h4 class="galeri_title">Makanan Khas Sulawesi</h4>
+                </a>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <a href="/galeri?region=papua" class="galeri_card">
+                    <div class="galeri_image">
+                        <img src="img/galeri/papua.jpg" alt="Makanan Khas Papua">
+                    </div>
+                    <h4 class="galeri_title">Makanan Khas Papua</h4>
+                </a>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <a href="/galeri?region=maluku" class="galeri_card">
+                    <div class="galeri_image">
+                        <img src="img/galeri/maluku.jpg" alt="Makanan Khas Maluku">
+                    </div>
+                    <h4 class="galeri_title">Makanan Khas Maluku</h4>
+                </a>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <a href="/galeri?region=nusatenggara" class="galeri_card">
+                    <div class="galeri_image">
+                        <img src="img/galeri/nusatenggara.jpg" alt="Makanan Khas Nusa Tenggara">
+                    </div>
+                    <h4 class="galeri_title">Makanan Khas Nusa Tenggara</h4>
+                </a>
+            </div>
+
         </div>
     </div>
+</div>
 
     <footer class="footer">
         <div class="footer_top">
@@ -566,6 +607,7 @@
 
 
     <?php include 'includes/feedback-widget.php'; ?>
+
 
 </body>
 </html>

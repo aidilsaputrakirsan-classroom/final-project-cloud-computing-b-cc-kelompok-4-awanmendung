@@ -47,6 +47,10 @@ Route::get('/recipes_details/{slug}', function ($slug) {
     return view('home.recipes_details', compact('slug'));
 })->name('recipe.detail.slug');
 
+Route::get('/galeri', function () {
+    return view('home.galeri');
+});
+
 Route::middleware(['checkSupabase'])->group(function () {
 
     Route::get('/dashboard', fn() => view('dashboard.index'));
