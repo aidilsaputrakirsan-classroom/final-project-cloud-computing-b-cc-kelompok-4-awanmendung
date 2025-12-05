@@ -140,6 +140,7 @@
         }
     </style>
 </head>
+
 <script type="module">
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
@@ -149,62 +150,65 @@ const SUPABASE_ANON_KEY =
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Ambil user dari session Laravel
-const userId = "{{ session('supabase_user_id') }}";
+// ambil email user dari session Laravel
+const userEmail = @json(session('user_email'));
+console.log("EMAIL SESSION →", userEmail);
 
+// container card
 const container = document.querySelector(".blog_left_sidebar");
 
-if (!userId || userId === "" || userId === "null") {
+// cek login
+if (!userEmail) {
     container.innerHTML = `
         <p style="text-align:center;">
             Kamu belum login.<br>
             <a href="/login" style="color:blue;">Login dulu untuk melihat bookmark.</a>
         </p>
     `;
-    throw new Error("User tidak login");
+    throw new Error("User belum login");
 }
 
-// --- LOAD BOOKMARKS DARI SUPABASE ---
+// Load bookmarks
 async function loadBookmarks() {
-    container.innerHTML = `<p>Sedang mengambil data...</p>`;
+    container.innerHTML = `<p style="text-align:center;">Sedang memuat data...</p>`;
 
     const { data, error } = await supabase
         .from("bookmarks")
-        .select("recipe_slug")
-        .eq("user_id", userId);
+        .select("*")
+        .eq("user_email", userEmail)
+        .order("created_at", { ascending: false });
 
     if (error) {
-        console.error(error);
-        container.innerHTML = "<p style='color:red;'>⚠ Gagal mengambil bookmark dari Supabase.</p>";
+        console.error("Error load bookmarks:", error);
+        container.innerHTML = "<p style='color:red;'>Gagal memuat bookmarks.</p>";
         return;
     }
 
     if (!data.length) {
-        container.innerHTML = "<p>Tidak ada resep tersimpan.</p>";
+        container.innerHTML = "<p style='text-align:center;'>Tidak ada bookmark tersimpan.</p>";
         return;
     }
 
-    container.innerHTML = "";
-    data.forEach(item => container.innerHTML += createCard(item.recipe_slug));
-}
+    container.innerHTML = ""; // kosongkan
 
-function createCard(slug) {
-    const title = slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-    const url = "/recipes_details?slug=" + slug;
-
-    return `
+    data.forEach(item => {
+        container.innerHTML += `
         <article class="blog_item">
             <div class="blog_item_img">
-                <img class="card-img rounded-0" src="/img/recepie/recepie_details.png" alt="${title}">
+                <img src="${item.recipe_image || '/img/noimage.jpg'}"
+                    alt="${item.recipe_name}"
+                    class="card-img rounded-0">
             </div>
             <div class="blog_details">
-                <a class="d-inline-block" href="${url}">
-                    <h2>${title}</h2>
+                <a class="d-inline-block"
+                    href="/recipes_details?id=${item.recipe_slug}">
+                    <h2>${item.recipe_name}</h2>
                 </a>
-                <p>Resep ini tersimpan di akunmu.</p>
+                <p>${item.recipe_category || '-'}</p>
             </div>
         </article>
-    `;
+        `;
+    });
 }
 
 loadBookmarks();

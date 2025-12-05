@@ -18,8 +18,8 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::post('/logout', function () {
-    session()->forget('supabase_token');
-    return redirect('/index.php');
+    session()->flush();
+    return redirect('/');
 })->name('logout');
 
 // =====================
@@ -33,7 +33,7 @@ Route::get('/blog', fn() => view('home.blog'));
 Route::get('/contact', fn() => view('home.contact'));
 Route::get('/elements', fn() => view('home.elements'));
 Route::get('/recipes', fn() => view('home.recipes'));
-Route::get('/bookmarks', fn() => view('home.bookmarks'));
+Route::get('/bookmarks', fn() => view('bookmarks'));
 
 
 // =====================

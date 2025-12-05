@@ -341,17 +341,18 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
-                                <a href="index">
+                                <a href="/">
                                     <img src="img/resepinid_logofix.png" alt="Logo resepin.id">
                                 </a>
                             </div>
+
                         </div>
                         <div class="col-xl-6 col-lg-7">
     <div class="main-menu white_text d-none d-lg-block">
         <nav>
             <ul id="navigation">
                 <li>
-                    <a href="/index"
+                    <a href="/"
                        style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
                         Beranda
                     </a>

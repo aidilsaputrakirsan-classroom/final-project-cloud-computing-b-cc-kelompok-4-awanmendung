@@ -514,7 +514,10 @@
                                     <li><a href="/recipes">Resep</a></li>
                                     <li><a href="/bookmarks">Bookmarks</a></li>
                                     <li><a href="/contact">Kontak</a></li>
-                          <div class="col-12">
+                                </ul>
+                                    </nav>
+                                </div>
+                            <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
                     </div>
                 </div>
@@ -750,7 +753,7 @@
 
   // RECIPE SLUG dari URL (?slug=… atau fallback ?id=…)
   const params = new URLSearchParams(window.location.search);
-  window.recipeSlug = params.get("slug") || params.get("id");
+  window.recipeSlug = params.get("id");
 
   console.log("🔎 recipeSlug:", window.recipeSlug);
 </script>
@@ -766,6 +769,46 @@
   if (commentWrapEl && window.recipeSlug) {
     commentWrapEl.dataset.recipeSlug = window.recipeSlug;
   }
+</script>
+
+<script>
+async function loadRecipe() {
+  const supabase = window.supabaseClient;
+  const id = window.recipeSlug;
+
+  const { data, error } = await supabase
+    .from("recipes")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error("❌ Gagal load resep:", error);
+    document.getElementById("nama_resep").innerText = "Resep tidak ditemukan";
+    alert("Resep tidak ditemukan.");
+    return;
+  }
+
+  // simpan id ke global supaya bookmark bisa pakai
+  window.currentRecipeId = data.id;
+
+  document.getElementById("nama_resep").innerText   = data.nama_resep;
+  document.getElementById("gambar_resep").src       = data.gambar || "/img/noimage.jpg";
+  document.getElementById("kategori_resep").innerText = data.kategori || "-";
+
+  // untuk sekarang kamu pakai deskripsi untuk bahan & langkah
+  document.getElementById("bahan_resep").innerHTML = (data.deskripsi || "")
+    .split("\n")
+    .map(i => `<li>${i}</li>`)
+    .join("");
+
+  document.getElementById("langkah_resep").innerHTML = (data.deskripsi || "")
+    .split("\n")
+    .map(s => `<li>${s}</li>`)
+    .join("");
+}
+
+loadRecipe();
 </script>
 
 <!-- ====================== LIKE & COMMENT (Supabase) ====================== -->
@@ -938,38 +981,7 @@ async function toggleLike() {
 }
 
   // -------------------------- SAVE / BOOKMARK --------------------------
-  (function initSave() {
-    const LS_KEY = "resepin-saved-recipes";
 
-    function getSaved() {
-      try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; }
-      catch { return []; }
-    }
-    function setSaved(list) {
-      localStorage.setItem(LS_KEY, JSON.stringify(list));
-    }
-
-    let savedList = getSaved();
-    let isSaved   = savedList.includes(recipeSlug);
-
-    saveBtn.classList.toggle("saved", isSaved);
-
-    saveBtn.onclick = () => {
-      savedList = getSaved();
-      isSaved   = savedList.includes(recipeSlug);
-
-      if (isSaved) {
-        savedList = savedList.filter(slug => slug !== recipeSlug);
-        alert("Resep dihapus dari bookmarks.");
-      } else {
-        savedList.push(recipeSlug);
-        alert("Resep disimpan ke bookmarks.");
-      }
-
-      setSaved(savedList);
-      saveBtn.classList.toggle("saved", !isSaved);
-    };
-  })();
 
   // -------------------------- EVENT BIND --------------------------
   likeBtn.onclick = toggleLike;                     // ⬅ cuma 1 handler
@@ -983,6 +995,86 @@ async function toggleLike() {
   loadComments();
 })();
 </script>
+
+<!-- ====================== SAVE / BOOKMARK (SUPABASE) ====================== -->
+<script>
+(function () {
+  const supabase = window.supabaseClient;
+  const saveBtn  = document.querySelector(".btn-save");
+
+  if (!supabase || !saveBtn) {
+    console.warn("Supabase atau tombol save belum siap");
+    return;
+  }
+
+  saveBtn.addEventListener("click", async () => {
+    // wajib login dulu
+    if (!window.isLoggedIn) {
+      alert("Silakan login untuk menyimpan resep.");
+      window.location.href = "/login";
+      return;
+    }
+
+    // pakai EMAIL dari session Laravel
+    const userEmail = "{{ session('user_email') }}";
+    const recipeId  = window.currentRecipeId || (window.recipeSlug ? parseInt(window.recipeSlug, 10) : null);
+
+    console.log("🔖 Bookmark klik -> userEmail:", userEmail, "recipeId:", recipeId);
+
+    if (!userEmail) {
+      alert("Email user di session kosong. Pastikan session('user_email') di-set saat login.");
+      return;
+    }
+
+    if (!recipeId) {
+      alert("Resep belum termuat dengan benar.");
+      return;
+    }
+
+    // cek apakah sudah pernah disimpan
+    const { data: existing, error: existErr } = await supabase
+      .from("bookmarks")
+      .select("id")
+      .eq("user_email", userEmail)
+      .eq("recipe_id", recipeId)
+      .maybeSingle();
+
+    if (existErr) {
+      console.error("❌ Error cek bookmark:", existErr);
+      alert("Gagal mengecek bookmark: " + (existErr.message || JSON.stringify(existErr)));
+      return;
+    }
+
+    if (existing) {
+      alert("Resep sudah tersimpan di Bookmarks.");
+      saveBtn.classList.add("saved");
+      return;
+    }
+
+    // insert baru
+    const { error: insertErr } = await supabase
+      .from("bookmarks")
+     .insert([{
+        user_email: userEmail,
+        recipe_slug: recipeSlug,
+        recipe_name: data.nama_resep,
+        recipe_image: data.gambar,
+        recipe_category: data.kategori
+    }]);
+
+
+    if (insertErr) {
+      console.error("❌ Gagal insert bookmark:", insertErr);
+      alert("Gagal menyimpan: " + (insertErr.message || JSON.stringify(insertErr)));
+      return;
+    }
+
+    saveBtn.classList.add("saved");
+    alert("Berhasil ditambahkan ke Bookmarks!");
+  });
+})();
+</script>
+
 
 <!-- ====================== RATING (boleh tetap terpisah) ====================== -->
 <script>
