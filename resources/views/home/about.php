@@ -371,7 +371,7 @@
                 <div class="trand_info text-center">
                     <p>Ribuan resep menunggu untuk kamu coba</p>
                     <h3 style="font-weight: 700;">Temukan Resep Terbaru yang Sedang Populer</h3>
-                    <a href="recipes.php" class="boxed-btn3" style="margin-top: 20px;">Lihat Semua Resep</a>
+                    <a href="recipes" class="boxed-btn3" style="margin-top: 20px;">Lihat Semua Resep</a>
                 </div>
             </div>
         </div>

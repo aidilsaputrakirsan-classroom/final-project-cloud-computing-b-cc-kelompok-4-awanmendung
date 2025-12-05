@@ -567,8 +567,7 @@
             <div class="recipe-main-content">
 
                 <!-- Gambar Resep (Dynamic) -->
-                <img id="gambar_resep" class="recipe-image"
-                    src="assets/img/no-image.jpg" alt="Gambar Resep">
+                <img id="gambar_resep" class="recipe-image">
 
                 <div class="recipe-action-panel">
 
@@ -794,23 +793,10 @@ async function loadRecipe() {
   }
 
   const { data, error } = await supabase
-    .from("recipes")
+    .from("resep")
     .select("*")
     .eq("id", id)
     .maybeSingle();
-
-  if (error) {
-    console.error("❌ Supabase error:", error);
-
-    console.error("Gagal memuat resep.", error);
-    return;
-
-  }
-
-  if (!data) {
-    console.warn("Resep tidak ditemukan.");
-    return;
-  }
 
   // =====================================
   // Jika data tersedia → tampilkan
