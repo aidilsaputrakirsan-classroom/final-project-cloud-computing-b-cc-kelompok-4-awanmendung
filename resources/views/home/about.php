@@ -315,7 +315,6 @@
                                             </a>
                                         </li>
                                         <li><a href="recipes">Resep</a></li>
-                                       <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
                                         <li><a href="contact">Kontak</a></li>
 
                                 </nav>

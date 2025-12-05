@@ -363,7 +363,6 @@
                                         <li><a href="index.php">Beranda</a></li>
                                         <li><a href="about">Tentang</a></li>
                                         <li><a href="recipes">Resep</a></li>
-                                        <li><a href="bookmarks">Bookmarks</a></li>
                                         <li>
                                             <a href="contact.php"
                                                style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">
