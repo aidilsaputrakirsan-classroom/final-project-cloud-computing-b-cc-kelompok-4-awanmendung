@@ -3,7 +3,6 @@ name: 🚀 Auto Deploy ke STB
 on:
   push:
     branches:
-      - main
       - development
 
 jobs:
@@ -22,17 +21,30 @@ jobs:
 
       - name: 🚀 Upload ke STB Server
         id: deploy
+        env:
+          REPO_NAME: ${{ github.repository }}   # contoh: aidil/project
         run: |
-          echo "🚀 Uploading ${{ github.repository }}..."
+          echo "🚀 Uploading $REPO_NAME..."
+
+          echo "📂 Cek deploy.zip:"
+          ls -lh deploy.zip || echo "deploy.zip TIDAK ADA!"
+
+          if [ ! -f deploy.zip ]; then
+            echo "❌ deploy.zip tidak ditemukan. Deploy dihentikan."
+            exit 1
+          fi
+
           RESPONSE=$(curl -s -S -k -m 60 --connect-timeout 10 \
             -X POST \
-            -F "repo=${{ github.event.repository.name }}" \
-            -F "file=@deploy.zip" \
+            -F "repo=$REPO_NAME" \
+            -F "file=@deploy.zip;type=application/zip" \
             "https://deploy.akhzafachrozy.my.id/")
+
+          echo "💬 Respons server:"
           echo "$RESPONSE"
-          
-          # Ambil port dari respons
+
           PORT=$(echo "$RESPONSE" | grep -oP '(?<=Port:\s)\d+')
+
           if [ -z "$PORT" ]; then
             echo "⚠ Port tidak terdeteksi!"
           else
@@ -42,6 +54,6 @@ jobs:
 
       - name: ✅ Selesai
         run: |
-          echo "🎉 Deploy sukses!"
+          echo "🎉 Deploy selesai!"
           echo "🔗 Log server: /var/log/autodeploy_${{ github.event.repository.name }}.log"
-          echo "🌐 Port aktif: ${{ steps.deploy.outputs.port }}"
+          echo "🌐 Port aktif: ${{ steps.deploy.outputs.port }}"
