@@ -494,19 +494,14 @@
     </div>
 </div>
 
-    <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-
-   
+<footer class="footer">
         <div class="copy-right_text">
             <div class="container">
                 <div class="footer_border"></div>
                 <div class="row">
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
-                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Hak cipta dilindungi.
+                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Kelompok 4.
                         </p>
                     </div>
                 </div>

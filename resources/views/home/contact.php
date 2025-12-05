@@ -416,52 +416,6 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
-                    <h2 class="contact-title">Get in Touch</h2>
-                </div>
-                <div class="col-lg-8">
-                    <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
-                                              onfocus="this.placeholder = ''"
-                                              onblur="this.placeholder = 'Enter Message'"
-                                              placeholder="Enter Message"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input class="form-control" name="name" id="name" type="text"
-                                           onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Enter your name'"
-                                           placeholder="Enter your name">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input class="form-control" name="email" id="email" type="email"
-                                           onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Enter email address'"
-                                           placeholder="Enter email address">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input class="form-control" name="subject" id="subject" type="text"
-                                           onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Enter Subject'"
-                                           placeholder="Enter Subject">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <button type="submit" class="button button-contactForm btn_4 boxed-btn">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                </div>
 
                 <div class="col-lg-4">
                     <div class="media contact-info">
@@ -494,80 +448,13 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Layanan Utama</h3>
-                            <ul>
-                                <li><a href="#">Website Resep</a></li>
-                                <li><a href="#">Pengaturan Koleksi Resep</a></li>
-                                <li><a href="#">Alat Bantu Memasak</a></li>
-                                <li><a href="#">Layanan Promosi</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Tautan Cepat</h3>
-                            <ul>
-                                <li><a href="#">Karier</a></li>
-                                <li><a href="#">Aset Brand</a></li>
-                                <li><a href="#">Hubungan Investor</a></li>
-                                <li><a href="#">Syarat Layanan</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Fitur</h3>
-                            <ul>
-                                <li><a href="#">Resep Tersimpan</a></li>
-                                <li><a href="#">Mode Memasak</a></li>
-                                <li><a href="#">Rating &amp; Ulasan</a></li>
-                                <li><a href="#">Berbagi ke Teman</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Sumber Daya</h3>
-                            <ul>
-                                <li><a href="#">Panduan Memasak</a></li>
-                                <li><a href="#">Artikel &amp; Riset</a></li>
-                                <li><a href="#">Tips dari Ahli</a></li>
-                                <li><a href="#">Komunitas &amp; Mitra</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Berlangganan</h3>
-                            <p class="newsletter_text">Dapatkan info resep dan tren masakan terbaru langsung ke email kamu.</p>
-                            <form action="#" class="newsletter_form">
-                                <input type="email" placeholder="Masukkan email kamu">
-                                <button type="submit"><i class="ti-angle-right"></i></button>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
         <div class="copy-right_text">
             <div class="container">
                 <div class="footer_border"></div>
                 <div class="row">
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
-                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Hak cipta dilindungi.
+                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Kelompok 4.
                         </p>
                     </div>
                 </div>
