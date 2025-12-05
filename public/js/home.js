@@ -4,18 +4,24 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 // Konfigurasi Supabase kamu
 const SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
 const SUPABASE_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTMyODUwOCwiZXhwIjoyMDc2OTA0NTA4fQ.W6jf7DpnbdTmOAWBhV0NwFlfhKGQC62crCT-rfKoap8";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjg1MDgsImV4cCI6MjA3NjkwNDUwOH0.E_VI8-raJ3jRPAQc079j6jAhluiC4lSCmtIN9gMND6g";
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Element container resep
+// Element container
 const recipeContainer = document.getElementById("home_resep");
 const moreButtonContainer = document.getElementById("resep_lainnya_btn");
+const favoriteContainer = document.getElementById("favorite_recipes_container");
 
-// Load resep dari database
+// =========================================
+// 🚀 Load Resep Terbaru
+// =========================================
 async function loadRecipes() {
     const { data, error, count } = await supabase
         .from("resep")
-        .select("id, nama_resep, kategori, gambar", { count: "exact" })
+        .select("id, nama_resep, kategori, gambar", {
+            count: "exact",
+            head: false,
+        })
         .order("id", { ascending: false })
         .limit(3);
 
@@ -31,24 +37,18 @@ async function loadRecipes() {
         <div class="col-xl-4 col-lg-4 col-md-6">
             <div class="single_recepie text-center">
                 <div class="recepie_thumb">
-                    <img src="${
-                        item.gambar || "assets/img/no-image.jpg"
-                    }" alt="${item.nama_resep}">
+                    <img src="${item.gambar || "assets/img/no-image.jpg"}" 
+                        alt="${item.nama_resep}">
                 </div>
-
                 <h3 class="recipe_title">${item.nama_resep}</h3>
-                <span class="recipe_category">${
-                    item.kategori ?? "Tanpa kategori"
-                }</span>
-
-                <a href="recipes_details?id=${
-                    item.id
-                }" class="line_btn recipe-btn">
+                <span class="recipe_category">
+                    ${item.kategori ?? "Tanpa kategori"}
+                </span>
+                <a href="recipes_details?id=${item.id}" class="line_btn">
                     Lihat Resep Lengkap
                 </a>
             </div>
-        </div>
-    `
+        </div>`
         )
         .join("");
 
@@ -56,8 +56,7 @@ async function loadRecipes() {
         moreButtonContainer.innerHTML = `
             <div class="text-center mt-4">
                 <a href="recipes" class="boxed-btn3">Lihat Resep Lainnya</a>
-            </div>
-        `;
+            </div>`;
     }
 }
 

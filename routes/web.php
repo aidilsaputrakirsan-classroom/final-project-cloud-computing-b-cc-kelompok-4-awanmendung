@@ -18,8 +18,8 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::post('/logout', function () {
-    session()->forget('supabase_token');
-    return redirect('/index.php');
+    session()->flush();
+    return redirect('/');
 })->name('logout');
 
 // =====================
@@ -33,7 +33,7 @@ Route::get('/blog', fn() => view('home.blog'));
 Route::get('/contact', fn() => view('home.contact'));
 Route::get('/elements', fn() => view('home.elements'));
 Route::get('/recipes', fn() => view('home.recipes'));
-Route::get('/bookmarks', fn() => view('home.bookmarks'));
+
 
 // =====================
 // RECIPE DETAIL PAGES (Menggunakan nama file yang benar)
@@ -46,6 +46,10 @@ Route::get('/recipes_details', function () {
 Route::get('/recipes_details/{slug}', function ($slug) {
     return view('home.recipes_details', compact('slug'));
 })->name('recipe.detail.slug');
+
+Route::get('/galeri', function () {
+    return view('home.galeri');
+});
 
 Route::middleware(['checkSupabase'])->group(function () {
 
@@ -61,6 +65,6 @@ Route::middleware(['checkSupabase'])->group(function () {
     Route::get('/saran_resep', fn() => view('dashboard.saran_resep'));
     Route::get('/view_saranresep', fn() => view('dashboard.view_saranresep'));
     Route::get('/activity_logs', fn() => view('dashboard.activity_logs'));
-    Route::get('/view_activityLogs', fn() => view('dashboard.view_activityLogs'));
+    Route::get('/view_activitylogs', fn() => view('dashboard.view_activitylogs'));
 
 });

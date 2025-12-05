@@ -315,7 +315,6 @@
                                             </a>
                                         </li>
                                         <li><a href="recipes">Resep</a></li>
-                                       <li><a href="bookmarks">Bookmarks <Bookmarks></a></li>
                                         <li><a href="contact">Kontak</a></li>
 
                                 </nav>
@@ -372,7 +371,7 @@
                 <div class="trand_info text-center">
                     <p>Ribuan resep menunggu untuk kamu coba</p>
                     <h3 style="font-weight: 700;">Temukan Resep Terbaru yang Sedang Populer</h3>
-                    <a href="recipes.php" class="boxed-btn3" style="margin-top: 20px;">Lihat Semua Resep</a>
+                    <a href="recipes" class="boxed-btn3" style="margin-top: 20px;">Lihat Semua Resep</a>
                 </div>
             </div>
         </div>
@@ -381,79 +380,13 @@
 
  <!-- FOOTER -->
    <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Layanan Utama</h3>
-                            <ul>
-                                <li><a href="#">Website Resep</a></li>
-                                <li><a href="#">Pengaturan Koleksi Resep</a></li>
-                                <li><a href="#">Alat Bantu Memasak</a></li>
-                                <li><a href="#">Layanan Promosi</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Tautan Cepat</h3>
-                            <ul>
-                                <li><a href="#">Karier</a></li>
-                                <li><a href="#">Aset Brand</a></li>
-                                <li><a href="#">Hubungan Investor</a></li>
-                                <li><a href="#">Syarat Layanan</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Fitur</h3>
-                            <ul>
-                                <li><a href="#">Resep Tersimpan</a></li>
-                                <li><a href="#">Mode Memasak</a></li>
-                                <li><a href="#">Rating &amp; Ulasan</a></li>
-                                <li><a href="#">Berbagi ke Teman</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Sumber Daya</h3>
-                            <ul>
-                                <li><a href="#">Panduan Memasak</a></li>
-                                <li><a href="#">Artikel &amp; Riset</a></li>
-                                <li><a href="#">Tips dari Ahli</a></li>
-                                <li><a href="#">Komunitas &amp; Mitra</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Berlangganan</h3>
-                            <p class="newsletter_text">Dapatkan info resep dan tren masakan terbaru langsung ke email kamu.</p>
-                            <form action="#" class="newsletter_form">
-                                <input type="email" placeholder="Masukkan email kamu">
-                                <button type="submit"><i class="ti-angle-right"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="copy-right_text">
             <div class="container">
                 <div class="footer_border"></div>
                 <div class="row">
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
-                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Hak cipta dilindungi.
+                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Kelompok 4.
                         </p>
                     </div>
                 </div>
