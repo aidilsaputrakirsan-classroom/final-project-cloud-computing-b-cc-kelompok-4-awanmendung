@@ -19,26 +19,23 @@ jobs:
         run: |
           zip -r deploy.zip . -x ".git*" -x ".github*" -x "node_modules/*"
 
-      - name: 🚀 Upload ke STB Server
+           - name: 🚀 Upload ke STB Server (DEBUG MODE)
         id: deploy
         env:
-          REPO_NAME: ${{ github.repository }}   # contoh: aidil/project
+          REPO_NAME: ${{ github.repository }}
         run: |
           echo "🚀 Uploading $REPO_NAME..."
 
           echo "📂 Cek deploy.zip:"
-          ls -lh deploy.zip || echo "deploy.zip TIDAK ADA!"
+          ls -lh deploy.zip
 
-          if [ ! -f deploy.zip ]; then
-            echo "❌ deploy.zip tidak ditemukan. Deploy dihentikan."
-            exit 1
-          fi
-
-          RESPONSE=$(curl -s -S -k -m 60 --connect-timeout 10 \
+          echo "🔍 Running CURL tanpa silent mode..."
+          curl -v -k -m 60 --connect-timeout 10 \
             -X POST \
             -F "repo=$REPO_NAME" \
-            -F "file=@deploy.zip;type=application/zip" \
-            "https://deploy.akhzafachrozy.my.id/")
+            -F "file=@deploy.zip" \
+            "https://deploy.akhzafachrozy.my.id/"
+
 
           echo "💬 Respons server:"
           echo "$RESPONSE"
