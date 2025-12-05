@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
@@ -19,38 +20,24 @@ jobs:
         run: |
           zip -r deploy.zip . -x ".git*" -x ".github*" -x "node_modules/*"
 
-           - name: 🚀 Upload ke STB Server (DEBUG MODE)
+      - name: 🚀 Upload ke STB Server (DEBUG MODE)
         id: deploy
         env:
           REPO_NAME: ${{ github.repository }}
         run: |
-          echo "🚀 Uploading $REPO_NAME..."
-
+          echo "🚀 Uploading $REPO_NAME"
+          
           echo "📂 Cek deploy.zip:"
           ls -lh deploy.zip
 
-          echo "🔍 Running CURL tanpa silent mode..."
+          echo "🔍 Mulai CURL (verbose mode)..."
+
           curl -v -k -m 60 --connect-timeout 10 \
             -X POST \
             -F "repo=$REPO_NAME" \
             -F "file=@deploy.zip" \
             "https://deploy.akhzafachrozy.my.id/"
 
-
-          echo "💬 Respons server:"
-          echo "$RESPONSE"
-
-          PORT=$(echo "$RESPONSE" | grep -oP '(?<=Port:\s)\d+')
-
-          if [ -z "$PORT" ]; then
-            echo "⚠ Port tidak terdeteksi!"
-          else
-            echo "🌐 Aplikasi berjalan di port: $PORT"
-            echo "port=$PORT" >> $GITHUB_OUTPUT
-          fi
-
       - name: ✅ Selesai
         run: |
-          echo "🎉 Deploy selesai!"
-          echo "🔗 Log server: /var/log/autodeploy_${{ github.event.repository.name }}.log"
-          echo "🌐 Port aktif: ${{ steps.deploy.outputs.port }}"
+          echo "🎉 Deploy job selesai (walaupun error, sekarang kita dapat debug penuh)"
