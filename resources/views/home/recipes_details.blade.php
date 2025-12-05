@@ -9,7 +9,7 @@
         cursor: pointer;
         user-select: none;
       }
-      
+
       .rating-interactive .star {
         font-size: 28px;
         color: #ddd;
@@ -17,48 +17,48 @@
         display: inline-block;
         position: relative;
       }
-      
+
       .rating-interactive .star.filled {
         color: #ffd700;
       }
-      
+
       /* Animasi hover berbeda untuk setiap rating */
       .rating-interactive[data-hover="1"] .star:nth-child(-n+1) {
         color: #ff4444;
         transform: scale(1.3) rotate(-15deg);
         filter: drop-shadow(0 0 8px rgba(255, 68, 68, 0.6));
       }
-      
+
       .rating-interactive[data-hover="2"] .star:nth-child(-n+2) {
         color: #ff8c42;
         transform: scale(1.25) rotate(-10deg);
         filter: drop-shadow(0 0 8px rgba(255, 140, 66, 0.5));
       }
-      
+
       .rating-interactive[data-hover="3"] .star:nth-child(-n+3) {
         color: #ffd93d;
         transform: scale(1.2) rotate(-5deg);
         filter: drop-shadow(0 0 8px rgba(255, 217, 61, 0.5));
       }
-      
+
       .rating-interactive[data-hover="4"] .star:nth-child(-n+4) {
         color: #6bcf7f;
         transform: scale(1.15) rotate(5deg);
         filter: drop-shadow(0 0 8px rgba(107, 207, 127, 0.5));
       }
-      
+
       .rating-interactive[data-hover="5"] .star:nth-child(-n+5) {
         color: #4ecdc4;
         transform: scale(1.3) rotate(10deg);
         filter: drop-shadow(0 0 12px rgba(78, 205, 196, 0.7));
         animation: sparkle 0.6s ease-in-out;
       }
-      
+
       @keyframes sparkle {
         0%, 100% { transform: scale(1.3) rotate(10deg); }
         50% { transform: scale(1.4) rotate(15deg); }
       }
-      
+
       /* Efek bounce saat di-click */
       .rating-interactive .star.clicked {
         animation: bounce 0.5s ease;
@@ -66,21 +66,21 @@
       .rating-interactive .star {
       cursor: pointer;
       }
-      
+
       @keyframes bounce {
         0%, 100% { transform: scale(1) translateY(0); }
         25% { transform: scale(1.2) translateY(-10px); }
         50% { transform: scale(1.1) translateY(-5px); }
         75% { transform: scale(1.15) translateY(-7px); }
       }
-      
+
       .rating-text {
         margin-left: 10px;
         font-weight: 600;
         color: #666;
         transition: all 0.3s ease;
       }
-      
+
       .rating-interactive[data-hover="1"] ~ .rating-text { color: #ff4444; }
       .rating-interactive[data-hover="2"] ~ .rating-text { color: #ff8c42; }
       .rating-interactive[data-hover="3"] ~ .rating-text { color: #ffd93d; }
@@ -786,37 +786,48 @@
 <script>
 async function loadRecipe() {
   const supabase = window.supabaseClient;
-  const id = window.recipeSlug;
+  const id = parseInt(window.recipeSlug, 10);
+
+  if (!id) {
+    alert("ID resep tidak valid");
+    return;
+  }
 
   const { data, error } = await supabase
     .from("recipes")
     .select("*")
     .eq("id", id)
-    .single();
+    .maybeSingle();
 
   if (error) {
-    console.error("❌ Gagal load resep:", error);
-    document.getElementById("nama_resep").innerText = "Resep tidak ditemukan";
-    alert("Resep tidak ditemukan.");
+    console.error("❌ Supabase error:", error);
+
+    console.error("Gagal memuat resep.", error);
+    return;
+
+  }
+
+  if (!data) {
+    console.warn("Resep tidak ditemukan.");
     return;
   }
 
-  // simpan id ke global supaya bookmark bisa pakai
+  // =====================================
+  // Jika data tersedia → tampilkan
+  // =====================================
   window.currentRecipeId = data.id;
-
-  document.getElementById("nama_resep").innerText   = data.nama_resep;
-  document.getElementById("gambar_resep").src       = data.gambar || "/img/noimage.jpg";
+  document.getElementById("nama_resep").innerText = data.nama_resep;
+  document.getElementById("gambar_resep").src = data.gambar || "/img/noimage.jpg";
   document.getElementById("kategori_resep").innerText = data.kategori || "-";
 
-  // untuk sekarang kamu pakai deskripsi untuk bahan & langkah
-  document.getElementById("bahan_resep").innerHTML = (data.deskripsi || "")
+  document.getElementById("bahan_resep").innerHTML = (data.bahan || "")
     .split("\n")
     .map(i => `<li>${i}</li>`)
     .join("");
 
-  document.getElementById("langkah_resep").innerHTML = (data.deskripsi || "")
+  document.getElementById("langkah_resep").innerHTML = (data.langkah || "")
     .split("\n")
-    .map(s => `<li>${s}</li>`)
+    .map(i => `<li>${i}</li>`)
     .join("");
 }
 
