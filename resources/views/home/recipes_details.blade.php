@@ -9,7 +9,7 @@
         cursor: pointer;
         user-select: none;
       }
-      
+
       .rating-interactive .star {
         font-size: 28px;
         color: #ddd;
@@ -17,48 +17,48 @@
         display: inline-block;
         position: relative;
       }
-      
+
       .rating-interactive .star.filled {
         color: #ffd700;
       }
-      
+
       /* Animasi hover berbeda untuk setiap rating */
       .rating-interactive[data-hover="1"] .star:nth-child(-n+1) {
         color: #ff4444;
         transform: scale(1.3) rotate(-15deg);
         filter: drop-shadow(0 0 8px rgba(255, 68, 68, 0.6));
       }
-      
+
       .rating-interactive[data-hover="2"] .star:nth-child(-n+2) {
         color: #ff8c42;
         transform: scale(1.25) rotate(-10deg);
         filter: drop-shadow(0 0 8px rgba(255, 140, 66, 0.5));
       }
-      
+
       .rating-interactive[data-hover="3"] .star:nth-child(-n+3) {
         color: #ffd93d;
         transform: scale(1.2) rotate(-5deg);
         filter: drop-shadow(0 0 8px rgba(255, 217, 61, 0.5));
       }
-      
+
       .rating-interactive[data-hover="4"] .star:nth-child(-n+4) {
         color: #6bcf7f;
         transform: scale(1.15) rotate(5deg);
         filter: drop-shadow(0 0 8px rgba(107, 207, 127, 0.5));
       }
-      
+
       .rating-interactive[data-hover="5"] .star:nth-child(-n+5) {
         color: #4ecdc4;
         transform: scale(1.3) rotate(10deg);
         filter: drop-shadow(0 0 12px rgba(78, 205, 196, 0.7));
         animation: sparkle 0.6s ease-in-out;
       }
-      
+
       @keyframes sparkle {
         0%, 100% { transform: scale(1.3) rotate(10deg); }
         50% { transform: scale(1.4) rotate(15deg); }
       }
-      
+
       /* Efek bounce saat di-click */
       .rating-interactive .star.clicked {
         animation: bounce 0.5s ease;
@@ -66,21 +66,21 @@
       .rating-interactive .star {
       cursor: pointer;
       }
-      
+
       @keyframes bounce {
         0%, 100% { transform: scale(1) translateY(0); }
         25% { transform: scale(1.2) translateY(-10px); }
         50% { transform: scale(1.1) translateY(-5px); }
         75% { transform: scale(1.15) translateY(-7px); }
       }
-      
+
       .rating-text {
         margin-left: 10px;
         font-weight: 600;
         color: #666;
         transition: all 0.3s ease;
       }
-      
+
       .rating-interactive[data-hover="1"] ~ .rating-text { color: #ff4444; }
       .rating-interactive[data-hover="2"] ~ .rating-text { color: #ff8c42; }
       .rating-interactive[data-hover="3"] ~ .rating-text { color: #ffd93d; }
@@ -567,8 +567,7 @@
             <div class="recipe-main-content">
 
                 <!-- Gambar Resep (Dynamic) -->
-                <img id="gambar_resep" class="recipe-image"
-                    src="assets/img/no-image.jpg" alt="Gambar Resep">
+                <img id="gambar_resep" class="recipe-image">
 
                 <div class="recipe-action-panel">
 
@@ -637,79 +636,13 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Layanan Utama</h3>
-                            <ul>
-                                <li><a href="#">Website Resep</a></li>
-                                <li><a href="#">Pengaturan Koleksi Resep</a></li>
-                                <li><a href="#">Alat Bantu Memasak</a></li>
-                                <li><a href="#">Layanan Promosi</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Tautan Cepat</h3>
-                            <ul>
-                                <li><a href="#">Karier</a></li>
-                                <li><a href="#">Aset Brand</a></li>
-                                <li><a href="#">Hubungan Investor</a></li>
-                                <li><a href="#">Syarat Layanan</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Fitur</h3>
-                            <ul>
-                                <li><a href="#">Resep Tersimpan</a></li>
-                                <li><a href="#">Mode Memasak</a></li>
-                                <li><a href="#">Rating &amp; Ulasan</a></li>
-                                <li><a href="#">Berbagi ke Teman</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Sumber Daya</h3>
-                            <ul>
-                                <li><a href="#">Panduan Memasak</a></li>
-                                <li><a href="#">Artikel &amp; Riset</a></li>
-                                <li><a href="#">Tips dari Ahli</a></li>
-                                <li><a href="#">Komunitas &amp; Mitra</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">Berlangganan</h3>
-                            <p class="newsletter_text">Dapatkan info resep dan tren masakan terbaru langsung ke email kamu.</p>
-                            <form action="#" class="newsletter_form">
-                                <input type="email" placeholder="Masukkan email kamu">
-                                <button type="submit"><i class="ti-angle-right"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="copy-right_text">
             <div class="container">
                 <div class="footer_border"></div>
                 <div class="row">
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
-                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Hak cipta dilindungi.
+                            &copy; <script>document.write(new Date().getFullYear());</script> Resepin.id — Kelompok 4.
                         </p>
                     </div>
                 </div>
@@ -786,37 +719,35 @@
 <script>
 async function loadRecipe() {
   const supabase = window.supabaseClient;
-  const id = window.recipeSlug;
+  const id = parseInt(window.recipeSlug, 10);
 
-  const { data, error } = await supabase
-    .from("recipes")
-    .select("*")
-    .eq("id", id)
-    .single();
-
-  if (error) {
-    console.error("❌ Gagal load resep:", error);
-    document.getElementById("nama_resep").innerText = "Resep tidak ditemukan";
-    alert("Resep tidak ditemukan.");
+  if (!id) {
+    alert("ID resep tidak valid");
     return;
   }
 
-  // simpan id ke global supaya bookmark bisa pakai
-  window.currentRecipeId = data.id;
+  const { data, error } = await supabase
+    .from("resep")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle();
 
-  document.getElementById("nama_resep").innerText   = data.nama_resep;
-  document.getElementById("gambar_resep").src       = data.gambar || "/img/noimage.jpg";
+  // =====================================
+  // Jika data tersedia → tampilkan
+  // =====================================
+  window.currentRecipeId = data.id;
+  document.getElementById("nama_resep").innerText = data.nama_resep;
+  document.getElementById("gambar_resep").src = data.gambar || "/img/noimage.jpg";
   document.getElementById("kategori_resep").innerText = data.kategori || "-";
 
-  // untuk sekarang kamu pakai deskripsi untuk bahan & langkah
-  document.getElementById("bahan_resep").innerHTML = (data.deskripsi || "")
+  document.getElementById("bahan_resep").innerHTML = (data.bahan || "")
     .split("\n")
     .map(i => `<li>${i}</li>`)
     .join("");
 
-  document.getElementById("langkah_resep").innerHTML = (data.deskripsi || "")
+  document.getElementById("langkah_resep").innerHTML = (data.langkah || "")
     .split("\n")
-    .map(s => `<li>${s}</li>`)
+    .map(i => `<li>${i}</li>`)
     .join("");
 }
 
