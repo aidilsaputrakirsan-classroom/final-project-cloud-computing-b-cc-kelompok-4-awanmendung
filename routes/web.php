@@ -33,7 +33,6 @@ Route::get('/blog', fn() => view('home.blog'));
 Route::get('/contact', fn() => view('home.contact'));
 Route::get('/elements', fn() => view('home.elements'));
 Route::get('/recipes', fn() => view('home.recipes'));
-Route::get('/bookmarks', fn() => view('bookmarks'));
 
 
 // =====================

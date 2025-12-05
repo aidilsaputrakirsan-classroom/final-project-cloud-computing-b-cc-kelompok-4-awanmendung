@@ -2,74 +2,91 @@
 <html class="no-js" lang="zxx">
 
 <style>
-    /* CSS untuk Rating Bintang */
-.rating-box {
-    margin-top: 20px;
-    padding: 15px 20px;
-    border: 1px solid #e6e6e6;
-    border-radius: 10px;
-    text-align: center;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
+ /* ✨ Interactive Rating Styles */
+      .rating-interactive {
+        display: inline-flex;
+        gap: 4px;
+        cursor: pointer;
+        user-select: none;
+      }
+      
+      .rating-interactive .star {
+        font-size: 28px;
+        color: #ddd;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        display: inline-block;
+        position: relative;
+      }
+      
+      .rating-interactive .star.filled {
+        color: #ffd700;
+      }
+      
+      /* Animasi hover berbeda untuk setiap rating */
+      .rating-interactive[data-hover="1"] .star:nth-child(-n+1) {
+        color: #ff4444;
+        transform: scale(1.3) rotate(-15deg);
+        filter: drop-shadow(0 0 8px rgba(255, 68, 68, 0.6));
+      }
+      
+      .rating-interactive[data-hover="2"] .star:nth-child(-n+2) {
+        color: #ff8c42;
+        transform: scale(1.25) rotate(-10deg);
+        filter: drop-shadow(0 0 8px rgba(255, 140, 66, 0.5));
+      }
+      
+      .rating-interactive[data-hover="3"] .star:nth-child(-n+3) {
+        color: #ffd93d;
+        transform: scale(1.2) rotate(-5deg);
+        filter: drop-shadow(0 0 8px rgba(255, 217, 61, 0.5));
+      }
+      
+      .rating-interactive[data-hover="4"] .star:nth-child(-n+4) {
+        color: #6bcf7f;
+        transform: scale(1.15) rotate(5deg);
+        filter: drop-shadow(0 0 8px rgba(107, 207, 127, 0.5));
+      }
+      
+      .rating-interactive[data-hover="5"] .star:nth-child(-n+5) {
+        color: #4ecdc4;
+        transform: scale(1.3) rotate(10deg);
+        filter: drop-shadow(0 0 12px rgba(78, 205, 196, 0.7));
+        animation: sparkle 0.6s ease-in-out;
+      }
+      
+      @keyframes sparkle {
+        0%, 100% { transform: scale(1.3) rotate(10deg); }
+        50% { transform: scale(1.4) rotate(15deg); }
+      }
+      
+      /* Efek bounce saat di-click */
+      .rating-interactive .star.clicked {
+        animation: bounce 0.5s ease;
+      }
+      .rating-interactive .star {
+      cursor: pointer;
+      }
+      
+      @keyframes bounce {
+        0%, 100% { transform: scale(1) translateY(0); }
+        25% { transform: scale(1.2) translateY(-10px); }
+        50% { transform: scale(1.1) translateY(-5px); }
+        75% { transform: scale(1.15) translateY(-7px); }
+      }
+      
+      .rating-text {
+        margin-left: 10px;
+        font-weight: 600;
+        color: #666;
+        transition: all 0.3s ease;
+      }
+      
+      .rating-interactive[data-hover="1"] ~ .rating-text { color: #ff4444; }
+      .rating-interactive[data-hover="2"] ~ .rating-text { color: #ff8c42; }
+      .rating-interactive[data-hover="3"] ~ .rating-text { color: #ffd93d; }
+      .rating-interactive[data-hover="4"] ~ .rating-text { color: #6bcf7f; }
+      .rating-interactive[data-hover="5"] ~ .rating-text { color: #4ecdc4; }
 
-.rating-stars {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    font-size: 28px;
-    color: #ccc; /* Warna bintang default (kosong) */
-    cursor: pointer;
-    margin: 10px 0;
-}
-
-.star {
-    transition: color 0.15s, transform 0.1s;
-}
-
-/* Warna bintang terisi */
-.star.filled,
-.rating-stars:hover .star {
-    color: #f8b500;
-}
-
-/* Efek hover (mengisi hingga posisi kursor) */
-.rating-stars:hover .star:hover,
-.rating-stars:hover .star:hover ~ .star {
-    color: #ccc;
-}
-.rating-stars:hover .star:hover {
-    color: #f8b500;
-}
-.star.filled ~ .star {
-    color: #ccc; /* Pastikan bintang setelah yang terisi menjadi kosong */
-}
-
-/* Efek hover saat bintang diisi (berdasarkan data-hover) */
-.rating-stars[data-hover="1"] .star:nth-child(-n+1),
-.rating-stars[data-hover="2"] .star:nth-child(-n+2),
-.rating-stars[data-hover="3"] .star:nth-child(-n+3),
-.rating-stars[data-hover="4"] .star:nth-child(-n+4),
-.rating-stars[data-hover="5"] .star:nth-child(-n+5) {
-    color: #f8b500;
-}
-
-/* Efek Klik */
-.star.clicked {
-    animation: click-anim 0.5s ease-out;
-}
-@keyframes click-anim {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); color: #f8b500; }
-    100% { transform: scale(1); }
-}
-
-#rating-text {
-    font-weight: 600;
-    color: #555;
-    font-size: 1rem;
-    min-height: 1.5em; /* Jaga tinggi agar tidak bergeser */
-}
     :root {
         --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
@@ -512,7 +529,6 @@
                                     <li><a href="/index">Beranda</a></li>
                                     <li><a href="/about">Tentang</a></li>
                                     <li><a href="/recipes">Resep</a></li>
-                                    <li><a href="/bookmarks">Bookmarks</a></li>
                                     <li><a href="/contact">Kontak</a></li>
                                 </ul>
                                     </nav>
@@ -558,7 +574,7 @@
 
                     <!-- Rating Tetap -->
                        <div class="rating-box">
-                            <div id="rating-stars" class="rating-stars" data-recipe-slug="">
+                            <div id="rating-stars" class="rating-interactive" data-recipe-slug="">
                             <span class="star" data-value="1">★</span>
                             <span class="star" data-value="2">★</span>
                             <span class="star" data-value="3">★</span>
@@ -577,10 +593,6 @@
                         <button class="btn-comment-toggle" type="button">
                             <i class="fa fa-comment"></i>
                             <span class="comment-count">0</span> Komentar
-                        </button>
-                        <button class="btn-save" type="button">
-                            <i class="fa fa-bookmark"></i>
-                            Simpan
                         </button>
                     </div>
                 </div>
@@ -979,10 +991,6 @@ async function toggleLike() {
     alert("Komentar gagal tersimpan, coba lagi.");
   }
 }
-
-  // -------------------------- SAVE / BOOKMARK --------------------------
-
-
   // -------------------------- EVENT BIND --------------------------
   likeBtn.onclick = toggleLike;                     // ⬅ cuma 1 handler
   commentToggle.onclick = () => {
@@ -1077,19 +1085,21 @@ async function toggleLike() {
 
 
 <!-- ====================== RATING (boleh tetap terpisah) ====================== -->
-<script>
-(function(){
+ <script>
+(async function () {
   const SUPABASE_URL = "https://mybfahpmnpasjmhutmcr.supabase.co";
   const SUPABASE_ANON_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmZzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjg1MDgsImV4cCI6MjA3NjkwNDUwOH0.E_VI8-raJ3jRPAQc079j6jAhluiC4lSCmtIN9gMND6g";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YmZhaHBtbnBhc2ptaHV0bWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMjg1MDgsImV4cCI6MjA3NjkwNDUwOH0.E_VI8-raJ3jRPAQc079j6jAhluiC4lSCmtIN9gMND6g";
 
   const { createClient } = window.supabase;
   const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   const ratingContainer = document.getElementById("rating-stars");
-  const ratingText      = document.getElementById("rating-text");
-  const stars           = ratingContainer.querySelectorAll(".star");
-  const recipeId        = window.recipeSlug; // pakai slug/id yang sama
+  const ratingText = document.getElementById("rating-text");
+  const stars = [...ratingContainer.querySelectorAll(".star")];
+
+  // 🔥 Ini yang penting — Ambil slug dari URL
+  const recipeSlug = window.recipeSlug;
 
   const ratingMessages = {
     1: "Poor 😞",
@@ -1100,116 +1110,118 @@ async function toggleLike() {
   };
 
   let currentRating = 0;
+
+  // 🆔 Save user session ke local storage biar rating tetap
   let userSessionId = localStorage.getItem("user-session-id");
   if (!userSessionId) {
-    userSessionId = "user_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+    userSessionId =
+      "user_" +
+      Date.now() +
+      "_" +
+      Math.random().toString(36).substr(2, 9);
     localStorage.setItem("user-session-id", userSessionId);
   }
 
+  // =====================================================
+  // 🔄 LOAD EXISTING RATING
+  // =====================================================
   async function loadRating() {
-    try {
-      const { data: userRating, error: userError } = await supabase
-        .from("recipe_ratings")
-        .select("rating")
-        .eq("recipe_id", recipeId)
-        .eq("user_session_id", userSessionId)
-        .single();
+    const { data, error } = await supabase
+      .from("recipe_ratings")
+      .select("rating")
+      .eq("recipe_slug", recipeSlug)
+      .eq("user_session_id", userSessionId)
+      .maybeSingle();
 
-      if (userError && userError.code !== "PGRST116") {
-        console.error("Error loading user rating:", userError);
-      }
+    if (error && error.code !== "PGRST116") {
+      console.error("❌ Error load rating:", error);
+      return;
+    }
 
-      if (userRating) {
-        currentRating = userRating.rating;
-        updateStars(currentRating);
-        ratingText.textContent = ratingMessages[currentRating];
-      } else {
-        const { data: avgData, error: avgError } = await supabase
-          .from("recipe_ratings")
-          .select("rating")
-          .eq("recipe_id", recipeId);
-
-        if (avgError) {
-          console.error("Error loading average rating:", avgError);
-          ratingText.textContent = "Click to rate";
-          return;
-        }
-
-        if (avgData && avgData.length > 0) {
-          const avg = avgData.reduce((sum, item) => sum + item.rating, 0) / avgData.length;
-          ratingText.textContent = `Average: ${avg.toFixed(1)} ⭐ (${avgData.length} ratings)`;
-        } else {
-          ratingText.textContent = "Be the first to rate!";
-        }
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      ratingText.textContent = "Click to rate";
+    if (data) {
+      currentRating = data.rating;
+      updateStars(currentRating);
+      ratingText.textContent = ratingMessages[currentRating];
+    } else {
+      ratingText.textContent = "Click to rate ⭐";
     }
   }
 
+  // =====================================================
+  // ⭐ UPDATE UI BINTANG
+  // =====================================================
   function updateStars(rating) {
     stars.forEach((star, index) => {
-      if (index < rating) star.classList.add("filled");
-      else star.classList.remove("filled");
+      star.classList.toggle("filled", index < rating);
     });
   }
 
+  // =====================================================
+  // 📝 SIMPAN RATING
+  // =====================================================
   async function setRating(rating) {
     try {
-      const { data: existing, error: checkError } = await supabase
+      // cek apakah user sudah pernah rating
+      const { data: existing } = await supabase
         .from("recipe_ratings")
         .select("id")
-        .eq("recipe_id", recipeId)
+        .eq("recipe_slug", recipeSlug)
         .eq("user_session_id", userSessionId)
-        .single();
-
-      if (checkError && checkError.code !== "PGRST116") throw checkError;
+        .maybeSingle();
 
       if (existing) {
-        const { error: updateError } = await supabase
+        // update rating
+        await supabase
           .from("recipe_ratings")
           .update({ rating })
           .eq("id", existing.id);
-        if (updateError) throw updateError;
       } else {
-        const { error: insertError } = await supabase
-          .from("recipe_ratings")
-          .insert([{ recipe_id: recipeId, user_session_id: userSessionId, rating }]);
-        if (insertError) throw insertError;
+        // insert rating baru
+        await supabase.from("recipe_ratings").insert([
+          {
+            recipe_slug: recipeSlug,
+            user_session_id: userSessionId,
+            rating: rating,
+          },
+        ]);
       }
 
       currentRating = rating;
       updateStars(rating);
       ratingText.textContent = ratingMessages[rating];
-    } catch (error) {
-      console.error("Error saving rating:", error);
+    } catch (err) {
+      console.error("❌ Gagal simpan rating:", err);
       alert("Failed to save rating. Please try again.");
     }
   }
 
-  loadRating();
-
-  stars.forEach(star => {
+  // =====================================================
+  // 🎯 EVENT LISTENER
+  // =====================================================
+  stars.forEach((star) => {
     star.addEventListener("mouseenter", function () {
-      const hoverValue = this.dataset.value;
-      ratingContainer.setAttribute("data-hover", hoverValue);
-      ratingText.textContent = ratingMessages[hoverValue];
+      ratingText.textContent = ratingMessages[this.dataset.value];
     });
 
     star.addEventListener("click", function () {
-      const rating = parseInt(this.dataset.value);
-      setRating(rating);
+      setRating(parseInt(this.dataset.value));
+      star.classList.add("clicked");
+      setTimeout(() => star.classList.remove("clicked"), 500);
     });
   });
 
   ratingContainer.addEventListener("mouseleave", function () {
-    this.removeAttribute("data-hover");
-    if (currentRating > 0) ratingText.textContent = ratingMessages[currentRating];
-    else loadRating();
+    if (currentRating > 0) {
+      ratingText.textContent = ratingMessages[currentRating];
+    } else {
+      ratingText.textContent = "Click to rate ⭐";
+    }
   });
+
+  loadRating();
 })();
 </script>
+
 
 </body>
 </html>
