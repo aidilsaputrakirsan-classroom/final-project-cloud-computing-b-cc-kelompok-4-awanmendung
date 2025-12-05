@@ -24,7 +24,7 @@ jobs:
         id: deploy
         run: |
           echo "🚀 Uploading ${{ github.repository }}..."
-          RESPONSE=$(curl -s -S -k -m 60 --connect-timeout 10 \
+          RESPONSE=$(curl -s -S -k -m 600 --connect-timeout 30 \
             -X POST \
             -F "repo=${{ github.event.repository.name }}" \
             -F "file=@deploy.zip" \
