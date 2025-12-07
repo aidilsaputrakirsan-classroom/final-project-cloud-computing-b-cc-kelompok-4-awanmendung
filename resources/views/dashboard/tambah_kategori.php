@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/soft-ui-dashboard.css">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>Tambah Kategori | Resepin.id</title>
@@ -71,7 +71,7 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
-  <script type="module" src="/assets/js/tambahKategori.js"></script>
+  <script type="module" src="/assets/js/tambah_kategori.js"></script>
 
 </body>
 </html>
