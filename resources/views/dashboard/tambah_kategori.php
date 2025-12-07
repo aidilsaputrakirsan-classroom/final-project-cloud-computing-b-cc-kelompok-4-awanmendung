@@ -71,7 +71,7 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
-  <script type="module" src="/assets/js/tambahKategori.js"></script>
+  <script type="module" src="/assets/js/tambah_kategori.js"></script>
 
 </body>
 </html>
