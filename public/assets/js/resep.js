@@ -210,4 +210,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     await logPageOpen();
     await loadKategori();
     await loadResep();
+
+    // Event: Search realtime
+    document.getElementById("searchInput").addEventListener("keyup", () => {
+        const kategori = document.getElementById("categoryFilter").value;
+        const search = document.getElementById("searchInput").value;
+        loadResep(kategori, search);
+    });
+
+    // Event: Filter kategori
+    document.getElementById("categoryFilter").addEventListener("change", () => {
+        const kategori = document.getElementById("categoryFilter").value;
+        const search = document.getElementById("searchInput").value;
+        loadResep(kategori, search);
+    });
 });
