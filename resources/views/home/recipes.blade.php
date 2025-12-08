@@ -281,6 +281,7 @@
     <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>

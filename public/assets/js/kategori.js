@@ -1,137 +1,151 @@
-// --- Supabase Connection ---
-import ActivityLogController from "./controllers/ActivityLogController.js";
-import { supabase } from "./supabaseClient.js";
-
-// --- Variabel global ---
+let csrf = null; // CSRF token
 let kategoriTerpilih = null;
 
-// --- Ambil data kategori dari Supabase ---
+// ==========================
+// Ambil token & info user Supabase
+// ==========================
+async function getSupabaseUser() {
+    if (window.supabase && supabase.auth) {
+        const sessionResp = await supabase.auth.getSession();
+        const user = sessionResp?.data?.session?.user;
+        if (user) return { user_id: user.id, email: user.email };
+    }
+    return { user_id: null, email: null };
+}
+
+// ==========================
+// Fungsi log aktivitas ke controller
+// ==========================
+async function logActivity(description, detail = {}) {
+    try {
+        const { user_id, email } = await getSupabaseUser();
+        if (typeof detail !== "object") detail = { value: detail };
+
+        const payload = { description, detail, user_id, email };
+        const csrfToken = csrf;
+
+        await fetch("/activity_logs/log", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-CSRF-TOKEN": csrfToken || "",
+            },
+            body: JSON.stringify(payload),
+            credentials: "same-origin", // penting untuk CSRF Laravel
+        });
+    } catch (err) {
+        console.error("Error log activity:", err);
+    }
+}
+
+// ==========================
+// Load kategori via Laravel
+// ==========================
 async function loadKategori() {
     const tableBody = document.querySelector("tbody");
 
-    const { data, error } = await supabase
-        .from("kategori")
-        .select("*")
-        .order("id", { ascending: true });
+    try {
+        const res = await fetch("/kategori/list");
+        const result = await res.json();
 
-    if (error) {
-        console.error("Gagal memuat kategori:", error);
-        tableBody.innerHTML =
-            '<tr><td colspan="2" class="text-center text-danger">Gagal memuat data</td></tr>';
-        return;
+        if (!result.success || !result.data.length) {
+            tableBody.innerHTML =
+                '<tr><td colspan="2" class="text-center text-danger">Tidak ada data</td></tr>';
+            return;
+        }
+
+        tableBody.innerHTML = "";
+        result.data.forEach((kategori) => {
+            const tr = document.createElement("tr");
+            tr.id = `kategori-${kategori.id}`;
+            tr.innerHTML = `
+                <td>${kategori.nama_kategori}</td>
+                <td class="text-center">
+                    <a href="edit_kategori?id=${kategori.id}" class="btn btn-warning px-3 py-3">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+                    <button class="btn btn-danger px-3 py-3 delete-kategori-btn"
+                            data-id="${kategori.id}" data-nama="${kategori.nama_kategori}">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </td>
+            `;
+            tableBody.appendChild(tr);
+        });
+
+        // Tambahkan listener untuk tombol hapus
+        document.querySelectorAll(".delete-kategori-btn").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const id = btn.dataset.id;
+                const nama = btn.dataset.nama;
+                konfirmasiHapus(nama, id);
+            });
+        });
+    } catch (err) {
+        console.error("Error load kategori:", err);
     }
-
-    tableBody.innerHTML = "";
-    data.forEach((kategori) => {
-        const tr = document.createElement("tr");
-        tr.id = `kategori-${kategori.id}`;
-        tr.innerHTML = `
-      <td>${kategori.nama_kategori}</td>
-      <td class="text-center">
-        <a href="edit_kategori?id=${kategori.id}" class="btn btn-warning px-3 py-3">
-          <i class="fa-solid fa-pen"></i>
-        </a>
-        <button class="btn btn-danger px-3 py-3" onclick="konfirmasiHapus('${kategori.nama_kategori}', ${kategori.id})">
-          <i class="fa-solid fa-trash"></i>
-        </button>
-      </td>
-    `;
-        tableBody.appendChild(tr);
-    });
 }
 
-// --- Fungsi Konfirmasi Hapus ---
-window.konfirmasiHapus = function (namaKategori, idKategori) {
-    kategoriTerpilih = idKategori;
-    document.getElementById("namaKategoriHapus").textContent = namaKategori;
-    const hapusModal = new bootstrap.Modal(
-        document.getElementById("hapusModal")
-    );
-    hapusModal.show();
+// ==========================
+// Hapus kategori
+// ==========================
+async function hapusKategori() {
+    try {
+        const res = await fetch(`/kategori/${kategoriTerpilih}`, {
+            method: "DELETE",
+            headers: { "X-CSRF-TOKEN": csrf },
+            credentials: "same-origin",
+        });
+
+        const result = await res.json();
+        if (!result.success) {
+            alert("Gagal menghapus kategori!");
+            return;
+        }
+
+        document.getElementById(`kategori-${kategoriTerpilih}`)?.remove();
+        bootstrap.Modal.getInstance(
+            document.getElementById("hapusModal")
+        ).hide();
+
+        // Log aktivitas menggunakan logActivity
+        await logActivity("Hapus kategori", { id: kategoriTerpilih });
+    } catch (err) {
+        console.error("Error hapus kategori:", err);
+    }
+}
+
+// ==========================
+// Konfirmasi hapus
+// ==========================
+window.konfirmasiHapus = function (nama, id) {
+    kategoriTerpilih = id;
+    document.getElementById("namaKategoriHapus").textContent = nama;
+    new bootstrap.Modal(document.getElementById("hapusModal")).show();
 };
 
-// --- Saat tombol konfirmasi ditekan ---
+// ==========================
+// DOMContentLoaded
+// ==========================
 document.addEventListener("DOMContentLoaded", () => {
-    const btnKonfirmasi = document.getElementById("btnKonfirmasiHapus");
-    if (btnKonfirmasi) {
-        btnKonfirmasi.addEventListener("click", async () => {
-            if (kategoriTerpilih) {
-                // Hapus dari database Supabase
-                const { error } = await supabase
-                    .from("kategori")
-                    .delete()
-                    .eq("id", kategoriTerpilih);
+    csrf = document.querySelector('meta[name="csrf-token"]').content;
 
-                if (error) {
-                    alert("Gagal menghapus kategori: " + error.message);
-                    return;
-                }
+    document
+        .getElementById("btnKonfirmasiHapus")
+        ?.addEventListener("click", hapusKategori);
 
-                // Hapus dari tampilan tabel
-                const baris = document.getElementById(
-                    "kategori-" + kategoriTerpilih
-                );
-                if (baris) baris.remove();
-
-                // Tutup
-                const hapusModal = bootstrap.Modal.getInstance(
-                    document.getElementById("hapusModal")
-                );
-                hapusModal.hide();
-
-                // === LOG AKTIVITAS ===
-                const {
-                    data: { user },
-                } = await supabase.auth.getUser();
-
-                await ActivityLogController.log(
-                    "Hapus kategori",
-                    { id: kategoriTerpilih },
-                    user?.id,
-                    user?.email
-                );
-            }
-        });
-    }
-
-    // Muat kategori pertama kali
     loadKategori();
-});
 
-// === LOG AKTIVITAS HALAMAN ===
-const {
-    data: { user },
-} = await supabase.auth.getUser();
-
-await ActivityLogController.log(
-    "Buka halaman kategori",
-    {},
-    user?.id,
-    user?.email
-);
-
-// --- Fungsi Pencarian Kategori ---
-document.addEventListener("DOMContentLoaded", () => {
+    // Pencarian kategori
     const searchInput = document.getElementById("searchInput");
-    const tableBody = document.querySelector("table tbody");
+    searchInput?.addEventListener("keyup", () => {
+        const filter = searchInput.value.toLowerCase();
+        const rows = document.querySelectorAll("tbody tr");
 
-    if (searchInput && tableBody) {
-        searchInput.addEventListener("keyup", () => {
-            const filter = searchInput.value.toLowerCase();
-            const rows = tableBody.getElementsByTagName("tr");
-
-            for (let i = 0; i < rows.length; i++) {
-                const namaKategori = rows[i].getElementsByTagName("td")[0];
-                if (namaKategori) {
-                    const textValue =
-                        namaKategori.textContent || namaKategori.innerText;
-                    rows[i].style.display = textValue
-                        .toLowerCase()
-                        .includes(filter)
-                        ? ""
-                        : "none";
-                }
-            }
+        rows.forEach((row) => {
+            const nama = row.children[0].innerText.toLowerCase();
+            row.style.display = nama.includes(filter) ? "" : "none";
         });
-    }
+    });
 });

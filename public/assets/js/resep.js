@@ -1,434 +1,213 @@
-// Import Supabase
-import ActivityLogController from "./controllers/ActivityLogController.js";
-import { supabase } from "./supabaseClient.js";
+// ==========================
+// Ambil token & info user Supabase
+// ==========================
+async function getSupabaseUser() {
+    if (window.supabase && supabase.auth) {
+        const sessionResp = await supabase.auth.getSession();
+        const user = sessionResp?.data?.session?.user;
+        if (user) {
+            return { user_id: user.id, email: user.email };
+        }
+    }
+    return { user_id: null, email: null };
+}
 
 // ==========================
-// LOAD KATEGORI DROPDOWN
+// Fungsi log aktivitas ke controller
+// ==========================
+async function logActivity(description, detail = {}) {
+    try {
+        const { user_id, email } = await getSupabaseUser();
+
+        if (typeof detail !== "object") detail = { value: detail };
+
+        const payload = { description, detail, user_id, email };
+
+        const csrfToken = document
+            .querySelector('meta[name="csrf-token"]')
+            ?.getAttribute("content");
+
+        await fetch("/activity_logs/log", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-CSRF-TOKEN": csrfToken || "",
+            },
+            body: JSON.stringify(payload),
+            credentials: "same-origin",
+        });
+    } catch (err) {
+        console.error("Error log activity:", err);
+    }
+}
+
+// ==========================
+// Load kategori
 // ==========================
 async function loadKategori() {
-    const select = document.getElementById("kategoriSelect");
-    if (!select) return;
+    const select = document.getElementById("categoryFilter");
+    try {
+        const res = await fetch("/kategori/list");
+        const result = await res.json();
+        if (!result.success || !result.data.length) return;
 
-    select.innerHTML = `<option value="">Memuat kategori...</option>`;
-
-    const { data, error } = await supabase
-        .from("kategori")
-        .select("*")
-        .order("id", { ascending: true });
-
-    if (error) {
-        console.error("Gagal memuat kategori:", error);
-        select.innerHTML = `<option value="">Gagal memuat kategori</option>`;
-        return;
-    }
-
-    select.innerHTML = `<option value="">Pilih kategori...</option>`;
-    data.forEach((k) => {
-        select.innerHTML += `<option value="${k.nama_kategori}">${k.nama_kategori}</option>`;
-    });
-}
-
-document.addEventListener("DOMContentLoaded", loadKategori);
-
-// ==========================
-// PREVIEW GAMBAR
-// ==========================
-const gambarInput = document.getElementById("gambarInput");
-
-if (gambarInput) {
-    gambarInput.addEventListener("change", function () {
-        const img = document.getElementById("previewImg");
-        img.src = URL.createObjectURL(this.files[0]);
-        img.classList.remove("d-none");
-    });
-}
-
-// ==========================
-// SUBMIT FORM RESEP
-// ==========================
-const form = document.getElementById("formTambahResep");
-
-if (form) {
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const nama_resep = e.target.nama_resep.value;
-        const kategori = e.target.kategori.value;
-        const deskripsi = e.target.deskripsi.value;
-        const alat = e.target.alat.value;
-        const bahan = e.target.bahan.value;
-        const file = document.getElementById("gambarInput").files[0];
-
-        if (!file) return alert("Gambar belum diupload!");
-
-        const fileName = `resep_${Date.now()}_${file.name}`;
-
-        const { error: uploadErr } = await supabase.storage
-            .from("gambar")
-            .upload(fileName, file);
-
-        if (uploadErr) {
-            console.error(uploadErr);
-            return alert("Gagal upload gambar!");
-        }
-
-        const { data: urlData } = supabase.storage
-            .from("gambar")
-            .getPublicUrl(fileName);
-
-        const gambar_url = urlData.publicUrl;
-
-        const { error } = await supabase.from("resep").insert({
-            nama_resep,
-            kategori,
-            alat: alat,
-            bahan: bahan,
-            deskripsi,
-            gambar: gambar_url,
+        result.data.forEach((kat) => {
+            const option = document.createElement("option");
+            option.value = kat.nama_kategori;
+            option.textContent = kat.nama_kategori;
+            select.appendChild(option);
         });
-
-        if (error) {
-            console.error(error);
-            return alert("Gagal menyimpan resep!");
-        }
-
-        // === LOG AKTIVITAS ===
-        const {
-            data: { user },
-        } = await supabase.auth.getUser();
-        await ActivityLogController.log(
-            "Tambah resep",
-            { nama_resep, kategori },
-            user?.id,
-            user?.email
-        );
-
-        alert("Resep berhasil disimpan!");
-        window.location.href = "dashboard";
-    });
+    } catch (error) {
+        console.error("Error load kategori:", error);
+    }
 }
 
 // ==========================
-// LOAD DATA RESEP (FILTER + SEARCH)
+// Load resep
 // ==========================
 async function loadResep(kategoriFilter = "", searchText = "") {
     const tableBody = document.getElementById("resepTableBody");
-    tableBody.innerHTML = `<tr><td colspan="7">Loading...</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="5">Loading...</td></tr>`;
 
-    let query = supabase
-        .from("resep")
-        .select(
-            "id, nama_resep, kategori, deskripsi, gambar, alat, bahan, created_at"
-        )
-        .order("id", { ascending: true });
+    const params = new URLSearchParams();
+    if (kategoriFilter) params.append("kategori", kategoriFilter);
 
-    if (kategoriFilter !== "") query = query.eq("kategori", kategoriFilter);
-
-    const { data, error } = await query;
-
-    if (error) {
-        console.error("Error mengambil data:", error);
-        tableBody.innerHTML = `<tr><td colspan="7">Gagal mengambil data</td></tr>`;
-        return;
-    }
-
-    let list = data;
-
-    if (searchText.trim() !== "") {
-        const s = searchText.toLowerCase();
-        list = list.filter((item) => item.nama_resep.toLowerCase().includes(s));
-    }
-
-    if (!list || list.length === 0) {
-        tableBody.innerHTML = `
-            <tr><td colspan="7" class="text-center fw-bold">Resep tidak tersedia</td></tr>
-        `;
-        return;
-    }
-
-    tableBody.innerHTML = "";
-
-    list.forEach((resep) => {
-        const row = `
-            <tr>
-            <td>${resep.nama_resep}</td>
-            <td>${resep.kategori}</td>
-
-            <td class="text-center">
-                <img src="${resep.gambar}" width="70" class="rounded">
-            </td>
-
-            <td class="text-center">
-                <a href="view_resep?id=${resep.id}" 
-                class="btn btn-info px-3 py-3">
-                    <i class="fa-solid fa-eye"></i> View
-                </a>
-            </td>
-
-            <td>
-                <a href="edit_resep?id=${resep.id}" class="btn btn-warning px-3 py-3">
-                    <i class="fa-solid fa-pen"></i>
-                </a>
-
-                <button class="btn btn-danger px-3 py-3" 
-                        onclick="konfirmasiHapus('${resep.nama_resep}', ${resep.id})">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-            </td>
-            </tr>
-        `;
-        tableBody.innerHTML += row;
-    });
-}
-
-// ==========================
-// LOAD KATEGORI FILTER
-// ==========================
-async function loadKategoriFilter() {
     try {
-        const { data, error } = await supabase
-            .from("kategori")
-            .select("*")
-            .order("id", { ascending: true });
+        const res = await fetch("/resep/list?" + params.toString());
+        const result = await res.json();
 
-        if (error) {
-            console.error("Error memuat filter:", error);
+        if (!result.success || !result.data.length) {
+            tableBody.innerHTML = `<tr><td colspan="5" class="text-center fw-bold">Resep tidak tersedia</td></tr>`;
             return;
         }
 
-        const filter = document.getElementById("categoryFilter");
-        filter.innerHTML = `<option value="">Semua Kategori</option>`;
+        let list = result.data;
+        if (searchText.trim() !== "") {
+            const s = searchText.toLowerCase();
+            list = list.filter((item) =>
+                item.nama_resep.toLowerCase().includes(s)
+            );
+        }
 
-        data.forEach((k) => {
-            filter.innerHTML += `<option value="${k.nama_kategori}">${k.nama_kategori}</option>`;
+        // Render tabel sekaligus untuk performa
+        let html = "";
+        list.forEach((resep) => {
+            html += `
+            <tr>
+                <td>${resep.nama_resep}</td>
+                <td>${resep.kategori}</td>
+                <td class="text-center"><img src="${resep.gambar}" width="70" class="rounded"></td>
+                <td class="text-center">
+                    <button class="btn btn-info px-3 py-3 view-resep-btn" 
+                        data-id="${resep.id}" data-nama="${resep.nama_resep}">
+                        <i class="fa-solid fa-eye"></i> View
+                    </button>
+                </td>
+                <td>
+                    <a href="edit_resep?id=${resep.id}" class="btn btn-warning px-3 py-3"><i class="fa-solid fa-pen"></i></a>
+                    <button class="btn btn-danger px-3 py-3 delete-resep-btn" 
+                        data-id="${resep.id}" data-nama="${resep.nama_resep}">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </td>
+            </tr>`;
         });
-    } catch (err) {
-        console.error("Error memuat filter:", err);
+        tableBody.innerHTML = html;
+
+        // ==========================
+        // Attach listener setelah render
+        // ==========================
+        document.querySelectorAll(".view-resep-btn").forEach((btn) => {
+            btn.addEventListener("click", async () => {
+                const id = btn.dataset.id;
+                const nama = btn.dataset.nama;
+                await logActivity("View resep", { id, nama });
+                window.location.href = `view_resep?id=${id}`;
+            });
+        });
+
+        document.querySelectorAll(".delete-resep-btn").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const id = btn.dataset.id;
+                const nama = btn.dataset.nama;
+                konfirmasiHapus(nama, id);
+            });
+        });
+    } catch (error) {
+        console.error("Error load resep:", error);
+        tableBody.innerHTML = `<tr><td colspan="5" class="text-center fw-bold text-danger">Terjadi kesalahan</td></tr>`;
     }
 }
 
 // ==========================
-// EVENT FILTER + SEARCH
+// Log buka halaman
 // ==========================
-document.addEventListener("DOMContentLoaded", () => {
-    loadKategoriFilter();
-    loadResep();
-
-    const filter = document.getElementById("categoryFilter");
-    const searchInput = document.getElementById("searchInput");
-
-    if (filter)
-        filter.addEventListener("change", () =>
-            loadResep(filter.value, searchInput.value)
-        );
-
-    if (searchInput)
-        searchInput.addEventListener("keyup", () =>
-            loadResep(filter.value, searchInput.value)
-        );
-});
+async function logPageOpen() {
+    await logActivity("Buka halaman resep");
+}
 
 // ==========================
-// EDIT RESEP
+// Konfirmasi hapus resep
 // ==========================
-const urlParams = new URLSearchParams(window.location.search);
-const editId = urlParams.get("id");
-
-const editNama = document.getElementById("editNamaResep");
-const editKategori = document.getElementById("editKategori");
-const editAlat = document.getElementById("editAlat");
-const editBahan = document.getElementById("editBahan");
-const editDeskripsi = document.getElementById("editDeskripsi");
-const editGambarInput = document.getElementById("editGambarInput");
-const editPreviewImg = document.getElementById("editPreviewImg");
-const editForm = document.getElementById("formEditResep");
-
-async function loadKategoriEdit() {
-    if (!editKategori) return;
-
-    const { data, error } = await supabase
-        .from("kategori")
-        .select("*")
-        .order("id");
-
-    if (error) return console.error("Gagal load kategori edit:", error);
-
-    editKategori.innerHTML = `<option value="">Pilih kategori...</option>`;
-
-    data.forEach((k) => {
-        editKategori.innerHTML += `<option value="${k.nama_kategori}">${k.nama_kategori}</option>`;
-    });
-}
-
-async function loadDataEditResep() {
-    if (!editId || !editForm) return;
-
-    const { data, error } = await supabase
-        .from("resep")
-        .select("*")
-        .eq("id", editId)
-        .single();
-
-    if (error) return;
-
-    editNama.value = data.nama_resep;
-    editKategori.value = data.kategori;
-    editDeskripsi.value = data.deskripsi;
-    editAlat.value = data.alat;
-    editBahan.value = data.bahan;
-
-    if (data.gambar) {
-        editPreviewImg.src = data.gambar;
-        editPreviewImg.classList.remove("d-none");
-    }
-}
-
-if (editGambarInput) {
-    editGambarInput.addEventListener("change", function () {
-        editPreviewImg.src = URL.createObjectURL(this.files[0]);
-        editPreviewImg.classList.remove("d-none");
-    });
-}
-
-if (editForm) {
-    editForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const nama_resep = editNama.value;
-        const kategori = editKategori.value;
-        const deskripsi = editDeskripsi.value;
-        const alat = editAlat.value;
-        const bahan = editBahan.value;
-
-        let gambar_url = null;
-
-        if (editGambarInput.files.length > 0) {
-            const file = editGambarInput.files[0];
-            const fileName = `resep_${Date.now()}_${file.name}`;
-
-            const { error: uploadErr } = await supabase.storage
-                .from("gambar")
-                .upload(fileName, file);
-
-            if (uploadErr) {
-                console.error(uploadErr);
-                return alert("Gagal upload gambar baru!");
-            }
-
-            const { data: urlData } = supabase.storage
-                .from("gambar")
-                .getPublicUrl(fileName);
-
-            gambar_url = urlData.publicUrl;
-        }
-
-        const updateData = {
-            nama_resep,
-            kategori,
-            deskripsi,
-            alat,
-            bahan,
-        };
-
-        if (gambar_url) updateData.gambar = gambar_url;
-
-        const { error } = await supabase
-            .from("resep")
-            .update(updateData)
-            .eq("id", editId);
-
-        if (error) {
-            console.error(error);
-            return alert("Gagal update resep!");
-        }
-
-        // === LOG AKTIVITAS ===
-        const {
-            data: { user },
-        } = await supabase.auth.getUser();
-        await ActivityLogController.log(
-            "Edit resep",
-            { id: editId, nama_resep, kategori },
-            user?.id,
-            user?.email
-        );
-
-        alert("Resep berhasil diperbarui!");
-        window.location.href = "dashboard";
-    });
-}
-
-if (editId) {
-    loadKategoriEdit();
-    loadDataEditResep();
-}
-
-// ===================================================================
-// ========================== FITUR HAPUS ============================
-// ===================================================================
-
-// BUKA MODAL KONFIRMASI
 window.konfirmasiHapus = function (nama, id) {
-    const modalNama = document.getElementById("namaResepHapus");
-    const modalId = document.getElementById("idResepHapus");
-
-    modalNama.innerText = nama;
-    modalId.value = id;
-
+    document.getElementById("namaResepHapus").textContent = nama;
+    document.getElementById("idResepHapus").value = id;
     const modal = new bootstrap.Modal(
         document.getElementById("modalHapusResep")
     );
     modal.show();
 };
 
-// HAPUS DATA DI SUPABASE
-async function hapusResepFinal() {
-    const id = document.getElementById("idResepHapus").value;
+// ==========================
+// Hapus resep final
+// ==========================
+document
+    .getElementById("btnHapusResepFinal")
+    .addEventListener("click", async () => {
+        const id = document.getElementById("idResepHapus").value;
+        const nama = document.getElementById("namaResepHapus").textContent;
 
-    const { error } = await supabase.from("resep").delete().eq("id", id);
+        try {
+            const csrfToken = document
+                .querySelector('meta[name="csrf-token"]')
+                ?.getAttribute("content");
 
-    if (error) {
-        console.error(error);
-        alert("Gagal menghapus resep!");
-        return;
-    }
+            const res = await fetch("/resep/delete/" + id, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                    "X-CSRF-TOKEN": csrfToken || "",
+                },
+                credentials: "same-origin", // wajib agar cookie CSRF ikut
+            });
 
-    // === LOG AKTIVITAS ===
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
-    await ActivityLogController.log(
-        "Hapus resep",
-        { id },
-        user?.id,
-        user?.email
-    );
+            const result = await res.json();
+            if (result.success) {
+                await logActivity("Hapus resep", { id, nama });
 
-    const modal = bootstrap.Modal.getInstance(
-        document.getElementById("modalHapusResep")
-    );
-    modal.hide();
+                loadResep(
+                    document.getElementById("categoryFilter").value,
+                    document.getElementById("searchInput").value
+                );
 
-    loadResep();
-}
+                bootstrap.Modal.getInstance(
+                    document.getElementById("modalHapusResep")
+                ).hide();
+            } else {
+                alert("Gagal hapus resep");
+            }
+        } catch (error) {
+            console.error("Error hapus resep:", error);
+        }
+    });
 
-// TOMBOL HAPUS
-const btnHapusAkhir = document.getElementById("btnHapusResepFinal");
-
-//
-if (btnHapusAkhir) {
-    btnHapusAkhir.addEventListener("click", hapusResepFinal);
-}
-
+// ==========================
+// DOMContentLoaded
+// ==========================
 document.addEventListener("DOMContentLoaded", async () => {
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
-
-    await ActivityLogController.log(
-        "Buka halaman resep",
-        {},
-        user?.id,
-        user?.email
-    );
+    await logPageOpen();
+    await loadKategori();
+    await loadResep();
 });

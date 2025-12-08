@@ -17,6 +17,7 @@
 
 <head>
   <meta charset="utf-8" />
+  <link rel="stylesheet" href="/assets/css/soft-ui-dashboard.css">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -35,9 +36,12 @@
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body class="g-sidenav-show  bg-gray-100">
+<body class="g-sidenav-show bg-gray-100"
+    data-user-id="{{ auth()->user()->id ?? '' }}"
+    data-user-email="{{ auth()->user()->email ?? '' }}">
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -70,7 +74,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="../kategori">
+          <a class="nav-link  active" href="../kategori">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>
@@ -90,7 +94,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  active" href="../saran">
+          <a class="nav-link  " href="../saran">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>box-3d-50</title>
@@ -161,9 +165,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Saran</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Kategori</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Saran</h6>
+          <h6 class="font-weight-bolder mb-0">Kategori</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -189,53 +193,40 @@
                     <span class="input-group-text bg-white border-end-0">
                       <i class="fa-solid fa-magnifying-glass text-secondary"></i>
                     </span>
-                    <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Cari saran...">
-                  </div>
-
-                  <!-- Filter kategori -->
-                  <div class="input-group" style="max-width: 220px;">
-                    <span class="input-group-text bg-white border-end-0">
-                      <i class="fa-solid fa-filter text-secondary"></i>
-                    </span>
-                    <select id="categoryFilter" class="form-select border-start-0">
-                      <option value="">Semua Kategori</option>
-                    </select>
+                    <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Cari kategori...">
                   </div>
                 </div>
+                <!-- Tombol tambah -->
+                <h6 class="mb-0"></h6>
+                <a href="tambah_kategori" class="btn-primary">
+                  <i class="fa-solid fa-plus"></i> Tambah Kategori
+                </a>
               </div>
               <div class="table-container">
+                <!-- Tabel -->
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Nama</th>
-                      <th>Kategori</th>
-                      <th>View</th>
-                      <th>Action</th>
+                      <th>Nama Kategori</th>
+                      <th class="text-center">Action</th>
                     </tr>
                   </thead>
-                  <tbody id="saranTableBody">
-                    <!-- Data dari Supabase akan muncul disini -->
-                  </tbody>
+                  <tbody></tbody>
                 </table>
-                    <!-- Konfirmasi Hapus Resep -->
-                    <div class="modal fade" id="modalHapusSaran" tabindex="-1">
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-body text-center">
-                            <h5>Yakin ingin menghapus <span id="namaSaranHapus" class="fw-bold"></span>?</h5>
-                            <input type="hidden" id="idSaranHapus">
-                          </div>
-
-                          <div class="modal-footer px-5">
-                            <button class="btn btn-secondary me-auto" data-bs-dismiss="modal">Batal</button>
-                            <button id="btnHapusSaranFinal" class="btn btn-danger">Hapus</button>
-                          </div>
-
+                    <!-- Konfirmasi Hapus -->
+                  <div class="modal fade" id="hapusModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-body text-center">
+                          <h5>Yakin ingin menghapus <span id="namaKategoriHapus" class="fw-bold"></span>?</h5>
+                        </div>
+                        <div class="modal-footer px-5">
+                          <button class="btn btn-secondary me-auto" data-bs-dismiss="modal">Batal</button>
+                          <button id="btnKonfirmasiHapus" class="btn btn-danger">Hapus</button>
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
             </div>
           </div>
@@ -248,7 +239,8 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script type="module" src="../assets/js/saran.js"></script>
+  <script type="module" src="/assets/js/kategori.js"></script>
+
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

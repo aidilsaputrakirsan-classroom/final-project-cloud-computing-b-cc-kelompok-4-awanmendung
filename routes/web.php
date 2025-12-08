@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupabaseController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\ResepController;
+use App\Http\Controllers\SaranController;
+use App\Http\Controllers\SaranResepController;
+use App\Http\Controllers\ActivityLogController;
 
 // =====================
 // AUTH (LOGIN, REGISTER, LOGOUT)
@@ -66,5 +71,35 @@ Route::middleware(['checkSupabase'])->group(function () {
     Route::get('/view_saranresep', fn() => view('dashboard.view_saranresep'));
     Route::get('/activity_logs', fn() => view('dashboard.activity_logs'));
     Route::get('/view_activitylogs', fn() => view('dashboard.view_activitylogs'));
-
+    Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::post('/kategori/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::get('/kategori/get/{id}', [KategoriController::class, 'get'])->name('kategori.get');
+    Route::delete('/kategori/{id}', [KategoriController::class, 'delete']);
+    Route::get('/resep/list', [ResepController::class, 'list']);
+    Route::post('/resep/store', [ResepController::class, 'store']);
+    Route::delete('/resep/delete/{id}', [ResepController::class, 'delete']);
+    Route::get('/resep/view/{id}', [ResepController::class, 'view']);
+    Route::get('/resep/edit/{id}', [ResepController::class, 'show']);
+    Route::post('/resep/update/{id}', [ResepController::class, 'update']);
+    Route::get('/saran/list', [SaranController::class, 'list']);
+    Route::delete('/saran/delete/{id}', [SaranController::class, 'delete']);
+    Route::get('/saran/view/{id}', [SaranController::class, 'view'])->name('saran.view');
+    Route::prefix('saran_resep')->group(function () {
+        Route::get('/', [SaranResepController::class, 'index']);
+        Route::get('/list', [SaranResepController::class, 'list']);
+        Route::get('/view/{id}', [SaranResepController::class, 'view']);
+        Route::delete('/delete/{id}', [SaranResepController::class, 'delete']);
+    });
+    Route::prefix('activity_logs')->group(function () {
+        Route::get('list', [ActivityLogController::class, 'list']);
+        Route::post('log', [ActivityLogController::class, 'log']);
+        Route::delete('delete/{id}', [ActivityLogController::class, 'delete']);
+        Route::get('view/{id}', [ActivityLogController::class, 'view']);
+        Route::get('api/{id}', [ActivityLogController::class, 'apiView']);
+    });
 });
+
+Route::get('/home/recipes', [ResepController::class, 'homeRecipes']);
+Route::get('/recipes/list', [ResepController::class, 'listForPage']);
+Route::get('/recipes/details', [ResepController::class, 'details']);
+Route::get('/kategori/list', [KategoriController::class, 'list']);

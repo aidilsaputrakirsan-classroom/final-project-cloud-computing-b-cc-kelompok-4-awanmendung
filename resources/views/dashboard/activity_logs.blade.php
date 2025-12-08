@@ -35,6 +35,7 @@
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -184,13 +185,6 @@
             <div class="card-body px-4 pt-4 pb-2">
               <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
                 <div class="d-flex align-items-center gap-2">
-                  <!-- Search -->
-                  <div class="input-group" style="max-width: 250px;">
-                    <span class="input-group-text bg-white border-end-0">
-                      <i class="fa-solid fa-magnifying-glass text-secondary"></i>
-                    </span>
-                    <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Cari activity...">
-                  </div>
                 </div>
 
               </div>
@@ -198,7 +192,6 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Email</th>
                       <th>View</th>
                       <th>Action</th>
                     </tr>
@@ -238,7 +231,7 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script type="module" src="../assets/js/activity_logs.js"></script>
+  <script type="module" src="/assets/js/activity_logs.js"></script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

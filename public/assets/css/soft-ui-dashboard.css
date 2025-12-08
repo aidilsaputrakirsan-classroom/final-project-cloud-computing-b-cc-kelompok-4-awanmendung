@@ -6,6 +6,11 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+ #kontak_resep, #bahan_resep, #langkah_resep {
+    list-style: none;
+    padding-left: 0;
+}
+
 .judul-section {
     font-size: 20px; /* lebih besar */
     font-weight: 700; /* tebal */

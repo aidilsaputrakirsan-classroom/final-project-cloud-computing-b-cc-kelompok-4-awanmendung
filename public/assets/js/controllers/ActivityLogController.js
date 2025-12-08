@@ -1,33 +1,34 @@
-import { supabase } from "../supabaseClient.js";
-
 export default class ActivityLogController {
-    static async log(
-        description,
-        detail = {},
-        userId = null,
-        userEmail = null
-    ) {
+    static async log(description, detail = {}) {
         try {
-            const payload = {
-                description: description,
-                detail: detail,
-                user_id: userId,
-                email: userEmail,
-            };
+            const payload = { description, detail };
 
-            const { data, error } = await supabase
-                .from("activity_logs")
-                .insert([payload]);
+            // Kirim ke Laravel controller
+            const res = await fetch("/activity_logs/log", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
+                body: JSON.stringify(payload),
+                credentials: "same-origin", // penting supaya cookie CSRF ikut
+            });
 
-            if (error) {
-                console.error("Gagal menyimpan log:", error);
-                return { success: false, error };
+            const result = await res.json();
+
+            if (!res.ok || !result.success) {
+                console.error("Gagal menyimpan log:", result.error);
+                return { success: false, error: result.error };
             }
 
-            return { success: true, data };
+            // Backend Laravel sudah otomatis menambahkan user_id dan email
+            return { success: true, data: result.data };
         } catch (err) {
             console.error("Error log exception:", err);
-            return { success: false, error: err };
+            return { success: false, error: err.message };
         }
     }
 }

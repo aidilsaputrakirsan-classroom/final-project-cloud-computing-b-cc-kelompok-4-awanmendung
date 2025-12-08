@@ -4,14 +4,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
   <title>View Activity Logs | Resepin.id</title>
 
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,800" rel="stylesheet" />
-  <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
+  <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+  <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+
+  <!-- CSS Dashboard -->
+  <link id="pagestyle" href="{{ asset('assets/css/soft-ui-dashboard.css?v=1.1.0') }}" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -23,7 +30,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm">
-              <a class="opacity-5 text-dark" href="resep">Activity Logs</a>
+              <a class="opacity-5 text-dark" href="{{ url('activity_logs') }}">Activity Logs</a>
             </li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">View Activity Logs</li>
           </ol>
@@ -43,22 +50,18 @@
             <div class="card-body">
 
               <div class="mb-3">
-                <label class="judul-section">User ID</label>
-                <div id="userid_resep" class="text-dark"></div>
+                  <label class="judul-section">Detail</label>
+                  <div id="detail_resep" class="text-dark"></div>
               </div>
 
               <div class="mb-3">
-                <label class="judul-section">Detail</label>
-                <div id="detail_resep" class="text-dark"></div>
+                  <label class="judul-section">Deskripsi</label>
+                  <div id="description_resep" class="text-dark"></div>
               </div>
 
-              <div class="mb-3">
-                <label class="judul-section">Deskripsi</label>
-                <div id="description_resep" class="text-dark"></div>
-              </div>
 
               <div class="d-flex justify-content-between mt-4">
-                <a href="activity_logs" class="btn btn-outline-secondary">
+                <a href="{{ url('activity_logs') }}" class="btn btn-outline-secondary">
                   <i class="fa-solid fa-arrow-left"></i> Kembali
                 </a>
               </div>
@@ -72,14 +75,16 @@
   </main>
 
   <!-- Scripts -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
+  <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+  <script src="{{ asset('assets/js/soft-ui-dashboard.min.js?v=1.1.0') }}"></script>
+
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <!-- File JS -->
-  <script type="module" src="../assets/js/view_activitylogs.js"></script>
+  <script type="module" src="{{ asset('assets/js/view_activitylogs.js') }}"></script>
 
 </body>
 </html>

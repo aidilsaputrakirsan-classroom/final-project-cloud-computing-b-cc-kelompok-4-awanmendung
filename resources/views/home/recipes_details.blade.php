@@ -483,6 +483,7 @@
     <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
     <!-- Style kecil untuk Like, Comment & Save -->

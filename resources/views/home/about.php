@@ -307,7 +307,7 @@
                                     <nav>
                                         <ul id="navigation">
 
-                                        <li><a href="index.php">Beranda</a></li>
+                                        <li><a href="index">Beranda</a></li>
                                             <li>
                                             <a href="about.php"
                                             style="color:#00FF00 !important; font-weight:700; border-bottom:2px solid #00FF00; padding-bottom:4px;">

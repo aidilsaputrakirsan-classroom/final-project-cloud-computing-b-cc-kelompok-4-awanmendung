@@ -12,6 +12,7 @@
   <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-svg.css" rel="stylesheet" />
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -64,6 +65,8 @@
               </div>
 
             </div>
+
+
           </div>
         </div>
       </div>
@@ -79,7 +82,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <!-- File JS -->
-  <script type="module" src="../assets/js/view_resep.js"></script>
+  <script type="module" src="/assets/js/view_resep.js"></script>
 
 </body>
 </html>

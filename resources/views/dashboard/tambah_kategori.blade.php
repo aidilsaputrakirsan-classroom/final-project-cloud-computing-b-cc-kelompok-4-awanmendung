@@ -14,6 +14,7 @@
   <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-svg.css" rel="stylesheet" />
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body class="g-sidenav-show bg-gray-100">

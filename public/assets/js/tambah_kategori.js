@@ -1,10 +1,5 @@
-// tambahKategori.js
-import { supabase } from "./supabaseClient.js";
-import ActivityLogController from "./controllers/ActivityLogController.js";
-
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("formTambahKategori");
-    if (!form) return;
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -13,34 +8,35 @@ document.addEventListener("DOMContentLoaded", () => {
             .getElementById("namaKategori")
             .value.trim();
         if (!namaKategori) {
-            alert("Nama kategori tidak boleh kosong!");
+            alert("Nama kategori wajib diisi!");
             return;
         }
 
-        // Simpan ke Supabase
-        const { error, data } = await supabase
-            .from("kategori")
-            .insert([{ nama_kategori: namaKategori }])
-            .select();
+        try {
+            const res = await fetch("/kategori/store", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
+                body: JSON.stringify({
+                    nama_kategori: namaKategori,
+                }),
+            });
 
-        if (error) {
-            console.error(error);
+            const data = await res.json();
+
+            if (!data.success) {
+                throw new Error(data.message);
+            }
+
+            alert("✔ Kategori berhasil disimpan!");
+            window.location.href = "/kategori";
+        } catch (err) {
+            console.error(err);
             alert("❌ Gagal menyimpan kategori!");
-            return;
         }
-
-        // Log aktivitas
-        const {
-            data: { user },
-        } = await supabase.auth.getUser();
-        await ActivityLogController.log(
-            "Tambah kategori",
-            { id: data[0].id, nama_kategori: data[0].nama_kategori },
-            user?.id,
-            user?.email
-        );
-
-        alert("✅ Kategori berhasil disimpan!");
-        window.location.href = "kategori";
     });
 });

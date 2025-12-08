@@ -1,87 +1,68 @@
-import { supabase } from "./supabaseClient.js";
-import ActivityLogController from "./controllers/ActivityLogController.js";
-
-// 🔗 Supabase client sudah diimport dari supabaseClient.js
-
-// 🔍 Ambil ID kategori dari URL
 const urlParams = new URLSearchParams(window.location.search);
 const kategoriId = urlParams.get("id");
+const csrf = document.querySelector('meta[name="csrf-token"]').content;
 
-// 🚀 Fungsi ambil data kategori
+// ==========================
+// Load data kategori
+// ==========================
 async function loadKategori() {
-    if (!kategoriId) {
-        alert("ID kategori tidak ditemukan!");
-        window.location.href = "kategori";
-        return;
-    }
+    const res = await fetch(`/kategori/get/${kategoriId}`);
+    const json = await res.json();
 
-    const { data, error } = await supabase
-        .from("kategori")
-        .select("*")
-        .eq("id", kategoriId)
-        .maybeSingle();
-
-    if (error) {
-        console.error(error);
-        alert("Gagal mengambil data kategori!");
-        return;
-    }
-
-    if (data) {
-        document.getElementById("namaKategori").value = data.nama_kategori;
-    } else {
+    if (!json.success || !json.data) {
         alert("Kategori tidak ditemukan!");
-        window.location.href = "kategori";
+        return (window.location.href = "/kategori");
     }
 
-    // 🔄 Log buka halaman edit
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
-    await ActivityLogController.log(
-        "Buka halaman edit kategori",
-        { id: kategoriId },
-        user?.id,
-        user?.email
-    );
+    document.getElementById("namaKategori").value = json.data.nama_kategori;
 }
 
-// 💾 Simpan perubahan
+// ==========================
+// Update kategori
+// ==========================
 document
     .getElementById("formEditKategori")
     .addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const namaBaru = document.getElementById("namaKategori").value.trim();
-        if (!namaBaru) {
-            alert("Nama kategori tidak boleh kosong!");
-            return;
-        }
 
-        const { error } = await supabase
-            .from("kategori")
-            .update({ nama_kategori: namaBaru })
-            .eq("id", kategoriId);
+        try {
+            const res = await fetch(`/kategori/update/${kategoriId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": csrf,
+                },
+                body: JSON.stringify({ nama_kategori: namaBaru }),
+                credentials: "same-origin",
+            });
 
-        if (error) {
-            console.error(error);
-            alert("❌ Gagal memperbarui kategori!");
-        } else {
-            // 🔄 Log update
-            const {
-                data: { user },
-            } = await supabase.auth.getUser();
-            await ActivityLogController.log(
-                "Edit kategori",
-                { id: kategoriId, namaBaru },
-                user?.id,
-                user?.email
-            );
+            const result = await res.json();
 
-            alert("✅ Kategori berhasil diperbarui!");
-            window.location.href = "kategori";
+            if (!result.success) {
+                return alert("❌ Gagal update kategori");
+            }
+
+            // ==========================
+            // Log aktivitas update kategori
+            // ==========================
+            if (typeof logActivity === "function") {
+                await logActivity("Update kategori", {
+                    id: kategoriId,
+                    nama_kategori: namaBaru,
+                });
+            }
+
+            alert("✔ Kategori berhasil diperbarui!");
+            window.location.href = "/kategori";
+        } catch (err) {
+            console.error("Error update kategori:", err);
+            alert("❌ Terjadi kesalahan saat update kategori");
         }
     });
 
-// ⏳ Jalankan load saat halaman dibuka
+// ==========================
+// Load kategori saat halaman dibuka
+// ==========================
 loadKategori();
